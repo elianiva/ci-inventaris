@@ -41,6 +41,8 @@ class Stok extends Migration
       ],
     ]);
     $this->forge->addKey("kode_barang", true);
+    $this->forge->addKey("jumlah_barang_masuk");
+    $this->forge->addKey("jumlah_barang_keluar");
     $this->forge->createTable("stok");
   }
 

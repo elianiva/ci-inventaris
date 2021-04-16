@@ -61,6 +61,6 @@ class Pinjambarang extends Migration
 
   public function down()
   {
-    //
+    $this->forge->dropTable("pinjam_barang");
   }
 }

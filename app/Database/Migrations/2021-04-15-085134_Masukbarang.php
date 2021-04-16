@@ -8,6 +8,9 @@ class Masukbarang extends Migration
 {
   public function up()
   {
+    // ignore the linter error
+    $this->db->disableForeignKeyChecks();
+
     $this->forge->addField([
       "id_masuk_barang" => [
         "type" => "VARCHAR",
@@ -62,6 +65,9 @@ class Masukbarang extends Migration
       "NO ACTION",
     );
     $this->forge->createTable("masuk_barang");
+    //
+    // ignore the linter error
+    $this->db->enableForeignKeyChecks();
   }
 
   public function down()
