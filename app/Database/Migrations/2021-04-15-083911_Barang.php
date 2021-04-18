@@ -54,6 +54,14 @@ class Barang extends Migration
         "constraint" => 25,
         "null" => false,
       ],
+      "created_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
+      "updated_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
     ]);
     $this->forge->addKey("kode_barang", true);
     $this->forge->createTable("barang");

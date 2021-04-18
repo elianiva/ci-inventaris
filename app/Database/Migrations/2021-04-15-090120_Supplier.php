@@ -34,6 +34,14 @@ class Supplier extends Migration
         "constraint" => 20,
         "null" => false,
       ],
+      "created_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
+      "updated_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
     ]);
     $this->forge->addKey("kode_supplier", true);
     $this->forge->createTable("supplier");

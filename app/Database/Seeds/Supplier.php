@@ -3,6 +3,7 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use CodeIgniter\I18n\Time;
 
 class Supplier extends Seeder
 {
@@ -18,6 +19,8 @@ class Supplier extends Seeder
         "alamat_supplier" => $faker->address(),
         "telp_supplier" => $faker->phoneNumber(),
         "kota_supplier" => $faker->city(),
+        "created_at" => Time::now(),
+        "updated_at" => Time::now(),
       ];
       $this->db->table("supplier")->insert($data);
     }

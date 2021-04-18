@@ -36,6 +36,14 @@ class User extends Migration
         "unsigned" => true,
         "null" => false,
       ],
+      "created_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
+      "updated_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
     ]);
     $this->forge->addKey("id_user", true);
     $this->forge->createTable("user");

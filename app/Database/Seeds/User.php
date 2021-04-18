@@ -3,6 +3,7 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use CodeIgniter\I18n\Time;
 
 class User extends Seeder
 {
@@ -19,18 +20,24 @@ class User extends Seeder
         "username" => "admin",
         "password" => $gen_pass("admin"),
         "level" => 1,
+        "created_at" => Time::now(),
+        "updated_at" => Time::now(),
       ],
       [
         "nama" => $faker->name(),
         "username" => "user",
         "password" => $gen_pass("user"),
         "level" => 2,
+        "created_at" => Time::now(),
+        "updated_at" => Time::now(),
       ],
       [
         "nama" => $faker->name(),
         "username" => "user_asdf",
         "password" => $gen_pass("user_asdf"),
         "level" => 2,
+        "created_at" => Time::now(),
+        "updated_at" => Time::now(),
       ],
     ];
     $this->db->table("user")->insertBatch($data);

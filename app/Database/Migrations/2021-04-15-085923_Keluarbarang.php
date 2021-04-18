@@ -38,6 +38,14 @@ class Keluarbarang extends Migration
         "constraint" => 5,
         "null" => false,
       ],
+      "created_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
+      "updated_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
     ]);
     $this->forge->addKey("id_keluar_barang", true);
     $this->forge->addForeignKey(

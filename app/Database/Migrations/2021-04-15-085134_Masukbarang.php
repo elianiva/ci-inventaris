@@ -41,6 +41,14 @@ class Masukbarang extends Migration
         "constraint" => 5,
         "null" => false,
       ],
+      "created_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
+      "updated_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
     ]);
     $this->forge->addKey("id_masuk_barang", true);
     $this->forge->addForeignKey(

@@ -3,6 +3,7 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use CodeIgniter\I18n\Time;
 
 class Barang extends Seeder
 {
@@ -38,6 +39,8 @@ class Barang extends Seeder
           "Dana Bansos",
           "Lainnya",
         ]),
+        "created_at" => Time::now(),
+        "updated_at" => Time::now(),
       ];
 
       $this->db->table("barang")->insert($data);

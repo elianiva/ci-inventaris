@@ -39,6 +39,14 @@ class Stok extends Migration
         "constraint" => 25,
         "null" => true,
       ],
+      "created_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
+      "updated_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
     ]);
     $this->forge->addKey("kode_barang", true);
     $this->forge->addKey("jumlah_barang_masuk");

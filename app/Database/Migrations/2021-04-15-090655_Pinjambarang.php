@@ -47,6 +47,14 @@ class Pinjambarang extends Migration
         "constraint" => 30,
         "null" => true,
       ],
+      "created_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
+      "updated_at" => [
+        "type" => "DATETIME",
+        "null" => false,
+      ],
     ]);
     $this->forge->addKey("no_pinjam", true);
     $this->forge->addForeignKey(
