@@ -11,7 +11,7 @@ class User extends Seeder
     $faker = \Faker\Factory::create("id_ID");
     $faker->seed(1234);
 
-    $gen_pass = fn(string $pass) => password_hash($pass, PASSWORD_BCRYPT);
+    $gen_pass = fn(string $pass): string => password_hash($pass, PASSWORD_BCRYPT);
 
     $data = [
       [
