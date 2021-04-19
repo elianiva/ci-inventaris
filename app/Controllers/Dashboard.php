@@ -17,6 +17,7 @@ class Dashboard extends BaseController
       "heading" => "Dashboard",
       "total_supplier" => $supplierModel->countAllResults(),
       "total_barang" => $barangModel->countAllResults(),
+      "page_name" => "dashboard"
     ];
 
     return view("dashboard/index", $data);
