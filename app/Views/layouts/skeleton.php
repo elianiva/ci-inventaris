@@ -22,6 +22,7 @@
       rel="stylesheet"
     />
     <script src="<?= base_url() ?>/js/init-alpine.js"></script>
+    <script src="<?= base_url() ?>/js/focus-trap.js"></script>
   </head>
   <body>
     <div
@@ -111,7 +112,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold <?= $page_name ==
-                "supplier"
+                "barang"
                   ? "text-gray-800"
                   : "text-gray-500" ?> transition-colors duration-150 hover:text-gray-800"
                 href="<?= base_url("/barang") ?>"
