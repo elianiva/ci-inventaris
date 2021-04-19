@@ -35,7 +35,12 @@ $routes->setAutoRoute(true);
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'Dashboard::index');
 $routes->get('/dashboard', 'Dashboard::index');
+
 $routes->get('/supplier', 'Supplier::index');
+$routes->get('/supplier/tambah', 'Supplier::form');
+$routes->post('/supplier/tambah', 'Supplier::save');
+$routes->delete('/supplier/hapus/(:alphanum)', 'Supplier::hapus');
+
 $routes->get('/barang', 'Barang::index');
 $routes->get('/api/supplier', 'Supplier::getAll');
 $routes->get('/api/barang', 'Barang::getAll');

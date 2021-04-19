@@ -3,14 +3,32 @@
 <?= $this->section("content") ?>
 <div class="container px-6 mx-auto min-w-full">
   <h2
-    class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+    class="flex justify-between mt-6 mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200"
   >
     <?= $heading ?>
+    <a
+      class="p-2 block rounded-md bg-green-400 text-white font-semibold text-sm"
+      href="<?= base_url("/supplier/tambah") ?>"
+    >
+      Tambah Supplier
+    </a>
   </h2>
+  <?php if (session()->getFlashData("message")): ?>
+    <div
+      class="flex justify-between bg-green-200 px-4 py-2 mx-1 mt-4 mb-2 rounded-md border-2 border-green-400 text-green-700 font-semibold"
+      id="flash-msg"
+    >
+      Data telah berhasil dihapus!
+      <button
+        class="text-md font-semibold"
+        onclick="document.getElementById('flash-msg').remove()"
+      >
+        ✕
+      </button>
+    </div>
+  <?php endif; ?>
   <div id="gridjs-wrapper"></div>
 </div>
-
-<?= view_cell("\App\Libraries\Modal::getModal", ["item_name" => "Supplier"]) ?>
 
 <script>
   const isContinuable = (url) => url.split('')[url.length-1] === "&"
@@ -23,14 +41,16 @@
         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
       </svg>
     </button>
-    <button
-      class="p-2 bg-red-500 text-white rounded-md"
-      @click="openModal"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-      </svg>
-    </button>
+    <form action="/supplier/hapus/${id}">
+      <button
+        class="p-2 bg-red-500 text-white rounded-md"
+        @click="openModal"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </form>
   </div>
   `
 

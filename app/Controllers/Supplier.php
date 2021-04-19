@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Supplier as SupplierModel;
+
 class Supplier extends BaseController
 {
   public function index()
@@ -15,9 +17,99 @@ class Supplier extends BaseController
     return view("supplier/index", $data);
   }
 
+  public function form()
+  {
+    $supplierModel = new SupplierModel();
+    $categories = array_unique($supplierModel->findColumn("kota_supplier"));
+
+    $data = [
+      "title" => "Supplier | Inventaris",
+      "heading" => "Supplier",
+      "page_name" => "supplier",
+      "categories" => $categories,
+      "validation" => $this->validator,
+    ];
+
+    return view("supplier/tambah", $data);
+  }
+
+  public function save()
+  {
+    /**
+     * @var \Config\Services::request() $request Incoming request
+     */
+    $request = $this->request;
+
+    $rules = [
+      "name" => [
+        "label" => "Nama Supplier",
+        "rules" => "required|is_unique[supplier.nama_supplier]",
+      ],
+      "address" => [
+        "label" => "Alamat Supplier",
+        "rules" => "required|is_unique[supplier.alamat_supplier]",
+      ],
+      "telp" => [
+        "label" => "no. Telepon Supplier",
+        "rules" => "required|is_unique[supplier.telp_supplier]",
+      ],
+      "city" => [
+        "label" => "Kota Supplier",
+        "rules" => "required",
+      ],
+    ];
+
+    $errors = [
+      "name" => [
+        "required" => "Nama Supplier tidak boleh kosong!",
+        "is_unique" => "Nama Supplier sudah terdaftar!",
+      ],
+      "address" => [
+        "required" => "Alamat Supplier tidak boleh kosong!",
+        "is_unique" => "Alamat Supplier sudah terdaftar!",
+      ],
+      "telp" => [
+        "required" => "No. Telepon Supplier tidak boleh kosong!",
+        "is_unique" => "No. Telepon Supplier sudah terdaftar!",
+      ],
+      "city" => [
+        "required" => "Kota Supplier tidak boleh kosong!",
+      ],
+    ];
+
+    // if (!$this->validate($rules, $errors)) {
+    //   return redirect()->to("/supplier/tambah");
+    // }
+
+    $supplierModel = new SupplierModel();
+    $supplierModel->save([
+      "kode_supplier" => \Faker\Factory::create()->lexify("????"),
+      "nama_supplier" => $request->getVar("name"),
+      "alamat_supplier" => $request->getVar("address"),
+      "telp_supplier" => $request->getVar("telp"),
+      "kota_supplier" => $request->getVar("city"),
+    ]);
+
+    return redirect()->to("/supplier");
+  }
+
+  public function hapus(string $id)
+  {
+    $supplierModel = new SupplierModel();
+    $supplierModel->delete($id);
+
+    session()->setFlashData("message", "Data telah berhasil dihapus!");
+
+    return redirect()->to("/supplier");
+  }
+
   public function getAll()
   {
-    $request = \Config\Services::request();
+    /**
+     * @var \Config\Services::request() $request Incoming request
+     */
+    $request = $this->request;
+
     $limit = (int) $request->getVar("limit");
     $offset = (int) $request->getVar("offset");
     $orderBy = $request->getVar("order");

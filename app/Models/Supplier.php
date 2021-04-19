@@ -12,4 +12,11 @@ class Supplier extends Model
   protected $useTimestamps = true;
   protected $createdField = "created_at";
   protected $updatedField = "updated_at";
+  protected $allowedFields = [
+    "kode_supplier",
+    "nama_supplier",
+    "alamat_supplier",
+    "telp_supplier",
+    "kota_supplier",
+  ];
 }
