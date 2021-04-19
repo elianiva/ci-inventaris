@@ -8,7 +8,7 @@ class Supplier extends BaseController
   {
     $data = [
       "title" => "Supplier | Inventaris",
-      "heading" => "Dashboard",
+      "heading" => "Supplier",
       "page_name" => "supplier",
     ];
 
@@ -36,7 +36,13 @@ class Supplier extends BaseController
       ->orLike("kota_supplier", $keyword)
       ->get($limit, $offset)
       ->getResult();
-    $supplierTotal = $builder->countAllResults();
+    $dataSize = sizeof($supplierData);
+    $allResults = $builder->countAllResults();
+
+    // we need to do this do gridjs knows the actual count after we
+    // do something like `search`
+    $supplierTotal =
+      $dataSize == 0 ? 0 : ($keyword == null ? $allResults : $dataSize);
 
     $response = service("response");
     $response->setHeader("Content-Type", "application/json");
