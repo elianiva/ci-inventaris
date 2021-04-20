@@ -20,13 +20,13 @@ class Supplier extends BaseController
   public function form()
   {
     $supplierModel = new SupplierModel();
-    $categories = array_unique($supplierModel->findColumn("kota_supplier"));
+    $cities = array_unique($supplierModel->findColumn("kota_supplier"));
 
     $data = [
       "title" => "Supplier | Inventaris",
       "heading" => "Supplier",
       "page_name" => "supplier",
-      "categories" => $categories,
+      "cities" => $cities,
       "validation" => $this->validator,
     ];
 
@@ -77,18 +77,25 @@ class Supplier extends BaseController
       ],
     ];
 
-    // if (!$this->validate($rules, $errors)) {
-    //   return redirect()->to("/supplier/tambah");
-    // }
+    if (!$this->validate($rules, $errors)) {
+      session()->setFlashData("errors", $this->validator->getErrors());
+      return redirect()->to("/supplier/tambah")->withInput();
+    }
 
     $supplierModel = new SupplierModel();
+    $nama = $request->getVar("name");
     $supplierModel->save([
       "kode_supplier" => \Faker\Factory::create()->lexify("????"),
-      "nama_supplier" => $request->getVar("name"),
+      "nama_supplier" => $nama,
       "alamat_supplier" => $request->getVar("address"),
       "telp_supplier" => $request->getVar("telp"),
       "kota_supplier" => $request->getVar("city"),
     ]);
+
+    session()->setFlashData(
+      "message",
+      "Supplier bernama '$nama' telah berhasil ditambahkan!",
+    );
 
     return redirect()->to("/supplier");
   }
@@ -96,9 +103,13 @@ class Supplier extends BaseController
   public function hapus(string $id)
   {
     $supplierModel = new SupplierModel();
+    $nama = $supplierModel->find($id)["nama_supplier"];
     $supplierModel->delete($id);
 
-    session()->setFlashData("message", "Data telah berhasil dihapus!");
+    session()->setFlashData(
+      "message",
+      "Supplier bernama '$nama' telah berhasil dihapus!",
+    );
 
     return redirect()->to("/supplier");
   }
