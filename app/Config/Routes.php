@@ -42,6 +42,10 @@ $routes->post('/supplier/tambah', 'Supplier::save');
 $routes->delete('/supplier/hapus/(:alphanum)', 'Supplier::hapus');
 
 $routes->get('/barang', 'Barang::index');
+$routes->get('/barang/tambah', 'Barang::form');
+$routes->post('/barang/tambah', 'Barang::save');
+$routes->delete('/barang/hapus', 'Barang::hapus');
+
 $routes->get('/api/supplier', 'Supplier::getAll');
 $routes->get('/api/barang', 'Barang::getAll');
 

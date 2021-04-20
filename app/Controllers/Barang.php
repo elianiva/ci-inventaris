@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Barang as BarangModel;
+
 class Barang extends BaseController
 {
   public function index()
@@ -13,6 +15,130 @@ class Barang extends BaseController
     ];
 
     return view("barang/index", $data);
+  }
+
+  public function form()
+  {
+    $barangModel = new BarangModel();
+    $categories = array_unique($barangModel->findColumn("kategori"));
+    $kinds = array_unique($barangModel->findColumn("jenis_barang"));
+    $sources = array_unique($barangModel->findColumn("sumber_dana"));
+
+    $data = [
+      "title" => "Supplier | Inventaris",
+      "heading" => "Supplier",
+      "page_name" => "supplier",
+      "categories" => $categories,
+      "kinds" => $kinds,
+      "sources" => $sources,
+      "validation" => $this->validator,
+    ];
+
+    return view("barang/tambah", $data);
+  }
+
+  public function save()
+  {
+    /**
+     * @var \Config\Services::request() $request Incoming request
+     */
+    $request = $this->request;
+
+    $rules = [
+      "name" => [
+        "label" => "Nama Barang",
+        "rules" => "required|is_unique[barang.nama_barang]",
+      ],
+      "spec" => [
+        "label" => "Spesifikasi",
+        "rules" => "required",
+      ],
+      "address" => [
+        "label" => "Lokasi Barang",
+        "rules" => "required",
+      ],
+      "category" => [
+        "label" => "Kategori Barang",
+        "rules" => "required",
+      ],
+      "total" => [
+        "label" => "Jumlah Barang",
+        "rules" => "required",
+      ],
+      "kind" => [
+        "label" => "Jenis Barang",
+        "rules" => "required",
+      ],
+      "source" => [
+        "label" => "Sumber Dana",
+        "rules" => "required",
+      ],
+    ];
+
+    $errors = [
+      "name" => [
+        "required" => "Nama Barang tidak boleh kosong!",
+        "is_unique" => "Nama Barang sudah terdaftar",
+      ],
+      "spec" => [
+        "required" => "Spesifikasi tidak boleh kosong!",
+      ],
+      "address" => [
+        "requied" => "Lokasi Barang tidak boleh kosong!",
+      ],
+      "category" => [
+        "required" => "Kategori Barang tidak boleh kosong!",
+      ],
+      "total" => [
+        "required" => "Jumlah Barang tidak boleh kosong!",
+      ],
+      "kind" => [
+        "required" => "Jenis Barang tidak boleh kosong!",
+      ],
+      "source" => [
+        "required" => "Sumber Dana tidak boleh kosong!",
+      ],
+    ];
+
+    if (!$this->validate($rules, $errors)) {
+      session()->setFlashData("errors", $this->validator->getErrors());
+      return redirect()->to("/barang/tambah")->withInput();
+    }
+
+    $barangModel = new BarangModel();
+    $nama = $request->getVar("name");
+    $barangModel->save([
+      "kode_barang" => \Faker\Factory::create()->ean8(),
+      "nama_barang" => $nama,
+      "spesifikasi" => $request->getVar("spec"),
+      "lokasi_barang" => $request->getVar("address"),
+      "kategori" => $request->getVar("category"),
+      "jumlah_barang" => $request->getVar("total"),
+      "kondisi" => $request->getVar("condition"),
+      "jenis_barang" => $request->getVar("kind"),
+      "sumber_dana" => $request->getVar("source"),
+    ]);
+
+    session()->setFlashData(
+      "message",
+      "Barang bernama '$nama' telah berhasil ditambahkan!",
+    );
+
+    return redirect()->to("/barang");
+  }
+
+  public function hapus(string $id)
+  {
+    $barangModel = new BarangModel();
+    $nama = $barangModel->find($id)["nama_barang"];
+    $barangModel->delete($id);
+
+    session()->setFlashData(
+      "message",
+      "Barang bernama '$nama' telah berhasil dihapus!",
+    );
+
+    return redirect()->to("/barang");
   }
 
   public function getAll()
