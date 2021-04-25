@@ -26,6 +26,7 @@ class Supplier extends BaseController
       "title" => "Supplier | Inventaris",
       "heading" => "Supplier",
       "page_name" => "supplier",
+      "title" => "Tambah",
       "cities" => $cities,
       "validation" => $this->validator,
     ];
@@ -33,7 +34,7 @@ class Supplier extends BaseController
     return view("supplier/tambah", $data);
   }
 
-  public function save()
+  public function save(string $id)
   {
     /**
      * @var \Config\Services::request() $request Incoming request
@@ -43,15 +44,15 @@ class Supplier extends BaseController
     $rules = [
       "name" => [
         "label" => "Nama Supplier",
-        "rules" => "required|is_unique[supplier.nama_supplier]",
+        "rules" => $id ? "required" : "required|is_unique[supplier.nama_supplier]",
       ],
       "address" => [
         "label" => "Alamat Supplier",
-        "rules" => "required|is_unique[supplier.alamat_supplier]",
+        "rules" => $id ? "required" : "required|is_unique[supplier.alamat_supplier]",
       ],
       "telp" => [
         "label" => "no. Telepon Supplier",
-        "rules" => "required|is_unique[supplier.telp_supplier]",
+        "rules" => $id ? "required" : "required|is_unique[supplier.telp_supplier]",
       ],
       "city" => [
         "label" => "Kota Supplier",
@@ -85,7 +86,7 @@ class Supplier extends BaseController
     $supplierModel = new SupplierModel();
     $nama = $request->getVar("name");
     $supplierModel->save([
-      "kode_supplier" => \Faker\Factory::create()->lexify("????"),
+      "kode_supplier" => $id ?? \Faker\Factory::create()->lexify("????"),
       "nama_supplier" => $nama,
       "alamat_supplier" => $request->getVar("address"),
       "telp_supplier" => $request->getVar("telp"),
@@ -94,7 +95,10 @@ class Supplier extends BaseController
 
     session()->setFlashData(
       "message",
-      "Supplier bernama '$nama' telah berhasil ditambahkan!",
+      sprintf(
+        "Supplier bernama '$nama' telah berhasil %s!",
+        $id ? "diperbarui" : "ditambahkan"
+      ),
     );
 
     return redirect()->to("/supplier");
@@ -112,6 +116,25 @@ class Supplier extends BaseController
     );
 
     return redirect()->to("/supplier");
+  }
+
+  public function edit(string $id)
+  {
+    $supplierModel = new SupplierModel();
+    $cities = array_unique($supplierModel->findColumn("kota_supplier"));
+    $prev = $supplierModel->find($id);
+
+    $data = [
+      "title" => "Supplier | Inventaris",
+      "heading" => "Supplier",
+      "page_name" => "supplier",
+      "title" => "Edit",
+      "cities" => $cities,
+      "validation" => $this->validator,
+      "prev" => $prev
+    ];
+
+    return view("supplier/tambah", $data);
   }
 
   public function getAll()

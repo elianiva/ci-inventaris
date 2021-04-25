@@ -48,7 +48,7 @@ class Barang extends BaseController
     $rules = [
       "name" => [
         "label" => "Nama Barang",
-        "rules" => "required|is_unique[barang.nama_barang]",
+        "rules" => $id ? "required" : "required|is_unique[barang.nama_barang]",
       ],
       "spec" => [
         "label" => "Spesifikasi",

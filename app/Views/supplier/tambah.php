@@ -9,7 +9,7 @@
   <h2
     class="flex justify-between mb-4 text-2xl font-semibold text-gray-600"
   >
-    Tambah Supplier Baru
+    <?= $title ?> Supplier
     <a
       class="p-2 block rounded-md border-2 border-orange-500 text-orange-500 font-semibold text-sm"
       href="<?= base_url("/supplier") ?>"
@@ -20,7 +20,7 @@
   <form
     class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md"
     method="POST"
-    action="<?= base_url("/supplier/tambah") ?>"
+    action="<?= base_url("/supplier/tambah/" . ($prev["kode_supplier"] ?? "")) ?>"
   >
     <?= csrf_field() ?>
     <label class="block text-sm">
@@ -32,7 +32,7 @@
         name="name"
         id="name-input"
         autocomplete="off"
-        value="<?= old("name") ?>"
+        value="<?= old("name") ?? ($prev["nama_supplier"] ?? "") ?>"
         oninput="resetInput('name-err', 'name-input')"
       />
       <?php if ($err): ?>
@@ -51,7 +51,7 @@
         name="address"
         id="addr-input"
         autocomplete="off"
-        value="<?= old("address") ?>"
+        value="<?= old("address") ?? ($prev["alamat_supplier"] ?? "") ?>"
         oninput="resetInput('addr-err', 'addr-input')"
       />
       <?php if ($err): ?>
@@ -71,7 +71,7 @@
         name="telp"
         id="telp-input"
         autocomplete="off"
-        value="<?= old("telp") ?>"
+        value="<?= old("telp") ?? ($prev["telp_supplier"] ?? "") ?>"
         oninput="resetInput('telp-err', 'telp-input')"
       />
       <?php if ($err): ?>
@@ -93,6 +93,7 @@
         list="cities"
         name="city"
         id="city-input"
+        value="<?= old("city") ?? ($prev["kota_supplier"] ?? "") ?>"
         oninput="resetInput('city-err', 'city-input')"
       />
       <?php if ($err): ?>
@@ -117,7 +118,7 @@
       />
       <input
         type="submit"
-        value="Tambah"
+        value="<?= $title ?>"
         class="px-6 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-md text-sm cursor-pointer"
       />
     </div>
