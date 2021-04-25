@@ -17,7 +17,7 @@ class Barang extends BaseController
     return view("barang/index", $data);
   }
 
-  public function form()
+  public function tambah()
   {
     $barangModel = new BarangModel();
     $categories = array_unique($barangModel->findColumn("kategori"));
@@ -25,9 +25,10 @@ class Barang extends BaseController
     $sources = array_unique($barangModel->findColumn("sumber_dana"));
 
     $data = [
-      "title" => "Supplier | Inventaris",
-      "heading" => "Supplier",
-      "page_name" => "supplier",
+      "title" => "Barang | Inventaris",
+      "heading" => "Barang",
+      "page_name" => "barang",
+      "title" => "Tambah",
       "categories" => $categories,
       "kinds" => $kinds,
       "sources" => $sources,
@@ -37,7 +38,7 @@ class Barang extends BaseController
     return view("barang/tambah", $data);
   }
 
-  public function save()
+  public function save(string $id = null)
   {
     /**
      * @var \Config\Services::request() $request Incoming request
@@ -107,8 +108,11 @@ class Barang extends BaseController
 
     $barangModel = new BarangModel();
     $nama = $request->getVar("name");
+
+    // this method already handles `insert` and `update`
+    // depending on the primary key
     $barangModel->save([
-      "kode_barang" => \Faker\Factory::create()->ean8(),
+      "kode_barang" => $id ?? \Faker\Factory::create()->ean8(),
       "nama_barang" => $nama,
       "spesifikasi" => $request->getVar("spec"),
       "lokasi_barang" => $request->getVar("address"),
@@ -121,7 +125,10 @@ class Barang extends BaseController
 
     session()->setFlashData(
       "message",
-      "Barang bernama '$nama' telah berhasil ditambahkan!",
+      sprintf(
+        "Barang bernama '$nama' telah berhasil %s!",
+        $id ? "diperbarui" : "ditambahkan"
+      ),
     );
 
     return redirect()->to("/barang");
@@ -139,6 +146,29 @@ class Barang extends BaseController
     );
 
     return redirect()->to("/barang");
+  }
+
+  public function edit(string $id)
+  {
+    $barangModel = new BarangModel();
+    $categories = array_unique($barangModel->findColumn("kategori"));
+    $kinds = array_unique($barangModel->findColumn("jenis_barang"));
+    $sources = array_unique($barangModel->findColumn("sumber_dana"));
+    $prev = $barangModel->find($id);
+
+    $data = [
+      "title" => "Supplier | Inventaris",
+      "heading" => "Supplier",
+      "page_name" => "supplier",
+      "title" => "Edit",
+      "categories" => $categories,
+      "kinds" => $kinds,
+      "sources" => $sources,
+      "validation" => $this->validator,
+      "prev" => $prev,
+    ];
+
+    return view("barang/tambah", $data);
   }
 
   public function getAll()

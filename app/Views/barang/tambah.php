@@ -9,7 +9,7 @@
   <h2
     class="flex justify-between mb-4 text-2xl font-semibold text-gray-600"
   >
-    Tambah Barang Baru
+    <?= $title ?> Barang
     <a
       class="p-2 block rounded-md border-2 border-orange-500 text-orange-500 font-semibold text-sm"
       href="<?= base_url("/barang/tambah") ?>"
@@ -20,7 +20,7 @@
   <form
     class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md"
     method="POST"
-    action="<?= base_url("/barang/tambah") ?>"
+    action="<?= base_url("/barang/tambah/" . ($prev["kode_barang"] ?? "")) ?>"
   >
     <?= csrf_field() ?>
     <label class="block text-sm">
@@ -32,7 +32,7 @@
         name="name"
         id="name-input"
         autocomplete="off"
-        value="<?= old("name") ?>"
+        value="<?= old("name") ?? ($prev["nama_barang"] ?? "") ?>"
         oninput="resetInput('name-err', 'name-input')"
       />
       <?php if ($err): ?>
@@ -51,7 +51,7 @@
         name="spec"
         id="spec-input"
         autocomplete="off"
-        value="<?= old("spec") ?>"
+        value="<?= old("spec") ?? ($prev["spesifikasi"] ?? "") ?>"
         oninput="resetInput('spec-err', 'spec-input')"
       />
       <?php if ($err): ?>
@@ -70,7 +70,7 @@
         name="address"
         id="addr-input"
         autocomplete="off"
-        value="<?= old("address") ?>"
+        value="<?= old("address") ?? ($prev["lokasi_barang"] ?? "") ?>"
         oninput="resetInput('addr-err', 'addr-input')"
       />
       <?php if ($err): ?>
@@ -92,7 +92,7 @@
         list="categories"
         name="category"
         id="category-input"
-        value="<?= old("category") ?>"
+        value="<?= old("category") ?? ($prev["kategori"] ?? "") ?>"
         oninput="resetInput('category-err', 'category-input')"
       />
       <?php if ($err): ?>
@@ -117,7 +117,7 @@
         name="total"
         id="total-input"
         autocomplete="off"
-        value="<?= old("total") ?>"
+        value="<?= old("total") ?? ($prev["jumlah_barang"] ?? "") ?>"
         oninput="resetInput('total-err', 'total-input')"
       />
       <?php if ($err): ?>
@@ -134,7 +134,7 @@
       <select
         class="block w-full mt-1 text-sm form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple"
         name="condition"
-        value="<?= old("condition") ?>"
+        value="<?= old("condition") ?? ($prev["kondisi"] ?? "") ?>"
       >
         <option value="Baik">Baik</option>
         <option value="Kurang Baik">Kurang Baik</option>
@@ -153,7 +153,7 @@
         list="kinds"
         name="kind"
         id="kind-input"
-        value="<?= old("kinds") ?>"
+        value="<?= old("kinds") ?? ($prev["jenis_barang"] ?? "") ?>"
         oninput="resetInput('kind-err', 'kind-input')"
       />
       <?php if ($err): ?>
@@ -180,7 +180,7 @@
         list="sources"
         name="source"
         id="source-input"
-        value="<?= old("source") ?>"
+        value="<?= old("source") ?? ($prev["sumber_dana"] ?? "") ?>"
         oninput="resetInput('source-err', 'source-input')"
       />
       <?php if ($err): ?>
@@ -205,7 +205,7 @@
       />
       <input
         type="submit"
-        value="Tambah"
+        value="<?= $title ?>"
         class="px-6 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-md text-sm cursor-pointer"
       />
     </div>
@@ -222,5 +222,4 @@ const resetInput = (textID, inputID) => {
 }
 </script>
 
-<?= $this->endSection("content")
-?>
+<?= $this->endSection("content") ?>

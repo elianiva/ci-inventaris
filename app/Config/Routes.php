@@ -7,9 +7,8 @@ $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
-{
-	require SYSTEMPATH . 'Config/Routes.php';
+if (file_exists(SYSTEMPATH . "Config/Routes.php")) {
+  require SYSTEMPATH . "Config/Routes.php";
 }
 
 /**
@@ -17,9 +16,9 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * Router Setup
  * --------------------------------------------------------------------
  */
-$routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
-$routes->setDefaultMethod('index');
+$routes->setDefaultNamespace("App\Controllers");
+$routes->setDefaultController("Home");
+$routes->setDefaultMethod("index");
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
@@ -33,21 +32,23 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
-$routes->get('/', 'Dashboard::index');
-$routes->get('/dashboard', 'Dashboard::index');
+$routes->get("/", "Dashboard::index");
+$routes->get("/dashboard", "Dashboard::index");
 
-$routes->get('/supplier', 'Supplier::index');
-$routes->get('/supplier/tambah', 'Supplier::form');
-$routes->post('/supplier/tambah', 'Supplier::save');
-$routes->delete('/supplier/hapus/(:alphanum)', 'Supplier::hapus');
+$routes->get("/supplier", "Supplier::index");
+$routes->get("/supplier/tambah", "Supplier::form");
+$routes->post("/supplier/tambah", "Supplier::save");
+$routes->delete("/supplier/hapus/(:alphanum)", "Supplier::hapus");
 
-$routes->get('/barang', 'Barang::index');
-$routes->get('/barang/tambah', 'Barang::form');
-$routes->post('/barang/tambah', 'Barang::save');
-$routes->delete('/barang/hapus', 'Barang::hapus');
+$routes->get("/barang", "Barang::index");
+$routes->get("/barang/tambah", "Barang::tambah");
+$routes->post("/barang/tambah/(:alphanum)", 'Barang::save/$1');
+$routes->post("/barang/tambah", "Barang::save");
+$routes->delete("/barang/hapus", "Barang::hapus");
+$routes->get("/barang/edit", "Barang::edit");
 
-$routes->get('/api/supplier', 'Supplier::getAll');
-$routes->get('/api/barang', 'Barang::getAll');
+$routes->get("/api/supplier", "Supplier::getAll");
+$routes->get("/api/barang", "Barang::getAll");
 
 /*
  * --------------------------------------------------------------------
@@ -62,7 +63,6 @@ $routes->get('/api/barang', 'Barang::getAll');
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
-{
-	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+if (file_exists(APPPATH . "Config/" . ENVIRONMENT . "/Routes.php")) {
+  require APPPATH . "Config/" . ENVIRONMENT . "/Routes.php";
 }
