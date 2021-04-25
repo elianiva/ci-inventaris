@@ -36,7 +36,7 @@
         <div class="py-4 text-gray-500">
           <a
             class="ml-6 text-lg font-bold text-gray-800"
-            href="#"
+            href="<?= base_url("/") ?>"
           >
             Inventaris SMK
           </a>
@@ -103,48 +103,16 @@
               </a>
             </li>
             <li class="relative px-6 py-3">
-              <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
-                "barang"
-                  ? "visible"
-                  : "hidden" ?>"
-                aria-hidden="true"
-              ></span>
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold <?= $page_name ==
-                "barang"
-                  ? "text-gray-800"
-                  : "text-gray-500" ?> transition-colors duration-150 hover:text-gray-800"
-                href="<?= base_url("/barang") ?>"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                </svg>
-                <span class="ml-4">Barang</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                 @click="togglePagesMenu"
                 aria-haspopup="true"
               >
                 <span class="inline-flex items-center">
-                  <svg
-                    class="w-5 h-5"
-                    aria-hidden="true"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                    ></path>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                   </svg>
-                  <span class="ml-4">Pages</span>
+                  <span class="ml-4">Barang</span>
                 </span>
                 <svg
                   class="w-4 h-4"
@@ -173,17 +141,19 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800"
                   >
-                    <a class="w-full" href="pages/login.html">Login</a>
+                    <a class="w-full" href="<?= base_url(
+                      "/barang",
+                    ) ?>">Master Barang</a>
                   </li>
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800"
                   >
-                    <a class="w-full" href="pages/404.html">404</a>
+                    <a class="w-full" href="pages/404.html">Barang Masuk</a>
                   </li>
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800"
                   >
-                    <a class="w-full" href="pages/blank.html">Blank</a>
+                    <a class="w-full" href="pages/blank.html">Barang Keluar</a>
                   </li>
                 </ul>
               </template>
