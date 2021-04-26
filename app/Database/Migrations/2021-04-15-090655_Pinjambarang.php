@@ -59,7 +59,7 @@ class Pinjambarang extends Migration
     $this->forge->addKey("no_pinjam", true);
     $this->forge->addForeignKey(
       "kode_barang",
-      "keluar_barang",
+      "barang_keluar",
       "kode_barang",
       "CASCADE",
       "NO ACTION",

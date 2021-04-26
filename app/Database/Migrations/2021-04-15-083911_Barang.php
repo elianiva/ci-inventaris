@@ -64,6 +64,7 @@ class Barang extends Migration
       ],
     ]);
     $this->forge->addKey("kode_barang", true);
+    $this->forge->addKey("nama_barang");
     $this->forge->createTable("barang");
   }
 
