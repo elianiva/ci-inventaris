@@ -1,0 +1,20 @@
+#!/bin/sh
+
+case $1 in
+  "seed")
+    php spark db:seed User
+    php spark db:seed Supplier
+    php spark db:seed Barang
+    php spark db:seed BarangMasuk
+    php spark db:seed BarangKeluar
+    ;;
+  "m:run")
+    php spark migrate
+    ;;
+  "m:undo")
+    php spark migrate:rollback
+    ;;
+  "m:stats")
+    php spark migrate:status
+    ;;
+esac
