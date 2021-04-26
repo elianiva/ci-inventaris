@@ -108,41 +108,16 @@
       },
     },
     columns: [
-      {
-        name: "Nama",
-        width: "10%",
-      },
-      {
-        name: "Spesifikasi",
-        width: "25%",
-      },
-      {
-        name: "Lokasi",
-        width: "15%",
-      },
-      {
-        name: "Kategori",
-        width: "10%",
-      },
-      {
-        name: "Jumlah",
-        width: "8%",
-      },
-      {
-        name: "Kondisi",
-        width: "10%",
-      },
-      {
-        name: "Jenis Barang",
-        width: "10%",
-      },
-      {
-        name: "Sumber Dana",
-        width: "10%",
-      },
+      { name: "Nama" },
+      { name: "Spesifikasi" },
+      { name: "Lokasi" },
+      { name: "Kategori" },
+      { name: "Jumlah" },
+      { name: "Kondisi" },
+      { name: "Jenis Barang" },
+      { name: "Sumber Dana" },
       {
         name: "Aksi",
-        width: "10%",
         formatter: (_, row) => gridjs.html(row.cells[8].data),
       }
     ],
