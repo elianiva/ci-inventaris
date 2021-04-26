@@ -173,7 +173,10 @@ class Barang extends BaseController
 
   public function getAll()
   {
-    $request = \Config\Services::request();
+    /**
+     * @var \Config\Services::request() $request Incoming request
+     */
+    $request = $this->request;
     $limit = (int) $request->getVar("limit");
     $offset = (int) $request->getVar("offset");
     $orderBy = $request->getVar("order");
