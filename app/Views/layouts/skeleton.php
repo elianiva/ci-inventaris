@@ -103,6 +103,13 @@
               </a>
             </li>
             <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
+                "barang"
+                  ? "visible"
+                  : "hidden" ?>"
+                aria-hidden="true"
+              ></span>
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
                 @click="togglePagesMenu"
@@ -141,19 +148,32 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800"
                   >
-                    <a class="w-full" href="<?= base_url(
-                      "/barang",
-                    ) ?>">Master Barang</a>
+                    <a
+                      class="w-full"
+                    href="<?= base_url("/barang")?>"
+                    >
+                      Master Barang
+                    </a>
                   </li>
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800"
                   >
-                    <a class="w-full" href="pages/404.html">Barang Masuk</a>
+                    <a
+                      class="w-full"
+                      href="<?= base_url("/barang/masuk") ?>"
+                    >
+                      Barang Masuk
+                    </a>
                   </li>
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800"
                   >
-                    <a class="w-full" href="pages/blank.html">Barang Keluar</a>
+                    <a
+                      class="w-full"
+                      href="<?= base_url("/barang/keluar") ?>"
+                    >
+                      Barang Keluar
+                    </a>
                   </li>
                 </ul>
               </template>

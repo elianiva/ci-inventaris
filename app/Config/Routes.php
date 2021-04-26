@@ -42,6 +42,7 @@ $routes->post("/supplier/tambah", "Supplier::save");
 $routes->delete("/supplier/hapus/(:alphanum)", "Supplier::hapus");
 
 $routes->get("/barang", "Barang::index");
+$routes->get("/barang/masuk", "BarangMasuk::index");
 $routes->get("/barang/tambah", "Barang::tambah");
 $routes->post("/barang/tambah/(:alphanum)", 'Barang::save/$1');
 $routes->post("/barang/tambah", "Barang::save");

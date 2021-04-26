@@ -66,26 +66,22 @@
       class="flex items-center p-4 bg-white rounded-lg shadow-xs"
     >
       <div
-        class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full"
+        class="p-3 mr-4 text-purple-500 bg-purple-100 rounded-full"
       >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fill-rule="evenodd"
-            d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
-            clip-rule="evenodd"
-          ></path>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M12 13a1 1 0 100 2h5a1 1 0 001-1V9a1 1 0 10-2 0v2.586l-4.293-4.293a1 1 0 00-1.414 0L8 9.586 3.707 5.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0L11 9.414 14.586 13H12z" clip-rule="evenodd" />
         </svg>
       </div>
       <div>
         <p
           class="mb-2 text-sm font-medium text-gray-600"
         >
-          New sales
+          Total Barang Masuk
         </p>
         <p
           class="text-lg font-semibold text-gray-700"
         >
-          376
+          <?= $total_barang_masuk ?>
         </p>
       </div>
     </div>
@@ -96,24 +92,20 @@
       <div
         class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full"
       >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fill-rule="evenodd"
-            d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-            clip-rule="evenodd"
-          ></path>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd" />
         </svg>
       </div>
       <div>
         <p
           class="mb-2 text-sm font-medium text-gray-600"
         >
-          Pending contacts
+          Total Barang Keluar
         </p>
         <p
           class="text-lg font-semibold text-gray-700"
         >
-          35
+          <?= $total_barang_keluar ?>
         </p>
       </div>
     </div>
