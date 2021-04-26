@@ -6,14 +6,14 @@ use CodeIgniter\Model;
 
 class BarangKeluar extends Model
 {
-  protected $table = "keluar_barang";
-  protected $primaryKey = "id_keluar_barang";
+  protected $table = "barang_keluar";
+  protected $primaryKey = "id_barang_keluar";
   protected $useAutoIncrement = false;
   protected $useTimestamps = true;
   protected $createdField = "created_at";
   protected $updatedField = "updated_at";
   protected $allowedFields = [
-    "id_keluar_barang",
+    "id_barang_keluar",
     "kode_barang",
     "nama_barang",
     "tanggal_keluar",
