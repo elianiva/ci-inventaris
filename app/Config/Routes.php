@@ -37,8 +37,8 @@ $routes->get("/dashboard", "Dashboard::index");
 
 $routes->get("/supplier", "Supplier::index");
 $routes->get("/supplier/tambah", "Supplier::form");
-$routes->post("/supplier/tambah/(:alphanum)", "Supplier::save/$1");
 $routes->post("/supplier/tambah", "Supplier::save");
+$routes->post("/supplier/tambah/(:alphanum)", "Supplier::save/$1");
 $routes->delete("/supplier/hapus/(:alphanum)", "Supplier::hapus");
 
 $routes->get("/barang", "Barang::index");

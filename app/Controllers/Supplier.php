@@ -34,7 +34,7 @@ class Supplier extends BaseController
     return view("supplier/tambah", $data);
   }
 
-  public function save(string $id)
+  public function save(string $id = null)
   {
     /**
      * @var \Config\Services::request() $request Incoming request
