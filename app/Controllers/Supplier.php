@@ -79,7 +79,7 @@ class Supplier extends BaseController
     ];
 
     if (!$this->validate($rules, $errors)) {
-      session()->setFlashData("errors", $this->validator->getErrors());
+      $this->session->setFlashData("errors", $this->validator->getErrors());
       return redirect()->to("/supplier/tambah")->withInput();
     }
 
@@ -93,7 +93,7 @@ class Supplier extends BaseController
       "kota_supplier" => $request->getVar("city"),
     ]);
 
-    session()->setFlashData(
+    $this->session->setFlashData(
       "message",
       sprintf(
         "Supplier bernama '$nama' telah berhasil %s!",
@@ -110,7 +110,7 @@ class Supplier extends BaseController
     $nama = $supplierModel->find($id)["nama_supplier"];
     $supplierModel->delete($id);
 
-    session()->setFlashData(
+    $this->session->setFlashData(
       "message",
       "Supplier bernama '$nama' telah berhasil dihapus!",
     );

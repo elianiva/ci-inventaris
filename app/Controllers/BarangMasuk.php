@@ -102,7 +102,7 @@ class BarangMasuk extends BaseController
     ];
 
     if (!$this->validate($rules, $errors)) {
-      session()->setFlashData("errors", $this->validator->getErrors());
+      $this->session->setFlashData("errors", $this->validator->getErrors());
       return redirect()->to("/barang/tambah")->withInput();
     }
 
@@ -123,7 +123,7 @@ class BarangMasuk extends BaseController
       "sumber_dana" => $request->getVar("source"),
     ]);
 
-    session()->setFlashData(
+    $this->session->setFlashData(
       "message",
       sprintf(
         "Barang bernama '$nama' telah berhasil %s!",
@@ -140,7 +140,7 @@ class BarangMasuk extends BaseController
     $nama = $barangModel->find($id)["nama_barang"];
     $barangModel->delete($id);
 
-    session()->setFlashData(
+    $this->session->setFlashData(
       "message",
       "Barang bernama '$nama' telah berhasil dihapus!",
     );
@@ -173,7 +173,11 @@ class BarangMasuk extends BaseController
 
   public function getAll()
   {
-    $request = \Config\Services::request();
+    /**
+     * @var \Config\Services::request() $request Incoming request
+     */
+    $request = $this->request;
+
     $limit = (int) $request->getVar("limit");
     $offset = (int) $request->getVar("offset");
     $orderBy = $request->getVar("order");
@@ -182,19 +186,15 @@ class BarangMasuk extends BaseController
     $keyword = $keyword ? $keyword : "";
 
     $db = \Config\Database::connect();
-    $builder = $db->table("barang");
+    $builder = $db->table("barang_masuk");
 
     $barangData = $builder
       ->orderBy($orderBy ? $orderBy : "", $dir ? $dir : "")
       ->like("nama_barang", $keyword)
-      ->orLike("spesifikasi", $keyword)
-      ->orLike("lokasi_barang", $keyword)
-      ->orLike("jenis_barang", $keyword)
-      ->orLike("sumber_dana", $keyword)
-      ->orLike("kategori", $keyword)
-      ->orLike("kondisi", $keyword)
+      ->orLike("jumlah_masuk", $keyword)
       ->get($limit, $offset)
       ->getResult();
+    dd($barangData);
     $dataSize = sizeof($barangData);
     $allResults = $builder->countAllResults();
 

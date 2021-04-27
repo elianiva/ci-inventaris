@@ -102,7 +102,7 @@ class Barang extends BaseController
     ];
 
     if (!$this->validate($rules, $errors)) {
-      session()->setFlashData("errors", $this->validator->getErrors());
+      $this->session->setFlashData("errors", $this->validator->getErrors());
       return redirect()->to("/barang/tambah")->withInput();
     }
 
@@ -123,7 +123,7 @@ class Barang extends BaseController
       "sumber_dana" => $request->getVar("source"),
     ]);
 
-    session()->setFlashData(
+    $this->session->setFlashData(
       "message",
       sprintf(
         "Barang bernama '$nama' telah berhasil %s!",
@@ -140,7 +140,7 @@ class Barang extends BaseController
     $nama = $barangModel->find($id)["nama_barang"];
     $barangModel->delete($id);
 
-    session()->setFlashData(
+    $this->session->setFlashData(
       "message",
       "Barang bernama '$nama' telah berhasil dihapus!",
     );

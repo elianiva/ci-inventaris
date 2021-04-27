@@ -1,5 +1,7 @@
 <?= $this->extend("layouts/skeleton") ?>
 
+<?php $session = session() ?>
+
 <?= $this->section("content") ?>
 <div class="container px-6 mx-auto min-w-full">
   <h2
@@ -13,12 +15,12 @@
       Tambah Barang
     </a>
   </h2>
-  <?php if (session()->getFlashData("message")): ?>
+  <?php if ($session->getFlashData("message")): ?>
     <div
       class="flex justify-between bg-green-200 px-4 py-2 mx-1 mt-4 mb-2 rounded-md border-2 border-green-400 text-green-700 font-semibold"
       id="flash-msg"
     >
-        <?= session()->getFlashData("message") ?>
+        <?= $session->getFlashData("message") ?>
       <button
         class="text-md font-semibold"
         onclick="document.getElementById('flash-msg').remove()"
@@ -79,8 +81,8 @@
       server: {
         url: (prev, keyword) => {
           return isContinuable(prev)
-          ? `${prev}search=${keyword}&`
-          : `${prev}?search=${keyword}&`
+            ? `${prev}search=${keyword}&`
+            : `${prev}?search=${keyword}&`
         }
       },
     },
@@ -108,14 +110,10 @@
       },
     },
     columns: [
-      { name: "Nama" },
-      { name: "Spesifikasi" },
-      { name: "Lokasi" },
-      { name: "Kategori" },
+      { name: "Nama Barang" },
+      { name: "Tanggal Masuk" },
       { name: "Jumlah" },
-      { name: "Kondisi" },
-      { name: "Jenis Barang" },
-      { name: "Sumber Dana" },
+      { name: "Nama Supplier" },
       {
         name: "Aksi",
         formatter: (_, row) => gridjs.html(row.cells[8].data),
