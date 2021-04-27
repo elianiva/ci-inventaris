@@ -28,7 +28,7 @@
       <input
         class="<?= $err["name"] ?? false
           ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-purple-400 focus:outline-none focus:shadow-outline-purple form-input"
+          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         name="name"
         id="name-input"
         autocomplete="off"
@@ -47,7 +47,7 @@
       <input
         class="<?= $err["address"] ?? false
           ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-purple-400 focus:outline-none focus:shadow-outline-purple form-input"
+          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         name="address"
         id="addr-input"
         autocomplete="off"
@@ -66,7 +66,7 @@
       <input
         class="<?= $err["telp"] ?? false
           ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-purple-400 focus:outline-none focus:shadow-outline-purple form-input"
+          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         type="tel"
         name="telp"
         id="telp-input"
@@ -88,7 +88,7 @@
       <input
         class="<?= $err["telp"] ?? false
           ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-purple-400 focus:outline-none focus:shadow-outline-purple form-input"
+          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         type="text"
         list="cities"
         name="city"
@@ -119,7 +119,7 @@
       <input
         type="submit"
         value="<?= $title ?>"
-        class="px-6 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-md text-sm cursor-pointer"
+        class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md text-sm cursor-pointer"
       />
     </div>
   </form>

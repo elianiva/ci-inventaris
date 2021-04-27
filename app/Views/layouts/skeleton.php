@@ -43,7 +43,7 @@
           <ul class="mt-6">
             <li class="relative px-6 py-3">
               <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
+                class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
                 "dashboard"
                   ? "visible"
                   : "hidden" ?>"
@@ -77,7 +77,7 @@
           <ul>
             <li class="relative px-6 py-3">
               <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
+                class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
                 "supplier"
                   ? "visible"
                   : "hidden" ?>"
@@ -104,7 +104,7 @@
             </li>
             <li class="relative px-6 py-3">
               <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
+                class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
                 "barang"
                   ? "visible"
                   : "hidden" ?>"
@@ -214,7 +214,7 @@
           <ul class="mt-6">
             <li class="relative px-6 py-3">
               <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg"
                 aria-hidden="true"
               ></span>
               <a
@@ -333,11 +333,11 @@
       <div class="flex flex-col flex-1 w-full main-content">
         <header class="z-10 py-4 bg-white shadow-md">
           <div
-            class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600"
+            class="container flex items-center justify-between h-full px-6 mx-auto text-blue-600"
           >
             <!-- Mobile hamburger -->
             <button
-              class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+              class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-blue"
               @click="toggleSideMenu"
               aria-label="Menu"
             >
@@ -360,7 +360,7 @@
               <!-- Profile menu -->
               <li class="relative">
                 <button
-                  class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                  class="align-middle rounded-full focus:shadow-outline-blue focus:outline-none"
                   @click="toggleProfileMenu"
                   @keydown.escape="closeProfileMenu"
                   aria-label="Account"
