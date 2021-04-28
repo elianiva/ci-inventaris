@@ -1,3 +1,9 @@
+<?php
+  $session = session();
+  $err = $session->getFlashData('errors');
+  $msg = $session->getFlashData('message');
+?>
+
 <!DOCTYPE html>
 <html x-data="data()" lang="en">
   <head>
@@ -22,17 +28,35 @@
       >
         <div class="flex flex-col overflow-y-auto md:flex-row">
           <div class="flex items-center justify-center p-6 sm:p-12 w-full">
-            <div class="w-full">
+            <form method="POST" class="w-full" action="<?= base_url(
+              '/auth/login',
+            ) ?>">
+              <?php csrf_field(); ?>
               <h1
-                class="mb-4 text-xl font-semibold text-gray-700"
+                class="mb-6 text-2xl font-semibold text-gray-700 text-center"
               >
                 Login
               </h1>
+              <?php if ($msg): ?>
+                <div
+                  class="flex justify-between bg-red-200 px-4 py-2 mx-1 mt-4 mb-2 rounded-md border-2 border-red-400 text-red-700 font-semibold"
+                  id="flash-msg"
+                >
+                  <?= $msg ?>
+                  <button
+                    class="text-md font-semibold"
+                    onclick="document.getElementById('flash-msg').remove()"
+                  >
+                    ✕
+                  </button>
+                </div>
+              <?php endif; ?>
               <label class="block text-sm">
-                <span class="text-gray-700">Email</span>
+                <span class="text-gray-700">Username</span>
                 <input
                   class="block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
                   placeholder="Jane Doe"
+                  name="username"
                 />
               </label>
               <label class="block mt-4 text-sm">
@@ -41,19 +65,17 @@
                   class="block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
                   placeholder="***************"
                   type="password"
+                  name="password"
                 />
               </label>
 
               <!-- You should use a button here, as the anchor is only used for the example  -->
-              <a
+              <input
                 class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue"
-                href="../index.html"
-              >
-                Log in
-              </a>
-
-              <hr class="mt-8" />
-            </div>
+                type="submit"
+                value="Log In"
+              />
+            </form>
           </div>
         </div>
       </div>

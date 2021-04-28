@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use CodeIgniter\HTTP\Response;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -31,30 +33,45 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-// $routes->get('/', 'Home::index');
 // $routes->get("/", "Dashboard::index");
-$routes->get("/", fn() => redirect()->to("/auth"));
-$routes->get("/auth", "Auth::login");
+$session = session();
+$response = service('response');
 
-$routes->get("/dashboard", "Dashboard::index");
+// redirect to login page if no user session
+$with_auth = fn($route, $is_api = false) => $session->current_user
+  ? $route
+  : ($is_api
+    ? fn() => $response
+      ->setStatusCode(Response::HTTP_FORBIDDEN)
+      ->setHeader('Content-Type', 'application/json')
+      ->setBody('<h1>FORBIDDEN</h1>')
+      ->send()
+    : fn() => redirect()->to('/auth'));
 
-$routes->get("/supplier", "Supplier::index");
-$routes->get("/supplier/tambah", "Supplier::form");
-$routes->post("/supplier/tambah", "Supplier::save");
-$routes->post("/supplier/tambah/(:alphanum)", "Supplier::save/$1");
-$routes->delete("/supplier/hapus/(:alphanum)", "Supplier::hapus");
+$routes->get('/', fn() => redirect()->to('/auth'));
 
-$routes->get("/barang", "Barang::index");
-$routes->get("/barang/masuk", "BarangMasuk::index");
-$routes->get("/barang/tambah", "Barang::tambah");
-$routes->post("/barang/tambah/(:alphanum)", 'Barang::save/$1');
-$routes->post("/barang/tambah", "Barang::save");
-$routes->delete("/barang/hapus", "Barang::hapus");
-$routes->get("/barang/edit", "Barang::edit");
+$routes->get('/auth', 'Auth::index');
+$routes->get('/auth/login', 'Auth::login');
 
-$routes->get("/api/supplier", "Supplier::getAll");
-$routes->get("/api/barang-masuk", "BarangMasuk::getAll");
-$routes->get("/api/barang", "Barang::getAll");
+$routes->get('/dashboard', $with_auth('Dashboard::index'));
+
+$routes->get('/supplier', $with_auth('Supplier::index'));
+$routes->get('/supplier/tambah', $with_auth('Supplier::form'));
+$routes->post('/supplier/tambah', $with_auth('Supplier::save'));
+$routes->post('/supplier/tambah/(:alphanum)', $with_auth('Supplier::save/$1'));
+$routes->delete('/supplier/hapus/(:alphanum)', $with_auth('Supplier::hapus'));
+
+$routes->get('/barang', $with_auth('Barang::index'));
+$routes->get('/barang/masuk', $with_auth('BarangMasuk::index'));
+$routes->get('/barang/tambah', $with_auth('Barang::tambah'));
+$routes->post('/barang/tambah/(:alphanum)', $with_auth('Barang::save/$1'));
+$routes->post('/barang/tambah', $with_auth('Barang::save'));
+$routes->delete('/barang/hapus', $with_auth('Barang::hapus'));
+$routes->get('/barang/edit', $with_auth('Barang::edit'));
+
+$routes->get('/api/supplier', $with_auth('Supplier::getAll', true));
+$routes->get('/api/barang-masuk', $with_auth('BarangMasuk::getAll', true));
+$routes->get('/api/barang', $with_auth('Barang::getAll', true));
 
 /*
  * --------------------------------------------------------------------
