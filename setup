@@ -2,11 +2,7 @@
 
 case $1 in
   "seed")
-    php spark db:seed User
-    php spark db:seed Supplier
-    php spark db:seed Barang
-    php spark db:seed BarangMasuk
-    php spark db:seed BarangKeluar
+    php spark db:seed Main
     ;;
   "m:run")
     php spark migrate
