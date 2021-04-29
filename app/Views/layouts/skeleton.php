@@ -357,6 +357,9 @@
             <!-- spacing -->
             <div class="flex-1"></div>
             <ul class="flex items-center flex-shrink-0 space-x-6">
+              <span class="text-gray-600 font-semibold text-lg">
+                Halo, <?= session()->current_user['username'] ?>!
+              </span>
               <!-- Profile menu -->
               <li class="relative">
                 <button
@@ -369,13 +372,13 @@
                   <img
                     class="object-cover w-8 h-8 rounded-full"
                     src="<?= base_url() ?>/img/user.png"
-                    alt=""
+                    alt="profile picture"
                     aria-hidden="true"
                   />
                 </button>
                 <template x-if="isProfileMenuOpen">
                   <ul
-                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave="transition ease-in duration-100"
                     x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0"
                     @click.away="closeProfileMenu"
@@ -383,10 +386,10 @@
                     class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md"
                     aria-label="submenu"
                   >
-                    <li class="flex cursor-pointer">
+                    <li class="flex cursor-pointer hover:bg-gray-100 hover:text-gray-800">
                       <form action="<?= base_url("/auth/logout") ?>">
                         <button
-                          class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
+                          class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md"
                           type="submit"
                         >
                           <svg
