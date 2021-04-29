@@ -81,4 +81,10 @@ class Auth extends BaseController
 
     return redirect()->to('/dashboard');
   }
+
+  public function logout()
+  {
+    $this->session->destroy();
+    return redirect()->to("/auth");
+  }
 }

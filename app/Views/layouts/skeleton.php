@@ -36,7 +36,7 @@
         <div class="py-4 text-gray-500">
           <a
             class="ml-6 text-lg font-bold text-gray-800"
-            href="<?= base_url("/") ?>"
+            href="<?= base_url('/') ?>"
           >
             Inventaris SMK
           </a>
@@ -44,17 +44,17 @@
             <li class="relative px-6 py-3">
               <span
                 class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
-                "dashboard"
-                  ? "visible"
-                  : "hidden" ?>"
+                'dashboard'
+                  ? 'visible'
+                  : 'hidden' ?>"
                 aria-hidden="true"
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold <?= $page_name ==
-                "dashboard"
-                  ? "text-gray-800"
-                  : "text-gray-500" ?> transition-colors duration-150 hover:text-gray-800"
-                href="<?= base_url("/dashboard") ?>"
+                'dashboard'
+                  ? 'text-gray-800'
+                  : 'text-gray-500' ?> transition-colors duration-150 hover:text-gray-800"
+                href="<?= base_url('/dashboard') ?>"
               >
                 <svg
                   class="w-5 h-5"
@@ -78,17 +78,17 @@
             <li class="relative px-6 py-3">
               <span
                 class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
-                "supplier"
-                  ? "visible"
-                  : "hidden" ?>"
+                'supplier'
+                  ? 'visible'
+                  : 'hidden' ?>"
                 aria-hidden="true"
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold <?= $page_name ==
-                "supplier"
-                  ? "text-gray-800"
-                  : "text-gray-500" ?> transition-colors duration-150 hover:text-gray-800"
-                href="<?= base_url("/supplier") ?>"
+                'supplier'
+                  ? 'text-gray-800'
+                  : 'text-gray-500' ?> transition-colors duration-150 hover:text-gray-800"
+                href="<?= base_url('/supplier') ?>"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -105,9 +105,9 @@
             <li class="relative px-6 py-3">
               <span
                 class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
-                "barang"
-                  ? "visible"
-                  : "hidden" ?>"
+                'barang'
+                  ? 'visible'
+                  : 'hidden' ?>"
                 aria-hidden="true"
               ></span>
               <button
@@ -150,7 +150,7 @@
                   >
                     <a
                       class="w-full"
-                    href="<?= base_url("/barang")?>"
+                    href="<?= base_url('/barang') ?>"
                     >
                       Master Barang
                     </a>
@@ -160,7 +160,7 @@
                   >
                     <a
                       class="w-full"
-                      href="<?= base_url("/barang/masuk") ?>"
+                      href="<?= base_url('/barang/masuk') ?>"
                     >
                       Barang Masuk
                     </a>
@@ -170,7 +170,7 @@
                   >
                     <a
                       class="w-full"
-                      href="<?= base_url("/barang/keluar") ?>"
+                      href="<?= base_url('/barang/keluar') ?>"
                     >
                       Barang Keluar
                     </a>
@@ -368,7 +368,7 @@
                 >
                   <img
                     class="object-cover w-8 h-8 rounded-full"
-                    src="https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png"
+                    src="<?= base_url() ?>/img/user.png"
                     alt=""
                     aria-hidden="true"
                   />
@@ -383,27 +383,29 @@
                     class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md"
                     aria-label="submenu"
                   >
-                    <li class="flex">
-                      <a
-                        class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
-                        href="#"
-                      >
-                        <svg
-                          class="w-4 h-4 mr-3"
-                          aria-hidden="true"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
+                    <li class="flex cursor-pointer">
+                      <form action="<?= base_url("/auth/logout") ?>">
+                        <button
+                          class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
+                          type="submit"
                         >
-                          <path
-                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                          ></path>
-                        </svg>
-                        <span>Log out</span>
-                      </a>
+                          <svg
+                            class="w-4 h-4 mr-3"
+                            aria-hidden="true"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                            ></path>
+                          </svg>
+                          <span>Log Out</span>
+                        </button>
+                      </form>
                     </li>
                   </ul>
                 </template>
@@ -412,7 +414,7 @@
           </div>
         </header>
         <main class="h-full overflow-y-auto" >
-          <?= $this->renderSection("content") ?>
+          <?= $this->renderSection('content') ?>
         </main>
       </div>
     </div>

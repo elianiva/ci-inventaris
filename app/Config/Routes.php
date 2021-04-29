@@ -52,6 +52,7 @@ $routes->get('/', fn() => redirect()->to('/auth'));
 
 $routes->get('/auth', 'Auth::index');
 $routes->get('/auth/login', 'Auth::login');
+$routes->get('/auth/logout', 'Auth::logout');
 
 $routes->get('/dashboard', $with_auth('Dashboard::index'));
 
