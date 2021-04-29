@@ -36,9 +36,10 @@ $routes->setAutoRoute(true);
 // $routes->get("/", "Dashboard::index");
 $session = session();
 $response = service('response');
+$curr_user = $session->current_user;
 
 // redirect to login page if no user session
-$with_auth = fn($route, $is_api = false) => $session->current_user
+$with_auth = fn($route, $is_api = false) => $curr_user
   ? $route
   : ($is_api
     ? fn() => $response
@@ -48,10 +49,15 @@ $with_auth = fn($route, $is_api = false) => $session->current_user
       ->send()
     : fn() => redirect()->to('/auth'));
 
+// redirect to dashboard if there is a user session
+$autologin = fn($route) => $curr_user
+  ? fn() => redirect()->to('/dashboard')
+  : $route;
+
 $routes->get('/', fn() => redirect()->to('/auth'));
 
-$routes->get('/auth', 'Auth::index');
-$routes->get('/auth/login', 'Auth::login');
+$routes->get('/auth', $autologin('Auth::index'));
+$routes->get('/auth/login', $autologin('Auth::login'));
 $routes->get('/auth/logout', 'Auth::logout');
 
 $routes->get('/dashboard', $with_auth('Dashboard::index'));
@@ -71,10 +77,16 @@ $routes->post('/barang/hapus(:alphanum)', $with_auth('Barang::hapus/$1'));
 $routes->get('/barang/edit', $with_auth('Barang::edit'));
 
 $routes->get('/barang-masuk', $with_auth('BarangMasuk::index'));
-$routes->post('/barang-masuk/tambah/(:alphanum)', $with_auth('BarangMasuk::save/$1'));
+$routes->post(
+  '/barang-masuk/tambah/(:alphanum)',
+  $with_auth('BarangMasuk::save/$1'),
+);
 $routes->post('/barang-masuk/tambah', $with_auth('BarangMasuk::save'));
 // this should be DELETE, but HTML form doesn't have that..
-$routes->post('/barang-masuk/hapus/(:alphanum)', $with_auth('BarangMasuk::hapus/$1'));
+$routes->post(
+  '/barang-masuk/hapus/(:alphanum)',
+  $with_auth('BarangMasuk::hapus/$1'),
+);
 
 $routes->get('/api/supplier', $with_auth('Supplier::getAll', true));
 $routes->get('/api/barang-masuk', $with_auth('BarangMasuk::getAll', true));
