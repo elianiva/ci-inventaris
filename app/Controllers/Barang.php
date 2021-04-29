@@ -117,7 +117,6 @@ class Barang extends BaseController
       "spesifikasi" => $request->getVar("spec"),
       "lokasi_barang" => $request->getVar("address"),
       "kategori" => $request->getVar("category"),
-      "jumlah_barang" => $request->getVar("total"),
       "kondisi" => $request->getVar("condition"),
       "jenis_barang" => $request->getVar("kind"),
       "sumber_dana" => $request->getVar("source"),

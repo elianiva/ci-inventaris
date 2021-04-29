@@ -34,11 +34,6 @@ class Barang extends Migration
         "constraint" => 25,
         "null" => false,
       ],
-      "jumlah_barang" => [
-        "type" => "INT",
-        "constraint" => 5,
-        "null" => false,
-      ],
       "kondisi" => [
         "type" => "VARCHAR",
         "constraint" => 20,

@@ -24,7 +24,6 @@ class Barang extends Seeder
           "Kesenian",
           "Lainnya",
         ]),
-        "jumlah_barang" => $faker->numberBetween(0, 100),
         "kondisi" => $faker->randomElement([
           "Baik",
           "Kurang Baik",

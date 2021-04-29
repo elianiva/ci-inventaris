@@ -18,7 +18,6 @@ class Barang extends Model
     "spesifikasi",
     "lokasi_barang",
     "kategori",
-    "jumlah_barang",
     "kondisi",
     "jenis_barang",
     "sumber_dana",

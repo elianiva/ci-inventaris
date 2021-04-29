@@ -108,26 +108,6 @@
     </label>
 
     <label class="block mt-4 text-sm">
-      <span class="text-gray-700">Jumlah Barang</span>
-      <input
-        class="<?= $err["total"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
-        type="number"
-        name="total"
-        id="total-input"
-        autocomplete="off"
-        value="<?= old("total") ?? ($prev["jumlah_barang"] ?? "") ?>"
-        oninput="resetInput('total-err', 'total-input')"
-      />
-      <?php if ($err): ?>
-        <span class="text-xs text-red-600" id="total-err">
-          <?= $err["total"] ?? "" ?>
-        </span>
-      <?php endif; ?>
-    </label>
-
-    <label class="block mt-4 text-sm">
       <span class="text-gray-700">
         Kondisi Barang
       </span>
