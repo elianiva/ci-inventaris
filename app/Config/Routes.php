@@ -63,12 +63,18 @@ $routes->post('/supplier/tambah/(:alphanum)', $with_auth('Supplier::save/$1'));
 $routes->delete('/supplier/hapus/(:alphanum)', $with_auth('Supplier::hapus'));
 
 $routes->get('/barang', $with_auth('Barang::index'));
-$routes->get('/barang/masuk', $with_auth('BarangMasuk::index'));
 $routes->get('/barang/tambah', $with_auth('Barang::tambah'));
 $routes->post('/barang/tambah/(:alphanum)', $with_auth('Barang::save/$1'));
 $routes->post('/barang/tambah', $with_auth('Barang::save'));
-$routes->delete('/barang/hapus', $with_auth('Barang::hapus'));
+// this should be DELETE, but HTML form doesn't have that..
+$routes->post('/barang/hapus(:alphanum)', $with_auth('Barang::hapus/$1'));
 $routes->get('/barang/edit', $with_auth('Barang::edit'));
+
+$routes->get('/barang-masuk', $with_auth('BarangMasuk::index'));
+$routes->post('/barang-masuk/tambah/(:alphanum)', $with_auth('BarangMasuk::save/$1'));
+$routes->post('/barang-masuk/tambah', $with_auth('BarangMasuk::save'));
+// this should be DELETE, but HTML form doesn't have that..
+$routes->post('/barang-masuk/hapus/(:alphanum)', $with_auth('BarangMasuk::hapus/$1'));
 
 $routes->get('/api/supplier', $with_auth('Supplier::getAll', true));
 $routes->get('/api/barang-masuk', $with_auth('BarangMasuk::getAll', true));

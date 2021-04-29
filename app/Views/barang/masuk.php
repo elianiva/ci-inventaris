@@ -95,13 +95,9 @@
           let col = cols[0]
           let colName = [
             "nama_barang",
-            "spesifikasi",
-            "lokasi_barang",
-            "kategori",
-            "jumlah_barang",
-            "kondisi",
-            "jenis_barang",
-            "sumber_dana",
+            "tanggal_masuk",
+            "jumlah_masuk",
+            "nama_supplier",
           ][col.index]
           const dir = col.direction === 1 ? "ASC" : "DESC";
 
@@ -116,21 +112,23 @@
       { name: "Nama Supplier" },
       {
         name: "Aksi",
-        formatter: (_, row) => gridjs.html(row.cells[8].data),
+        formatter: (_, row) => gridjs.html(row.cells[4].data),
       }
     ],
     server: {
-      url: "<?= base_url("/api/barang") ?>",
+      url: "<?= base_url("/api/barang-masuk") ?>",
+      // then: data => console.log(data),
       then: data => data.results.map(item => [
         item.nama_barang,
-        item.spesifikasi,
-        item.lokasi_barang,
-        item.kategori,
-        item.jumlah_barang,
-        item.kondisi,
-        item.jenis_barang,
-        item.sumber_dana,
-        action(item.kode_barang),
+        new Date(item.tanggal_masuk).toLocaleDateString("id-ID", {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        }),
+        item.jumlah_masuk,
+        item.nama_supplier,
+        action(item.id_barang_masuk),
       ]),
       total: data => data.count
     }
