@@ -38,7 +38,7 @@
   const isContinuable = (url) => url.split('')[url.length-1] === "&"
   const action = id => `
   <div class="flex gap-2 mr-4">
-    <form action="/barang/edit/${id}">
+    <form action="/barang-masuk/edit/${id}" method="POST">
       <button
         class="p-2 bg-blue-500 text-white rounded-md"
       >
@@ -47,7 +47,7 @@
         </svg>
       </button>
     </form>
-    <form action="/barang/hapus/${id}">
+    <form action="/barang-masuk/hapus/${id}" method="POST">
       <button
         class="p-2 bg-red-500 text-white rounded-md"
       >
