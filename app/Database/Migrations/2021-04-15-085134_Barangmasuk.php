@@ -63,14 +63,7 @@ class Masukbarang extends Migration
       "barang",
       "nama_barang",
       "CASCADE",
-      "NO ACTION",
-    );
-    $this->forge->addForeignKey(
-      "jumlah_masuk",
-      "stok",
-      "jumlah_barang_masuk",
       "CASCADE",
-      "NO ACTION",
     );
     $this->forge->addForeignKey(
       "kode_supplier",

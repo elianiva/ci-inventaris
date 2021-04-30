@@ -25,6 +25,6 @@ class Main extends Seeder {
     $this->call("Barang");
     $this->call("BarangMasuk");
     $this->call("BarangKeluar");
-    // $this->call("Stok");
+    $this->call("Stok");
   }
 }

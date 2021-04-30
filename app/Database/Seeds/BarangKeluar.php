@@ -15,7 +15,7 @@ class BarangKeluar extends Seeder
     $this->db->disableForeignKeyChecks();
 
     $faker = \Faker\Factory::create("id_ID");
-    $faker->seed(1234);
+    $faker->seed(4321);
 
     $barang_model = new BarangModel();
     $supplier_model = new SupplierModel();

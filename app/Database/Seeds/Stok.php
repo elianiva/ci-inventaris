@@ -13,23 +13,26 @@ class Stok extends Seeder
 {
   public function run()
   {
-    $faker = \Faker\Factory::create("id_ID");
+    $faker = \Faker\Factory::create('id_ID');
     $faker->seed(1234);
 
     $barang_model = new BarangModel();
     $barang_masuk_model = new BarangMasukModel();
     $barang_keluar_model = new BarangKeluarModel();
-    $kode_barang = $barang_model->findColumn("kode_barang");
+    $kode_barang = $barang_model->findColumn('kode_barang');
 
     for ($i = 0; $i < 50; $i++) {
       $rand = $faker->randomElement($kode_barang);
-      $nama_barang = $barang_model->find($rand)["nama_barang"];
+      if (($key = array_search($rand, $kode_barang)) !== false) {
+        unset($kode_barang[$key]);
+      }
+      $nama_barang = $barang_model->find($rand)['nama_barang'];
 
       // I dislike this copypasta...
       $jumlah_masuk = $barang_masuk_model
         ->builder()
-        ->select("nama_barang, jumlah_masuk")
-        ->getWhere(["kode_barang" => $rand])
+        ->select('nama_barang, jumlah_masuk')
+        ->getWhere(['kode_barang' => $rand])
         ->getResult();
       $jumlah_masuk = array_reduce(
         $jumlah_masuk,
@@ -40,8 +43,8 @@ class Stok extends Seeder
       // I dislike this copypasta...
       $jumlah_keluar = $barang_keluar_model
         ->builder()
-        ->select("nama_barang, jumlah_keluar")
-        ->getWhere(["kode_barang" => $rand])
+        ->select('nama_barang, jumlah_keluar')
+        ->getWhere(['kode_barang' => $rand])
         ->getResult();
       $jumlah_keluar = array_reduce(
         $jumlah_keluar,
@@ -50,14 +53,15 @@ class Stok extends Seeder
       );
 
       $data = [
-        "kode_barang" => $rand,
-        "nama_barang" => $nama_barang,
-        "jumlah_barang_masuk" => $jumlah_masuk,
-        "jumlah_barang_keluar" => $jumlah_keluar,
-        "created_at" => Time::now(),
-        "updated_at" => Time::now(),
+        'kode_barang' => $rand,
+        'nama_barang' => $nama_barang,
+        'jumlah_barang_masuk' => $jumlah_masuk,
+        'jumlah_barang_keluar' => $jumlah_keluar,
+        'total_barang' => $faker->numberBetween(10, 200),
+        'created_at' => Time::now(),
+        'updated_at' => Time::now(),
       ];
-      $this->db->table("stok")->insert($data);
+      $this->db->table('stok')->insert($data);
     }
   }
 }

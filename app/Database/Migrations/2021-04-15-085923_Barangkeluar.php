@@ -63,14 +63,7 @@ class Keluarbarang extends Migration
       "barang",
       "nama_barang",
       "CASCADE",
-      "NO ACTION",
-    );
-    $this->forge->addForeignKey(
-      "jumlah_keluar",
-      "stok",
-      "jumlah_barang_keluar",
       "CASCADE",
-      "NO ACTION",
     );
     $this->forge->createTable("barang_keluar");
 
