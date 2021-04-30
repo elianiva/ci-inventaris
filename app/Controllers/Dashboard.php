@@ -6,26 +6,34 @@ use App\Models\Supplier;
 use App\Models\Barang;
 use App\Models\BarangMasuk;
 use App\Models\BarangKeluar;
+use App\Models\Stok;
 
 class Dashboard extends BaseController
 {
   public function index()
   {
-    $supplierModel = new Supplier();
-    $barangModel = new Barang();
-    $barangMasukModel = new BarangMasuk();
-    $barangKeluarModel = new BarangKeluar();
+    $supplier_model = new Supplier();
+    $barang_model = new Barang();
+    $barang_masuk_model = new BarangMasuk();
+    $barang_keluar_model = new BarangKeluar();
+    $stok_model = new Stok();
+    $total_stok = $stok_model
+      ->builder()
+      ->selectSum("total_barang")
+      ->get()
+      ->getResult()[0]->total_barang;
 
     $data = [
-      "title" => "Dashboard | Inventaris",
-      "heading" => "Dashboard",
-      "total_supplier" => $supplierModel->countAllResults(),
-      "total_barang" => $barangModel->countAllResults(),
-      "total_barang_masuk" => $barangMasukModel->countAllResults(),
-      "total_barang_keluar" => $barangKeluarModel->countAllResults(),
-      "page_name" => "dashboard"
+      'title' => 'Dashboard | Inventaris',
+      'heading' => 'Dashboard',
+      'total_supplier' => $supplier_model->countAllResults(),
+      'total_barang' => $barang_model->countAllResults(),
+      'total_barang_masuk' => $barang_masuk_model->countAllResults(),
+      'total_barang_keluar' => $barang_keluar_model->countAllResults(),
+      'total_stok' => $total_stok,
+      'page_name' => 'dashboard',
     ];
 
-    return view("dashboard/index", $data);
+    return view('dashboard/index', $data);
   }
 }
