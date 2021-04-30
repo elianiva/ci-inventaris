@@ -116,7 +116,7 @@
       { name: "Sumber Dana" },
       {
         name: "Aksi",
-        formatter: (_, row) => gridjs.html(row.cells[8].data),
+        formatter: (_, row) => gridjs.html(row.cells[7].data),
       }
     ],
     server: {

@@ -77,6 +77,7 @@ $routes->post('/barang/hapus/(:any)', $with_auth('Barang::hapus/$1'));
 $routes->get('/barang/edit', $with_auth('Barang::edit'));
 
 $routes->get('/barang-masuk', $with_auth('BarangMasuk::index'));
+$routes->get('/barang-masuk/tambah', $with_auth('BarangMasuk::tambah'));
 /* prettier-ignore */
 $routes->post('/barang-masuk/tambah/(:alphanum)', $with_auth('BarangMasuk::save/$1'));
 $routes->post('/barang-masuk/tambah', $with_auth('BarangMasuk::save'));
