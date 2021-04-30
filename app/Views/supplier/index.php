@@ -5,7 +5,7 @@
 <?= $this->section("content") ?>
 <div class="container px-6 mx-auto min-w-full">
   <h2
-    class="flex justify-between mt-6 mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+    class="flex justify-between mt-6 mb-2 text-2xl font-semibold text-gray-700"
   >
     <?= $heading ?>
     <a
@@ -48,7 +48,6 @@
     <form action="/supplier/hapus/${id}">
       <button
         class="p-2 bg-red-500 text-white rounded-md"
-        @click="openModal"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />

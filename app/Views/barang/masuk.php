@@ -5,7 +5,7 @@
 <?= $this->section("content") ?>
 <div class="container px-6 mx-auto min-w-full">
   <h2
-    class="flex justify-between mt-6 mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+    class="flex justify-between mt-6 mb-2 text-2xl font-semibold text-gray-700"
   >
     <?= $heading ?>
     <a
@@ -31,8 +31,6 @@
   <?php endif; ?>
   <div id="gridjs-wrapper"></div>
 </div>
-
-<?= view_cell("\App\Libraries\Modal::getModal", ["item_name" => "Barang"]); ?>
 
 <script>
   const isContinuable = (url) => url.split('')[url.length-1] === "&"
