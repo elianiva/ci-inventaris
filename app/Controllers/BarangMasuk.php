@@ -169,10 +169,10 @@ class BarangMasuk extends BaseController
       'prev' => $prev,
     ];
 
-    return view('barang/tambah', $data);
+    return view('barang/masuk/tambah', $data);
   }
 
-  public function getAll()
+  public function get_all()
   {
     /**
      * @var \Config\Services::request() $request Incoming request

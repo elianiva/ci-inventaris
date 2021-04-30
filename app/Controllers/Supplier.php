@@ -137,7 +137,7 @@ class Supplier extends BaseController
     return view("supplier/tambah", $data);
   }
 
-  public function getAll()
+  public function get_all()
   {
     /**
      * @var \Config\Services::request() $request Incoming request

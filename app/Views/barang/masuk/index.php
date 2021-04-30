@@ -10,7 +10,7 @@
     <?= $heading ?>
     <a
       class="p-2 rounded-md bg-green-400 text-white font-semibold text-sm"
-      href="<?= base_url("/barang/tambah") ?>"
+      href="<?= base_url("/barang-masuk/tambah") ?>"
     >
       Tambah Barang
     </a>
@@ -133,5 +133,4 @@
   }).render(document.getElementById("gridjs-wrapper"))
 </script>
 
-<?= $this->endSection("content")
-?>
+<?= $this->endSection("content") ?>

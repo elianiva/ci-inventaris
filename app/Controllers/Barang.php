@@ -170,7 +170,7 @@ class Barang extends BaseController
     return view("barang/tambah", $data);
   }
 
-  public function getAll()
+  public function get_all()
   {
     /**
      * @var \Config\Services::request() $request Incoming request
