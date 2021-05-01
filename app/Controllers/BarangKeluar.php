@@ -114,8 +114,8 @@ class BarangKeluar extends BaseController
       'message',
       sprintf(
         "Barang bernama '$nama' telah berhasil %s!",
-        $id ? 'diperbarui' : 'ditambahkan',
-      ),
+        $id ? 'diperbarui' : 'ditambahkan'
+      )
     );
 
     return redirect()->to('/barang-keluar');
@@ -129,7 +129,7 @@ class BarangKeluar extends BaseController
 
     $this->session->setFlashData(
       'message',
-      "Log barang keluar bernama '$nama' telah berhasil dihapus!",
+      "Log barang keluar bernama '$nama' telah berhasil dihapus!"
     );
 
     return redirect()->to('/barang-keluar');
@@ -200,9 +200,8 @@ class BarangKeluar extends BaseController
       json_encode([
         'results' => $barangData,
         'count' => $barangTotal,
-      ]),
+      ])
     );
     $response->send();
   }
 }
-

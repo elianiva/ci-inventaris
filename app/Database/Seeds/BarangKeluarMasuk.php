@@ -36,14 +36,14 @@ class BarangKeluarMasuk extends Seeder
       $date = $faker->date();
 
       $masuk = [
-        "id_barang_masuk" => $faker->ean8(),
-        "kode_barang" => $kode_barang,
-        "nama_barang" => $name,
-        "tanggal_masuk" => $date,
-        "jumlah_masuk" => $jumlah_masuk,
-        "kode_supplier" => $kode_supplier,
-        "created_at" => Time::now(),
-        "updated_at" => Time::now(),
+        'id_barang_masuk' => $faker->ean8(),
+        'kode_barang' => $kode_barang,
+        'nama_barang' => $name,
+        'tanggal_masuk' => $date,
+        'jumlah_masuk' => $jumlah_masuk,
+        'kode_supplier' => $kode_supplier,
+        'created_at' => Time::now(),
+        'updated_at' => Time::now(),
       ];
 
       $keluar = [

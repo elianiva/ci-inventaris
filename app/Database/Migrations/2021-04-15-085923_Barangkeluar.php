@@ -37,7 +37,7 @@ class Keluarbarang extends Migration
         "null" => false,
       ],
       "kode_supplier" => [
-        "type" => "INT",
+        "type" => "VARCHAR",
         "constraint" => 5,
         "null" => false,
       ],
