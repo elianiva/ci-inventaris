@@ -189,7 +189,7 @@
                   >
                     <a
                       class="w-full"
-                      href="<?= base_url('/barang/keluar') ?>"
+                      href="<?= base_url('/barang-keluar') ?>"
                     >
                       Barang Keluar
                     </a>

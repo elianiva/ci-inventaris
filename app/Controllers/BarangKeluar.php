@@ -2,21 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Models\BarangMasuk as BarangMasukModel;
+use App\Models\BarangKeluar as BarangKeluarModel;
 use App\Models\Barang as BarangModel;
 use App\Models\Supplier as SupplierModel;
 
-class BarangMasuk extends BaseController
+class BarangKeluar extends BaseController
 {
   public function index()
   {
     $data = [
-      'title' => 'Barang Masuk | Inventaris',
-      'heading' => 'Barang Masuk',
+      'title' => 'Barang Keluar | Inventaris',
+      'heading' => 'Barang Keluar',
       'page_name' => 'barang',
     ];
 
-    return view('barang/masuk/index', $data);
+    return view('barang/keluar/index', $data);
   }
 
   public function tambah()
@@ -27,15 +27,15 @@ class BarangMasuk extends BaseController
     $supplier = $supplier_model->findColumn('nama_supplier');
 
     $data = [
-      'title' => 'Barang Masuk | Inventaris',
-      'heading' => 'Barang Masuk',
+      'title' => 'Barang Keluar | Inventaris',
+      'heading' => 'Barang Keluar',
       'page_name' => 'barang',
       'title' => 'Tambah',
       'barang' => $barang,
       'supplier' => $supplier,
     ];
 
-    return view('barang/masuk/tambah', $data);
+    return view('barang/keluar/tambah', $data);
   }
 
   public function save(string $id = null)
@@ -51,7 +51,7 @@ class BarangMasuk extends BaseController
         'rules' => 'required',
       ],
       'date' => [
-        'label' => 'Tanggal Masuk',
+        'label' => 'Tanggal keluar',
         'rules' => 'required',
       ],
       'supplier' => [
@@ -69,7 +69,7 @@ class BarangMasuk extends BaseController
         'required' => 'Nama Barang tidak boleh kosong!',
       ],
       'date' => [
-        'required' => 'Tanggal Masuk tidak boleh kosong!',
+        'required' => 'Tanggal keluar tidak boleh kosong!',
       ],
       'supplier' => [
         'required' => 'Nama Supplier tidak boleh kosong!',
@@ -82,11 +82,11 @@ class BarangMasuk extends BaseController
     if (!$this->validate($rules, $errors)) {
       $this->session->setFlashData('errors', $this->validator->getErrors());
       return redirect()
-        ->to('/barang-masuk/tambah')
+        ->to('/barang-keluar/tambah')
         ->withInput();
     }
 
-    $barang_masuk_model = new BarangMasukModel();
+    $barang_keluar_model = new BarangKeluarModel();
     $nama = $request->getVar('name');
     $date = date('Y-m-d H:i:s', strtotime($request->getVar('date')));
     $total = $request->getVar('total');
@@ -101,12 +101,12 @@ class BarangMasuk extends BaseController
 
     // this method already handles `insert` and `update`
     // depending on the primary key
-    $barang_masuk_model->save([
-      'id_barang_masuk' => $id ?? \Faker\Factory::create()->ean8(),
+    $barang_keluar_model->save([
+      'id_barang_keluar' => $id ?? \Faker\Factory::create()->ean8(),
       'kode_barang' => $nama,
       'nama_barang' => $nama,
-      'tanggal_masuk' => $date,
-      'jumlah_masuk' => $total,
+      'tanggal_keluar' => $date,
+      'jumlah_keluar' => $total,
       'kode_supplier' => $kode_supplier,
     ]);
 
@@ -118,30 +118,30 @@ class BarangMasuk extends BaseController
       ),
     );
 
-    return redirect()->to('/barang-masuk');
+    return redirect()->to('/barang-keluar');
   }
 
   public function hapus(string $id)
   {
-    $barang_masuk_model = new BarangMasukModel();
-    $nama = $barang_masuk_model->find($id)['nama_barang'];
-    $barang_masuk_model->delete($id);
+    $barang_keluar_model = new BarangKeluarModel();
+    $nama = $barang_keluar_model->find($id)['nama_barang'];
+    $barang_keluar_model->delete($id);
 
     $this->session->setFlashData(
       'message',
-      "Log barang masuk bernama '$nama' telah berhasil dihapus!",
+      "Log barang keluar bernama '$nama' telah berhasil dihapus!",
     );
 
-    return redirect()->to('/barang-masuk');
+    return redirect()->to('/barang-keluar');
   }
 
   public function edit(string $id)
   {
-    $barang_masuk_model = new BarangMasukModel();
-    $categories = array_unique($barang_masuk_model->findColumn('kategori'));
-    $kinds = array_unique($barang_masuk_model->findColumn('jenis_barang'));
-    $sources = array_unique($barang_masuk_model->findColumn('sumber_dana'));
-    $prev = $barang_masuk_model->find($id);
+    $barang_keluar_model = new BarangKeluarModel();
+    $categories = array_unique($barang_keluar_model->findColumn('kategori'));
+    $kinds = array_unique($barang_keluar_model->findColumn('jenis_barang'));
+    $sources = array_unique($barang_keluar_model->findColumn('sumber_dana'));
+    $prev = $barang_keluar_model->find($id);
 
     $data = [
       'title' => 'Supplier | Inventaris',
@@ -155,7 +155,7 @@ class BarangMasuk extends BaseController
       'prev' => $prev,
     ];
 
-    return view('barang/masuk/tambah', $data);
+    return view('barang/keluar/tambah', $data);
   }
 
   public function get_all()
@@ -173,16 +173,16 @@ class BarangMasuk extends BaseController
     $keyword = $keyword ? $keyword : '';
 
     $db = \Config\Database::connect();
-    $builder = $db->table('barang_masuk');
+    $builder = $db->table('barang_keluar');
 
     $barangData = $builder
       ->orderBy($orderBy ? $orderBy : '', $dir ? $dir : '')
-      ->join('supplier', 'supplier.kode_supplier = barang_masuk.kode_supplier')
+      ->join('supplier', 'supplier.kode_supplier = barang_keluar.kode_supplier')
       ->like('nama_barang', $keyword)
-      ->orLike('jumlah_masuk', $keyword)
+      ->orLike('jumlah_keluar', $keyword)
       ->orLike('nama_supplier', $keyword)
       ->select(
-        'id_barang_masuk, nama_barang, nama_supplier, tanggal_masuk, jumlah_masuk',
+        'id_barang_keluar, nama_barang, nama_supplier, tanggal_keluar, jumlah_keluar',
       )
       ->get($limit, $offset)
       ->getResult();
@@ -205,3 +205,4 @@ class BarangMasuk extends BaseController
     $response->send();
   }
 }
+

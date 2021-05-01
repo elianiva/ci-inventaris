@@ -86,12 +86,23 @@ $routes->post('/barang-masuk/tambah', $with_auth('BarangMasuk::save'));
 $routes->post('/barang-masuk/hapus/(:any)', $with_auth('BarangMasuk::hapus/$1'));
 $routes->post('/barang-masuk/edit', $with_auth('BarangMasuk::edit'));
 
+$routes->get('/barang-keluar', $with_auth('BarangKeluar::index'));
+$routes->get('/barang-keluar/tambah', $with_auth('BarangKeluar::tambah'));
+/* prettier-ignore */
+$routes->post('/barang-keluar/tambah/(:alphanum)', $with_auth('BarangKeluar::save/$1'));
+$routes->post('/barang-keluar/tambah', $with_auth('BarangKeluar::save'));
+// this should be DELETE, but HTML form doesn't have that..
+/* prettier-ignore */
+$routes->post('/barang-keluar/hapus/(:any)', $with_auth('BarangKeluar::hapus/$1'));
+$routes->post('/barang-keluar/edit', $with_auth('BarangKeluar::edit'));
+
 $routes->get('/stok', $with_auth('Stok::index', true));
 
 $routes->get('/api/supplier', $with_auth('Supplier::get_all', true));
 $routes->get('/api/stok', $with_auth('Stok::get_all', true));
 $routes->get('/api/barang', $with_auth('Barang::get_all', true));
 $routes->get('/api/barang-masuk', $with_auth('BarangMasuk::get_all', true));
+$routes->get('/api/barang-keluar', $with_auth('BarangKeluar::get_all', true));
 
 /*
  * --------------------------------------------------------------------
