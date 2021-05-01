@@ -23,6 +23,8 @@ class Stok extends Seeder
 
     for ($i = 0; $i < 50; $i++) {
       $rand = $faker->randomElement($kode_barang);
+
+      // remove used `kode_barang`
       if (($key = array_search($rand, $kode_barang)) !== false) {
         unset($kode_barang[$key]);
       }
@@ -37,7 +39,7 @@ class Stok extends Seeder
       $jumlah_masuk = array_reduce(
         $jumlah_masuk,
         fn($acc, $curr) => ($acc += $curr->jumlah_masuk),
-        0,
+        0
       );
 
       // I dislike this copypasta...
@@ -49,7 +51,7 @@ class Stok extends Seeder
       $jumlah_keluar = array_reduce(
         $jumlah_keluar,
         fn($acc, $curr) => ($acc += $curr->jumlah_keluar),
-        0,
+        0
       );
 
       $data = [
@@ -57,7 +59,7 @@ class Stok extends Seeder
         'nama_barang' => $nama_barang,
         'jumlah_barang_masuk' => $jumlah_masuk,
         'jumlah_barang_keluar' => $jumlah_keluar,
-        'total_barang' => $faker->numberBetween(10, 200),
+        'total_barang' => $jumlah_masuk - $jumlah_keluar,
         'created_at' => Time::now(),
         'updated_at' => Time::now(),
       ];
