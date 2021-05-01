@@ -13,4 +13,9 @@ case $1 in
   "m:stats")
     php spark migrate:status
     ;;
+  "m:renew")
+    ./setup m:undo
+    ./setup m:run
+    ./setup m:seed
+    ;;
 esac
