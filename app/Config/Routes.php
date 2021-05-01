@@ -86,8 +86,10 @@ $routes->post('/barang-masuk/tambah', $with_auth('BarangMasuk::save'));
 $routes->post('/barang-masuk/hapus/(:any)', $with_auth('BarangMasuk::hapus/$1'));
 $routes->post('/barang-masuk/edit', $with_auth('BarangMasuk::edit'));
 
+$routes->get('/stok', $with_auth('Stok::index', true));
 
 $routes->get('/api/supplier', $with_auth('Supplier::get_all', true));
+$routes->get('/api/stok', $with_auth('Stok::get_all', true));
 $routes->get('/api/barang', $with_auth('Barang::get_all', true));
 $routes->get('/api/barang-masuk', $with_auth('BarangMasuk::get_all', true));
 

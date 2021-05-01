@@ -73,8 +73,27 @@
                 <span class="ml-4">Dashboard</span>
               </a>
             </li>
-          </ul>
-          <ul>
+            <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
+                'stok'
+                  ? 'visible'
+                  : 'hidden' ?>"
+                aria-hidden="true"
+              ></span>
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold <?= $page_name ==
+                'stok'
+                  ? 'text-gray-800'
+                  : 'text-gray-500' ?> transition-colors duration-150 hover:text-gray-800"
+                href="<?= base_url('/stok') ?>"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                </svg>
+                <span class="ml-4">Stok</span>
+              </a>
+            </li>
             <li class="relative px-6 py-3">
               <span
                 class="absolute inset-y-0 left-0 w-1 bg-blue-600 rounded-tr-lg rounded-br-lg <?= $page_name ==
