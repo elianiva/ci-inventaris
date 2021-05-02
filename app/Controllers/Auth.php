@@ -65,7 +65,7 @@ class Auth extends BaseController
     if (!$isValid) {
       $this->session->setFlashData(
         'message',
-        'Password yang anda masukkan salah!',
+        'Password yang anda masukkan salah!'
       );
       return redirect()
         ->withInput()
@@ -84,6 +84,6 @@ class Auth extends BaseController
   public function logout()
   {
     $this->session->destroy();
-    return redirect()->to("/auth");
+    return redirect()->to('/auth');
   }
 }
