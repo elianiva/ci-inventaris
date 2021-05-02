@@ -11,12 +11,12 @@ class BarangMasuk extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Barang Masuk | Inventaris',
+      'title' => 'Barang Masuk',
       'heading' => 'Barang Masuk',
       'page_name' => 'barang',
     ];
 
-    return view('barang/masuk/index', $data);
+    return view('barang/keluar/index', $data);
   }
 
   public function tambah()
@@ -27,7 +27,7 @@ class BarangMasuk extends BaseController
     $supplier = $supplier_model->findColumn('nama_supplier');
 
     $data = [
-      'title' => 'Barang Masuk | Inventaris',
+      'title' => 'Barang Masuk',
       'heading' => 'Barang Masuk',
       'page_name' => 'barang',
       'title' => 'Tambah',

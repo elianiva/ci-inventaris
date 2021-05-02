@@ -9,7 +9,7 @@ class Supplier extends BaseController
   public function index()
   {
     $data = [
-      "title" => "Supplier | Inventaris",
+      "title" => "Supplier",
       "heading" => "Supplier",
       "page_name" => "supplier",
     ];
@@ -23,7 +23,7 @@ class Supplier extends BaseController
     $cities = array_unique($supplierModel->findColumn("kota_supplier"));
 
     $data = [
-      "title" => "Supplier | Inventaris",
+      "title" => "Supplier",
       "heading" => "Supplier",
       "page_name" => "supplier",
       "title" => "Tambah",
@@ -125,7 +125,7 @@ class Supplier extends BaseController
     $prev = $supplierModel->find($id);
 
     $data = [
-      "title" => "Supplier | Inventaris",
+      "title" => "Supplier",
       "heading" => "Supplier",
       "page_name" => "supplier",
       "title" => "Edit",

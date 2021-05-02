@@ -11,7 +11,7 @@ class BarangKeluar extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Barang Keluar | Inventaris',
+      'title' => 'Barang Keluar',
       'heading' => 'Barang Keluar',
       'page_name' => 'barang',
     ];
@@ -27,7 +27,7 @@ class BarangKeluar extends BaseController
     $supplier = $supplier_model->findColumn('nama_supplier');
 
     $data = [
-      'title' => 'Barang Keluar | Inventaris',
+      'title' => 'Barang Keluar',
       'heading' => 'Barang Keluar',
       'page_name' => 'barang',
       'title' => 'Tambah',

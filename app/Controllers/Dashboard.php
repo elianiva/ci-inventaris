@@ -24,7 +24,7 @@ class Dashboard extends BaseController
       ->getResult()[0]->total_barang;
 
     $data = [
-      'title' => 'Dashboard | Inventaris',
+      'title' => 'Dashboard',
       'heading' => 'Dashboard',
       'total_supplier' => $supplier_model->countAllResults(),
       'total_barang' => $barang_model->countAllResults(),

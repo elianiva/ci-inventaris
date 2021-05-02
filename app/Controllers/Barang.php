@@ -9,7 +9,7 @@ class Barang extends BaseController
   public function index()
   {
     $data = [
-      "title" => "Barang | Inventaris",
+      "title" => "Master Barang",
       "heading" => "Barang",
       "page_name" => "barang",
     ];
@@ -25,7 +25,7 @@ class Barang extends BaseController
     $sources = array_unique($barangModel->findColumn("sumber_dana"));
 
     $data = [
-      "title" => "Barang | Inventaris",
+      "title" => "Master Barang",
       "heading" => "Barang",
       "page_name" => "barang",
       "title" => "Tambah",
@@ -156,7 +156,7 @@ class Barang extends BaseController
     $prev = $barangModel->find($id);
 
     $data = [
-      "title" => "Supplier | Inventaris",
+      "title" => "Supplier",
       "heading" => "Supplier",
       "page_name" => "supplier",
       "title" => "Edit",
