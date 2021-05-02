@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\BarangKeluar as BarangKeluarModel;
 use App\Models\Barang as BarangModel;
+use App\Models\Stok as StokModel;
 use App\Models\Supplier as SupplierModel;
 
 class BarangKeluar extends BaseController
@@ -38,7 +39,7 @@ class BarangKeluar extends BaseController
     return view('barang/keluar/tambah', $data);
   }
 
-  public function save(string $id = null)
+  public function save()
   {
     /**
      * @var \Config\Services::request() $request Incoming request
@@ -87,7 +88,9 @@ class BarangKeluar extends BaseController
     }
 
     $barang_keluar_model = new BarangKeluarModel();
-    $nama = $request->getVar('name');
+    $stok_model = new StokModel();
+
+    $nama_barang = $request->getVar('name');
     $date = date('Y-m-d H:i:s', strtotime($request->getVar('date')));
     $total = $request->getVar('total');
     $nama_supplier = $request->getVar('supplier');
@@ -98,23 +101,38 @@ class BarangKeluar extends BaseController
       ->get(1)
       ->getResult()[0]->kode_supplier;
 
+    $builder = $this->db->table('barang');
+    $kode_barang = $builder
+      ->where('nama_barang', $nama_barang)
+      ->get(1)
+      ->getResult()[0]->kode_barang;
+
+    $builder = $this->db->table('stok');
+    $stok = $builder
+      ->where('nama_barang', $nama_barang)
+      ->get(1)
+      ->getResultArray()[0];
+    $stok['total_barang'] =
+      (string) ((int) $stok['total_barang'] + (int) $total);
+    $stok['jumlah_barang_keluar'] =
+      (string) ((int) $stok['jumlah_barang_keluar'] + (int) $total);
+
     // this method already handles `insert` and `update`
     // depending on the primary key
     $barang_keluar_model->save([
-      'id_barang_keluar' => $id ?? \Faker\Factory::create()->ean8(),
-      'kode_barang' => $nama,
-      'nama_barang' => $nama,
+      'id_barang_keluar' => \Faker\Factory::create()->ean8(),
+      'kode_barang' => $kode_barang,
+      'nama_barang' => $nama_barang,
       'tanggal_keluar' => $date,
       'jumlah_keluar' => $total,
       'kode_supplier' => $kode_supplier,
     ]);
 
+    $stok_model->save($stok);
+
     $this->session->setFlashData(
       'message',
-      sprintf(
-        "Barang bernama '$nama' telah berhasil %s!",
-        $id ? 'diperbarui' : 'ditambahkan'
-      )
+      "Barang bernama '$nama_barang' telah berhasil ditambahkan!"
     );
 
     return redirect()->to('/barang-keluar');
@@ -123,38 +141,30 @@ class BarangKeluar extends BaseController
   public function hapus(string $id)
   {
     $barang_keluar_model = new BarangKeluarModel();
-    $nama = $barang_keluar_model->find($id)['nama_barang'];
+    $stok_model = new StokModel();
+
+    $barang = $barang_keluar_model->find($id);
+    $nama_barang = $barang['nama_barang'];
+    $builder = $this->db->table('stok');
+    $stok = $builder
+      ->where('kode_barang', $barang['kode_barang'])
+      ->get(1)
+      ->getResultArray()[0];
+    $stok['total_barang'] =
+      (string) ((int) $stok['total_barang'] + (int) $barang['jumlah_keluar']);
+    $stok['jumlah_barang_keluar'] =
+      (string) ((int) $stok['jumlah_barang_keluar'] -
+        (int) $barang['jumlah_keluar']);
+
     $barang_keluar_model->delete($id);
+    $stok_model->save($stok);
 
     $this->session->setFlashData(
       'message',
-      "Log barang keluar bernama '$nama' telah berhasil dihapus!"
+      "Log barang keluar bernama '$nama_barang' telah berhasil dihapus!"
     );
 
     return redirect()->to('/barang-keluar');
-  }
-
-  public function edit(string $id)
-  {
-    $barang_keluar_model = new BarangKeluarModel();
-    $categories = array_unique($barang_keluar_model->findColumn('kategori'));
-    $kinds = array_unique($barang_keluar_model->findColumn('jenis_barang'));
-    $sources = array_unique($barang_keluar_model->findColumn('sumber_dana'));
-    $prev = $barang_keluar_model->find($id);
-
-    $data = [
-      'title' => 'Supplier | Inventaris',
-      'heading' => 'Supplier',
-      'page_name' => 'supplier',
-      'title' => 'Edit',
-      'categories' => $categories,
-      'kinds' => $kinds,
-      'sources' => $sources,
-      'validation' => $this->validator,
-      'prev' => $prev,
-    ];
-
-    return view('barang/keluar/tambah', $data);
   }
 
   public function get_all()
@@ -179,7 +189,7 @@ class BarangKeluar extends BaseController
       ->orLike('jumlah_keluar', $keyword)
       ->orLike('nama_supplier', $keyword)
       ->select(
-        'id_barang_keluar, nama_barang, nama_supplier, tanggal_keluar, jumlah_keluar',
+        'id_barang_keluar, nama_barang, nama_supplier, tanggal_keluar, jumlah_keluar'
       )
       ->get($limit, $offset)
       ->getResult();
