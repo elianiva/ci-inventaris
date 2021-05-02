@@ -92,8 +92,7 @@ class BarangMasuk extends BaseController
     $total = $request->getVar('total');
     $nama_supplier = $request->getVar('supplier');
 
-    $db = \Config\Database::connect();
-    $builder = $db->table('supplier');
+    $builder = $this->db->table('supplier');
     $kode_supplier = $builder
       ->where('nama_supplier', $nama_supplier)
       ->get(1)

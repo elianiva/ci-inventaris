@@ -183,8 +183,7 @@ class Barang extends BaseController
     $keyword = $request->getVar("search");
     $keyword = $keyword ? $keyword : "";
 
-    $db = \Config\Database::connect();
-    $builder = $db->table("barang");
+    $builder = $this->db->table("barang");
 
     $barangData = $builder
       ->orderBy($orderBy ? $orderBy : "", $dir ? $dir : "")

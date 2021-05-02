@@ -151,8 +151,7 @@ class Supplier extends BaseController
     $keyword = $request->getVar("search");
     $keyword = $keyword ? $keyword : "";
 
-    $db = \Config\Database::connect();
-    $builder = $db->table("supplier");
+    $builder = $this->db->table("supplier");
 
     $supplierData = $builder
       ->orderBy($orderBy ? $orderBy : "", $dir ? $dir : "")

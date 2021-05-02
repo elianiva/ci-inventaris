@@ -46,8 +46,7 @@ class Auth extends BaseController
     $username = $request->getVar('username');
     $password = $request->getVar('password');
 
-    $db = \Config\Database::connect();
-    $builder = $db->table('user');
+    $builder = $this->db->table('user');
 
     $user = $builder
       ->select('nama, username, password, level')

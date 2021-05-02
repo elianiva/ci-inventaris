@@ -29,8 +29,7 @@ class Stok extends BaseController
         $keyword = $request->getVar('search');
         $keyword = $keyword ? $keyword : '';
 
-        $db = \Config\Database::connect();
-        $builder = $db->table('stok');
+        $builder = $this->db->table('stok');
 
         $supplierData = $builder
             ->orderBy($orderBy ? $orderBy : '', $dir ? $dir : '')

@@ -92,8 +92,7 @@ class BarangKeluar extends BaseController
     $total = $request->getVar('total');
     $nama_supplier = $request->getVar('supplier');
 
-    $db = \Config\Database::connect();
-    $builder = $db->table('supplier');
+    $builder = $this->db->table('supplier');
     $kode_supplier = $builder
       ->where('nama_supplier', $nama_supplier)
       ->get(1)
@@ -172,9 +171,7 @@ class BarangKeluar extends BaseController
     $keyword = $request->getVar('search');
     $keyword = $keyword ? $keyword : '';
 
-    $db = \Config\Database::connect();
-    $builder = $db->table('barang_keluar');
-
+    $builder = $this->db->table('barang_keluar');
     $barangData = $builder
       ->orderBy($orderBy ? $orderBy : '', $dir ? $dir : '')
       ->join('supplier', 'supplier.kode_supplier = barang_keluar.kode_supplier')
