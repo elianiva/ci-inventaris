@@ -54,6 +54,13 @@ $autologin = fn($route) => $curr_user
   ? fn() => redirect()->to('/dashboard')
   : $route;
 
+// only allow admin access
+$only_admin = fn($route) => $curr_user
+  ? ($curr_user['level'] == 1
+    ? $route
+    : fn() => redirect()->to('/auth'))
+  : fn() => redirect()->to('/auth');
+
 $routes->get('/', fn() => redirect()->to('/auth'));
 
 $routes->get('/auth', $autologin('Auth::index'));
@@ -61,6 +68,8 @@ $routes->get('/auth/login', $autologin('Auth::login'));
 $routes->get('/auth/logout', 'Auth::logout');
 
 $routes->get('/dashboard', $with_auth('Dashboard::index'));
+
+$routes->get('/user', $only_admin($with_auth('User::index')));
 
 $routes->get('/supplier', $with_auth('Supplier::index'));
 $routes->get('/supplier/tambah', $with_auth('Supplier::form'));
@@ -98,6 +107,7 @@ $routes->post('/barang-keluar/edit', $with_auth('BarangKeluar::edit'));
 
 $routes->get('/stok', $with_auth('Stok::index', true));
 
+$routes->get('/api/user', $only_admin($with_auth('User::get_all')));
 $routes->get('/api/supplier', $with_auth('Supplier::get_all', true));
 $routes->get('/api/stok', $with_auth('Stok::get_all', true));
 $routes->get('/api/barang', $with_auth('Barang::get_all', true));
