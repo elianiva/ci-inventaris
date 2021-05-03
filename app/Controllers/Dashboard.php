@@ -19,7 +19,7 @@ class Dashboard extends BaseController
     $stok_model = new Stok();
     $total_stok = $stok_model
       ->builder()
-      ->selectSum("total_barang")
+      ->selectSum('total_barang')
       ->get()
       ->getResult()[0]->total_barang;
 

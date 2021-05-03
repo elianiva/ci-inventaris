@@ -126,4 +126,5 @@ const resetInput = (textID, inputID) => {
 }
 </script>
 
-<?= $this->endSection('content') ?>
+<?= $this->endSection('content')
+?>

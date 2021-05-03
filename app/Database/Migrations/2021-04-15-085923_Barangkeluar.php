@@ -12,60 +12,60 @@ class Keluarbarang extends Migration
     $this->db->disableForeignKeyChecks();
 
     $this->forge->addField([
-      "id_barang_keluar" => [
-        "type" => "VARCHAR",
-        "constraint" => 8,
-        "null" => false,
+      'id_barang_keluar' => [
+        'type' => 'VARCHAR',
+        'constraint' => 8,
+        'null' => false,
       ],
-      "kode_barang" => [
-        "type" => "VARCHAR",
-        "constraint" => 8,
-        "null" => false,
+      'kode_barang' => [
+        'type' => 'VARCHAR',
+        'constraint' => 8,
+        'null' => false,
       ],
-      "nama_barang" => [
-        "type" => "VARCHAR",
-        "constraint" => 30,
-        "null" => false,
+      'nama_barang' => [
+        'type' => 'VARCHAR',
+        'constraint' => 30,
+        'null' => false,
       ],
-      "tanggal_keluar" => [
-        "type" => "DATE",
-        "null" => false,
+      'tanggal_keluar' => [
+        'type' => 'DATE',
+        'null' => false,
       ],
-      "jumlah_keluar" => [
-        "type" => "INT",
-        "constraint" => 7,
-        "null" => false,
+      'jumlah_keluar' => [
+        'type' => 'INT',
+        'constraint' => 7,
+        'null' => false,
       ],
-      "kode_supplier" => [
-        "type" => "VARCHAR",
-        "constraint" => 5,
-        "null" => false,
+      'kode_supplier' => [
+        'type' => 'VARCHAR',
+        'constraint' => 5,
+        'null' => false,
       ],
-      "created_at" => [
-        "type" => "DATETIME",
-        "null" => false,
+      'created_at' => [
+        'type' => 'DATETIME',
+        'null' => false,
       ],
-      "updated_at" => [
-        "type" => "DATETIME",
-        "null" => false,
+      'updated_at' => [
+        'type' => 'DATETIME',
+        'null' => false,
       ],
     ]);
-    $this->forge->addKey("id_barang_keluar", true);
+    $this->forge->addKey('id_barang_keluar', true);
     $this->forge->addForeignKey(
-      "kode_barang",
-      "stok",
-      "kode_barang",
-      "CASCADE",
-      "NO ACTION",
+      'kode_barang',
+      'stok',
+      'kode_barang',
+      'CASCADE',
+      'NO ACTION',
     );
     $this->forge->addForeignKey(
-      "nama_barang",
-      "barang",
-      "nama_barang",
-      "CASCADE",
-      "CASCADE",
+      'nama_barang',
+      'barang',
+      'nama_barang',
+      'CASCADE',
+      'CASCADE',
     );
-    $this->forge->createTable("barang_keluar");
+    $this->forge->createTable('barang_keluar');
 
     // ignore the linter error
     $this->db->enableForeignKeyChecks();
@@ -73,6 +73,6 @@ class Keluarbarang extends Migration
 
   public function down()
   {
-    $this->forge->dropTable("barang_keluar");
+    $this->forge->dropTable('barang_keluar');
   }
 }

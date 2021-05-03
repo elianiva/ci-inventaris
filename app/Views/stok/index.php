@@ -1,20 +1,20 @@
-<?= $this->extend("layouts/skeleton") ?>
+<?= $this->extend('layouts/skeleton') ?>
 
-<?php $session = session() ?>
+<?php $session = session(); ?>
 
-<?= $this->section("content") ?>
+<?= $this->section('content') ?>
 <div class="container px-6 mx-auto min-w-full">
   <h2
     class="flex justify-between mt-6 mb-2 text-2xl font-semibold text-gray-700"
   >
     <?= $heading ?>
   </h2>
-  <?php if ($session->getFlashData("message")): ?>
+  <?php if ($session->getFlashData('message')): ?>
     <div
       class="flex justify-between bg-green-200 px-4 py-2 mx-1 mt-4 mb-2 rounded-md border-2 border-green-400 text-green-700 font-semibold"
       id="flash-msg"
     >
-        <?= $session->getFlashData("message") ?>
+        <?= $session->getFlashData('message') ?>
       <button
         class="text-md font-semibold"
         onclick="document.getElementById('flash-msg').remove()"
@@ -82,7 +82,7 @@
       { name: "Total Barang" },
     ],
     server: {
-      url: "<?= base_url("/api/stok") ?>",
+      url: "<?= base_url('/api/stok') ?>",
       // then: data => console.log(data),
       then: data => data.results.map(item => [
         item.nama_barang,
@@ -95,4 +95,5 @@
   }).render(document.getElementById("gridjs-wrapper"))
 </script>
 
-<?= $this->endSection("content") ?>
+<?= $this->endSection('content')
+?>

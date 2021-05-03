@@ -1,8 +1,8 @@
-<?= $this->extend("layouts/skeleton") ?>
+<?= $this->extend('layouts/skeleton') ?>
 
-<?php $err = session()->getFlashData("errors"); ?>
+<?php $err = session()->getFlashData('errors'); ?>
 
-<?= $this->section("content") ?>
+<?= $this->section('content') ?>
 <div
   class="container mx-auto px-6 py-6"
 >
@@ -12,7 +12,7 @@
     <?= $title ?> Supplier
     <a
       class="p-2 block rounded-md border-2 border-orange-500 text-orange-500 font-semibold text-sm"
-      href="<?= base_url("/supplier") ?>"
+      href="<?= base_url('/supplier') ?>"
     >
       Kembali
     </a>
@@ -20,24 +20,26 @@
   <form
     class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md"
     method="POST"
-    action="<?= base_url("/supplier/tambah/" . ($prev["kode_supplier"] ?? "")) ?>"
+    action="<?= base_url(
+      '/supplier/tambah/' . ($prev['kode_supplier'] ?? ''),
+    ) ?>"
   >
     <?= csrf_field() ?>
     <label class="block text-sm">
       <span class="text-gray-700">Nama Supplier</span>
       <input
-        class="<?= $err["name"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['name'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         name="name"
         id="name-input"
         autocomplete="off"
-        value="<?= old("name") ?? ($prev["nama_supplier"] ?? "") ?>"
+        value="<?= old('name') ?? ($prev['nama_supplier'] ?? '') ?>"
         oninput="resetInput('name-err', 'name-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="name-err">
-          <?= $err["name"] ?? "" ?>
+          <?= $err['name'] ?? '' ?>
         </span>
       <?php endif; ?>
     </label>
@@ -45,18 +47,18 @@
     <label class="block mt-4 text-sm">
       <span class="text-gray-700">Alamat Supplier</span>
       <input
-        class="<?= $err["address"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['address'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         name="address"
         id="addr-input"
         autocomplete="off"
-        value="<?= old("address") ?? ($prev["alamat_supplier"] ?? "") ?>"
+        value="<?= old('address') ?? ($prev['alamat_supplier'] ?? '') ?>"
         oninput="resetInput('addr-err', 'addr-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="addr-err">
-          <?= $err["address"] ?? "" ?>
+          <?= $err['address'] ?? '' ?>
         </span>
       <?php endif; ?>
     </label>
@@ -64,19 +66,19 @@
     <label class="block mt-4 text-sm">
       <span class="text-gray-700">No. Telepon Supplier</span>
       <input
-        class="<?= $err["telp"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['telp'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         type="tel"
         name="telp"
         id="telp-input"
         autocomplete="off"
-        value="<?= old("telp") ?? ($prev["telp_supplier"] ?? "") ?>"
+        value="<?= old('telp') ?? ($prev['telp_supplier'] ?? '') ?>"
         oninput="resetInput('telp-err', 'telp-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="telp-err">
-          <?= $err["telp"] ?? "" ?>
+          <?= $err['telp'] ?? '' ?>
         </span>
       <?php endif; ?>
     </label>
@@ -86,19 +88,19 @@
         Kota Supplier
       </span>
       <input
-        class="<?= $err["telp"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['telp'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         type="text"
         list="cities"
         name="city"
         id="city-input"
-        value="<?= old("city") ?? ($prev["kota_supplier"] ?? "") ?>"
+        value="<?= old('city') ?? ($prev['kota_supplier'] ?? '') ?>"
         oninput="resetInput('city-err', 'city-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="city-err">
-          <?= $err["city"] ?? "" ?>
+          <?= $err['city'] ?? '' ?>
         </span>
       <?php endif; ?>
       <datalist id="cities">
@@ -135,4 +137,5 @@ const resetInput = (textID, inputID) => {
 }
 </script>
 
-<?= $this->endSection("content") ?>
+<?= $this->endSection('content')
+?>

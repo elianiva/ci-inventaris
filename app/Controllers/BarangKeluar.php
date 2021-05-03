@@ -132,7 +132,7 @@ class BarangKeluar extends BaseController
 
     $this->session->setFlashData(
       'message',
-      "Barang bernama '$nama_barang' telah berhasil ditambahkan!"
+      "Barang bernama '$nama_barang' telah berhasil ditambahkan!",
     );
 
     return redirect()->to('/barang-keluar');
@@ -161,7 +161,7 @@ class BarangKeluar extends BaseController
 
     $this->session->setFlashData(
       'message',
-      "Log barang keluar bernama '$nama_barang' telah berhasil dihapus!"
+      "Log barang keluar bernama '$nama_barang' telah berhasil dihapus!",
     );
 
     return redirect()->to('/barang-keluar');
@@ -189,7 +189,7 @@ class BarangKeluar extends BaseController
       ->orLike('jumlah_keluar', $keyword)
       ->orLike('nama_supplier', $keyword)
       ->select(
-        'id_barang_keluar, nama_barang, nama_supplier, tanggal_keluar, jumlah_keluar'
+        'id_barang_keluar, nama_barang, nama_supplier, tanggal_keluar, jumlah_keluar',
       )
       ->get($limit, $offset)
       ->getResult();
@@ -207,7 +207,7 @@ class BarangKeluar extends BaseController
       json_encode([
         'results' => $barangData,
         'count' => $barangTotal,
-      ])
+      ]),
     );
     $response->send();
   }

@@ -1,8 +1,8 @@
-<?= $this->extend("layouts/skeleton") ?>
+<?= $this->extend('layouts/skeleton') ?>
 
-<?php $err = session()->getFlashData("errors"); ?>
+<?php $err = session()->getFlashData('errors'); ?>
 
-<?= $this->section("content") ?>
+<?= $this->section('content') ?>
 <div
   class="container mx-auto px-6 py-6"
 >
@@ -12,7 +12,7 @@
     <?= $title ?> Barang
     <a
       class="p-2 block rounded-md border-2 border-orange-500 text-orange-500 font-semibold text-sm"
-      href="<?= base_url("/barang/tambah") ?>"
+      href="<?= base_url('/barang/tambah') ?>"
     >
       Kembali
     </a>
@@ -20,24 +20,24 @@
   <form
     class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md"
     method="POST"
-    action="<?= base_url("/barang/tambah/" . ($prev["kode_barang"] ?? "")) ?>"
+    action="<?= base_url('/barang/tambah/' . ($prev['kode_barang'] ?? '')) ?>"
   >
     <?= csrf_field() ?>
     <label class="block text-sm">
       <span class="text-gray-700">Nama Barang</span>
       <input
-        class="<?= $err["name"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['name'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         name="name"
         id="name-input"
         autocomplete="off"
-        value="<?= old("name") ?? ($prev["nama_barang"] ?? "") ?>"
+        value="<?= old('name') ?? ($prev['nama_barang'] ?? '') ?>"
         oninput="resetInput('name-err', 'name-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="name-err">
-          <?= $err["name"] ?? "" ?>
+          <?= $err['name'] ?? '' ?>
         </span>
       <?php endif; ?>
     </label>
@@ -45,18 +45,18 @@
     <label class="block mt-4 text-sm">
       <span class="text-gray-700">Spesifikasi</span>
       <input
-        class="<?= $err["spec"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['spec'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         name="spec"
         id="spec-input"
         autocomplete="off"
-        value="<?= old("spec") ?? ($prev["spesifikasi"] ?? "") ?>"
+        value="<?= old('spec') ?? ($prev['spesifikasi'] ?? '') ?>"
         oninput="resetInput('spec-err', 'spec-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="spec-err">
-          <?= $err["spec"] ?? "" ?>
+          <?= $err['spec'] ?? '' ?>
         </span>
       <?php endif; ?>
     </label>
@@ -64,18 +64,18 @@
     <label class="block mt-4 text-sm">
       <span class="text-gray-700">Lokasi Barang</span>
       <input
-        class="<?= $err["address"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['address'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         name="address"
         id="addr-input"
         autocomplete="off"
-        value="<?= old("address") ?? ($prev["lokasi_barang"] ?? "") ?>"
+        value="<?= old('address') ?? ($prev['lokasi_barang'] ?? '') ?>"
         oninput="resetInput('addr-err', 'addr-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="addr-err">
-          <?= $err["address"] ?? "" ?>
+          <?= $err['address'] ?? '' ?>
         </span>
       <?php endif; ?>
     </label>
@@ -85,19 +85,19 @@
         Kategori Barang
       </span>
       <input
-        class="<?= $err["telp"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['telp'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         type="text"
         list="categories"
         name="category"
         id="category-input"
-        value="<?= old("category") ?? ($prev["kategori"] ?? "") ?>"
+        value="<?= old('category') ?? ($prev['kategori'] ?? '') ?>"
         oninput="resetInput('category-err', 'category-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="category-err">
-          <?= $err["category"] ?? "" ?>
+          <?= $err['category'] ?? '' ?>
         </span>
       <?php endif; ?>
       <datalist id="categories">
@@ -114,7 +114,7 @@
       <select
         class="block w-full mt-1 text-sm form-select focus:border-blue-400 focus:outline-none focus:shadow-outline-blue"
         name="condition"
-        value="<?= old("condition") ?? ($prev["kondisi"] ?? "") ?>"
+        value="<?= old('condition') ?? ($prev['kondisi'] ?? '') ?>"
       >
         <option value="Baik">Baik</option>
         <option value="Kurang Baik">Kurang Baik</option>
@@ -126,19 +126,19 @@
         Jenis Barang
       </span>
       <input
-        class="<?= $err["kinds"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['kinds'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         type="text"
         list="kinds"
         name="kind"
         id="kind-input"
-        value="<?= old("kinds") ?? ($prev["jenis_barang"] ?? "") ?>"
+        value="<?= old('kinds') ?? ($prev['jenis_barang'] ?? '') ?>"
         oninput="resetInput('kind-err', 'kind-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="kind-err">
-          <?= $err["kind"] ?? "" ?>
+          <?= $err['kind'] ?? '' ?>
         </span>
       <?php endif; ?>
       <datalist id="kinds">
@@ -153,19 +153,19 @@
         Sumber Dana
       </span>
       <input
-        class="<?= $err["source"] ?? false
-          ? "border-red-500"
-          : "border-gray-200" ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
+        class="<?= $err['source'] ?? false
+          ? 'border-red-500'
+          : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         type="text"
         list="sources"
         name="source"
         id="source-input"
-        value="<?= old("source") ?? ($prev["sumber_dana"] ?? "") ?>"
+        value="<?= old('source') ?? ($prev['sumber_dana'] ?? '') ?>"
         oninput="resetInput('source-err', 'source-input')"
       />
       <?php if ($err): ?>
         <span class="text-xs text-red-600" id="source-err">
-          <?= $err["source"] ?? "" ?>
+          <?= $err['source'] ?? '' ?>
         </span>
       <?php endif; ?>
       <datalist id="sources">
@@ -202,4 +202,5 @@ const resetInput = (textID, inputID) => {
 }
 </script>
 
-<?= $this->endSection("content") ?>
+<?= $this->endSection('content')
+?>

@@ -1,7 +1,7 @@
 <?php
-  $session = session();
-  $err = $session->getFlashData('errors');
-  $msg = $session->getFlashData('message');
+$session = session();
+$err = $session->getFlashData('errors');
+$msg = $session->getFlashData('message');
 ?>
 
 <!DOCTYPE html>

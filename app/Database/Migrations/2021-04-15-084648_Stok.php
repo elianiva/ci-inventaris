@@ -9,51 +9,51 @@ class Stok extends Migration
   public function up()
   {
     $this->forge->addField([
-      "kode_barang" => [
-        "type" => "VARCHAR",
-        "constraint" => 8,
-        "null" => false,
+      'kode_barang' => [
+        'type' => 'VARCHAR',
+        'constraint' => 8,
+        'null' => false,
       ],
-      "nama_barang" => [
-        "type" => "VARCHAR",
-        "constraint" => 30,
-        "null" => false,
+      'nama_barang' => [
+        'type' => 'VARCHAR',
+        'constraint' => 30,
+        'null' => false,
       ],
-      "jumlah_barang_masuk" => [
-        "type" => "INT",
-        "constraint" => 7,
-        "null" => false,
+      'jumlah_barang_masuk' => [
+        'type' => 'INT',
+        'constraint' => 7,
+        'null' => false,
       ],
-      "jumlah_barang_keluar" => [
-        "type" => "INT",
-        "constraint" => 7,
-        "null" => false,
+      'jumlah_barang_keluar' => [
+        'type' => 'INT',
+        'constraint' => 7,
+        'null' => false,
       ],
-      "total_barang" => [
-        "type" => "INT",
-        "constraint" => 8,
-        "null" => false,
+      'total_barang' => [
+        'type' => 'INT',
+        'constraint' => 8,
+        'null' => false,
       ],
-      "keterangan" => [
-        "type" => "VARCHAR",
-        "constraint" => 25,
-        "null" => true,
+      'keterangan' => [
+        'type' => 'VARCHAR',
+        'constraint' => 25,
+        'null' => true,
       ],
-      "created_at" => [
-        "type" => "DATETIME",
-        "null" => false,
+      'created_at' => [
+        'type' => 'DATETIME',
+        'null' => false,
       ],
-      "updated_at" => [
-        "type" => "DATETIME",
-        "null" => false,
+      'updated_at' => [
+        'type' => 'DATETIME',
+        'null' => false,
       ],
     ]);
-    $this->forge->addKey("kode_barang", true);
-    $this->forge->createTable("stok");
+    $this->forge->addKey('kode_barang', true);
+    $this->forge->createTable('stok');
   }
 
   public function down()
   {
-    $this->forge->dropTable("stok");
+    $this->forge->dropTable('stok');
   }
 }

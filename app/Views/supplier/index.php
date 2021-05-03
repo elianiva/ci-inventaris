@@ -1,8 +1,8 @@
-<?= $this->extend("layouts/skeleton") ?>
+<?= $this->extend('layouts/skeleton') ?>
 
-<?php $session = session() ?>
+<?php $session = session(); ?>
 
-<?= $this->section("content") ?>
+<?= $this->section('content') ?>
 <div class="container px-6 mx-auto min-w-full">
   <h2
     class="flex justify-between mt-6 mb-2 text-2xl font-semibold text-gray-700"
@@ -10,17 +10,17 @@
     <?= $heading ?>
     <a
       class="p-2 block rounded-md bg-green-400 text-white font-semibold text-sm"
-      href="<?= base_url("/supplier/tambah") ?>"
+      href="<?= base_url('/supplier/tambah') ?>"
     >
       Tambah Supplier
     </a>
   </h2>
-  <?php if ($session->getFlashData("message")): ?>
+  <?php if ($session->getFlashData('message')): ?>
     <div
       class="flex justify-between bg-green-200 px-4 py-2 mx-1 mt-4 mb-2 rounded-md border-2 border-green-400 text-green-700 font-semibold"
       id="flash-msg"
     >
-      <?= $session->getFlashData("message") ?>
+      <?= $session->getFlashData('message') ?>
       <button
         class="text-md font-semibold"
         onclick="document.getElementById('flash-msg').remove()"
@@ -127,7 +127,7 @@
       }
     ],
     server: {
-      url: "<?= base_url("/api/supplier") ?>",
+      url: "<?= base_url('/api/supplier') ?>",
       then: data => data.results.map(item => [
         item.nama_supplier,
         item.alamat_supplier,
@@ -140,4 +140,5 @@
   }).render(document.getElementById("gridjs-wrapper"))
 </script>
 
-<?= $this->endSection("content") ?>
+<?= $this->endSection('content')
+?>

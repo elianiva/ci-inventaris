@@ -39,7 +39,7 @@ class Stok extends Seeder
       $jumlah_masuk = array_reduce(
         $jumlah_masuk,
         fn($acc, $curr) => ($acc += $curr->jumlah_masuk),
-        0
+        0,
       );
 
       // I dislike this copypasta...
@@ -51,7 +51,7 @@ class Stok extends Seeder
       $jumlah_keluar = array_reduce(
         $jumlah_keluar,
         fn($acc, $curr) => ($acc += $curr->jumlah_keluar),
-        0
+        0,
       );
 
       $data = [

@@ -20,7 +20,9 @@
   <form
     class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md"
     method="POST"
-    action="<?= base_url('/barang-keluar/tambah/' . ($prev['kode_barang'] ?? '')) ?>"
+    action="<?= base_url(
+      '/barang-keluar/tambah/' . ($prev['kode_barang'] ?? ''),
+    ) ?>"
   >
     <?= csrf_field() ?>
     <label class="block mt-4 text-sm">
@@ -115,4 +117,5 @@ const resetInput = (textID, inputID) => {
 }
 </script>
 
-<?= $this->endSection('content') ?>
+<?= $this->endSection('content')
+?>

@@ -98,8 +98,8 @@ class User extends BaseController
       'message',
       sprintf(
         "User bernama '$name' telah berhasil %s!",
-        $id ? 'diperbarui' : 'ditambahkan'
-      )
+        $id ? 'diperbarui' : 'ditambahkan',
+      ),
     );
 
     return redirect()->to('/user');
@@ -113,7 +113,7 @@ class User extends BaseController
 
     $this->session->setFlashData(
       'message',
-      "User bernama '$nama' telah berhasil dihapus!"
+      "User bernama '$nama' telah berhasil dihapus!",
     );
 
     return redirect()->to('/user');
@@ -174,7 +174,7 @@ class User extends BaseController
       json_encode([
         'results' => $userData,
         'count' => $userTotal,
-      ])
+      ]),
     );
     $response->send();
   }
