@@ -70,6 +70,8 @@ $routes->get('/auth/logout', 'Auth::logout');
 $routes->get('/dashboard', $with_auth('Dashboard::index'));
 
 $routes->get('/user', $only_admin($with_auth('User::index')));
+$routes->get('/user/tambah', $only_admin($with_auth('User::form')));
+$routes->post('/user/tambah', $only_admin($with_auth('User::save')));
 
 $routes->get('/supplier', $with_auth('Supplier::index'));
 $routes->get('/supplier/tambah', $with_auth('Supplier::form'));

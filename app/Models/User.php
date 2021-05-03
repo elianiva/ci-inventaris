@@ -7,13 +7,12 @@ use CodeIgniter\Model;
 class User extends Model
 {
   protected $table = "user";
-  protected $primaryKey = "kode_supplier";
-  protected $useAutoIncrement = false;
+  protected $primaryKey = "id_user";
+  protected $useAutoIncrement = true;
   protected $useTimestamps = true;
   protected $createdField = "created_at";
   protected $updatedField = "updated_at";
   protected $allowedFields = [
-    "id_user",
     "nama",
     "username",
     "password",
