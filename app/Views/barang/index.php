@@ -109,7 +109,7 @@
     columns: [
       { name: "Nama" },
       { name: "Spesifikasi" },
-      { name: "Lokasi" },
+      { name: "Lokasi", width: "20%" },
       { name: "Kategori" },
       { name: "Kondisi" },
       { name: "Jenis Barang" },
