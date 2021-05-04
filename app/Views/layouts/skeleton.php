@@ -10,17 +10,14 @@
     />
     <link rel="stylesheet" href="<?= base_url() ?>/css/tailwind.output.css" />
     <link rel="stylesheet" href="<?= base_url() ?>/css/custom.css" />
-    <script
-      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
-      defer
-    ></script>
+    <link
+      href="<?= base_url() ?>/css/mermaid.min.css"
+      rel="stylesheet"
+    />
     <script
       src="<?= base_url() ?>/js/grid.js"
     ></script>
-    <link
-      href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"
-      rel="stylesheet"
-    />
+    <script src="<?= base_url() ?>/js/alpine.min.js"></script>
     <script src="<?= base_url() ?>/js/init-alpine.js"></script>
     <script src="<?= base_url() ?>/js/focus-trap.js"></script>
   </head>
