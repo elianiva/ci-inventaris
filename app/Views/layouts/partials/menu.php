@@ -54,10 +54,10 @@
               class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md"
               aria-label="submenu"
             >
-              <li class="flex cursor-pointer hover:bg-gray-100 hover:text-gray-800">
+              <li class="flex ">
                 <form action="<?= base_url('/auth/logout') ?>">
                   <button
-                    class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md"
+                    class="hover:bg-gray-100 inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md"
                     type="submit"
                   >
                     <svg

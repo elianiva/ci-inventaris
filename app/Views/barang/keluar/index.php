@@ -12,20 +12,20 @@ $is_admin = $session->current_user['level'] == 1;
   >
     <?= $heading ?>
     <div class="flex gap-2">
+      <a
+        class="p-2 block rounded-md bg-blue-400 hover:bg-blue-500 text-white font-semibold text-sm"
+        href="<?= base_url('/barang-keluar/export') ?>"
+      >
+        Cetak Laporan
+      </a>
       <?php if ($is_admin): ?>
         <a
-          class="p-2 block rounded-md bg-blue-400 hover:bg-blue-500 text-white font-semibold text-sm"
-          href="<?= base_url('/barang-keluar/export') ?>"
+          class="p-2 rounded-md bg-green-400 text-white font-semibold text-sm"
+          href="<?= base_url('/barang-keluar/tambah') ?>"
         >
-          Cetak Laporan
+          Tambah Barang
         </a>
       <?php endif; ?>
-      <a
-        class="p-2 rounded-md bg-green-400 text-white font-semibold text-sm"
-        href="<?= base_url('/barang-keluar/tambah') ?>"
-      >
-        Tambah Barang
-      </a>
     </div>
   </h2>
   <?php if ($session->getFlashData('message')): ?>
@@ -45,7 +45,7 @@ $is_admin = $session->current_user['level'] == 1;
   <div id="gridjs-wrapper"></div>
 </div>
 
-<?php $is_admin = session()->current_user['level'] == 1 ?>
+<?php $is_admin = session()->current_user['level'] == 1; ?>
 
 <script>
   const isContinuable = (url) => url.split('')[url.length-1] === "&"

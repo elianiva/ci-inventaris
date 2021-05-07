@@ -12,20 +12,20 @@ $is_admin = $session->current_user['level'] == 1;
   >
     <?= $heading ?>
     <div class="flex gap-2">
+      <a
+        class="p-2 block rounded-md bg-blue-400 hover:bg-blue-500 text-white font-semibold text-sm"
+        href="<?= base_url('/supplier/export') ?>"
+      >
+        Cetak Laporan
+      </a>
       <?php if ($is_admin): ?>
         <a
-          class="p-2 block rounded-md bg-blue-400 hover:bg-blue-500 text-white font-semibold text-sm"
-          href="<?= base_url('/supplier/export') ?>"
+          class="p-2 block rounded-md bg-green-400 hover:bg-green-500 text-white font-semibold text-sm"
+          href="<?= base_url('/supplier/tambah') ?>"
         >
-          Cetak Laporan
+          Tambah Supplier
         </a>
       <?php endif; ?>
-      <a
-        class="p-2 block rounded-md bg-green-400 hover:bg-green-500 text-white font-semibold text-sm"
-        href="<?= base_url('/supplier/tambah') ?>"
-      >
-        Tambah Supplier
-      </a>
     </div>
   </h2>
   <?php if ($session->getFlashData('message')): ?>

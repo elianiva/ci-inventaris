@@ -11,21 +11,21 @@ $is_admin = $session->current_user['level'] == 1;
     class="flex justify-between mt-6 mb-2 text-2xl font-semibold text-gray-700"
   >
     <?= $heading ?>
-    <?php if ($is_admin): ?>
+    <div class="flex gap-2">
       <a
         class="p-2 block rounded-md bg-blue-400 hover:bg-blue-500 text-white font-semibold text-sm"
         href="<?= base_url('/barang-masuk/export') ?>"
       >
         Cetak Laporan
       </a>
-    <?php endif; ?>
-    <div class="flex gap-2">
-      <a
-        class="p-2 rounded-md bg-green-400 text-white font-semibold text-sm"
-        href="<?= base_url('/barang-masuk/tambah') ?>"
-      >
-        Tambah Barang
-      </a>
+      <?php if ($is_admin): ?>
+        <a
+          class="p-2 rounded-md bg-green-400 text-white font-semibold text-sm"
+          href="<?= base_url('/barang-masuk/tambah') ?>"
+        >
+          Tambah Barang
+        </a>
+      <?php endif; ?>
     </div>
   </h2>
   <?php if ($session->getFlashData('message')): ?>
