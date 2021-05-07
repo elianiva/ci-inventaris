@@ -32,6 +32,8 @@
   <div id="gridjs-wrapper"></div>
 </div>
 
+<?php $is_admin = session()->current_user['level'] == 1 ?>
+
 <script>
   const isContinuable = (url) => url.split('')[url.length-1] === "&"
   const action = id => `
@@ -120,11 +122,13 @@
         name: "Kota",
         width: "10%",
       },
-      {
-        name: "Aksi",
-        width: "10%",
-        formatter: (_, row) => gridjs.html(row.cells[4].data),
-      }
+      <?php if ($is_admin): ?>
+        {
+          name: "Aksi",
+          width: "10%",
+          formatter: (_, row) => gridjs.html(row.cells[4].data),
+        }
+      <?php endif; ?>
     ],
     server: {
       url: "<?= base_url('/api/supplier') ?>",
@@ -133,7 +137,9 @@
         item.alamat_supplier,
         item.telp_supplier,
         item.kota_supplier,
-        action(item.kode_supplier),
+        <?php if ($is_admin): ?>
+          action(item.kode_supplier),
+        <?php endif; ?>
       ]),
       total: data => data.count
     }
