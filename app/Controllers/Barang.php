@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Barang as BarangModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Barang extends BaseController
 {
@@ -128,8 +130,8 @@ class Barang extends BaseController
       'message',
       sprintf(
         "Barang bernama '$nama' telah berhasil %s!",
-        $id ? 'diperbarui' : 'ditambahkan',
-      ),
+        $id ? 'diperbarui' : 'ditambahkan'
+      )
     );
 
     return redirect()->to('/barang');
@@ -143,7 +145,7 @@ class Barang extends BaseController
 
     $this->session->setFlashData(
       'message',
-      "Barang bernama '$nama' telah berhasil dihapus!",
+      "Barang bernama '$nama' telah berhasil dihapus!"
     );
 
     return redirect()->to('/barang');
@@ -212,8 +214,76 @@ class Barang extends BaseController
       json_encode([
         'results' => $barangData,
         'count' => $barangTotal,
-      ]),
+      ])
     );
     $response->send();
+  }
+
+  public function export()
+  {
+    $barangModel = new BarangModel();
+    $data = $barangModel->findAll();
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // set width
+    $sheet->getColumnDimension('A')->setAutoSize(true);
+    $sheet->getColumnDimension('B')->setAutoSize(true);
+    $sheet->getColumnDimension('C')->setAutoSize(true);
+    $sheet->getColumnDimension('D')->setAutoSize(true);
+    $sheet->getColumnDimension('E')->setAutoSize(true);
+    $sheet->getColumnDimension('F')->setAutoSize(true);
+    $sheet->getColumnDimension('G')->setAutoSize(true);
+
+    // set alignment to left
+    $spreadsheet
+      ->getDefaultStyle()
+      ->getAlignment()
+      ->setHorizontal(
+        \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT
+      );
+
+    // set styling for header
+    $gray_fill = [
+      'font' => [
+        'bold' => true,
+      ],
+      'fill' => [
+        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+        'color' => ['argb' => 'FFEFEFEF'],
+      ],
+    ];
+    $sheet->getStyle('A1:G1')->applyFromArray($gray_fill);
+
+    $sheet
+      ->setCellValue('A1', 'Kode Barang')
+      ->setCellValue('B1', 'Nama Barang')
+      ->setCellValue('C1', 'Spesifikasi Barang')
+      ->setCellValue('D1', 'Lokasi Barang')
+      ->setCellValue('E1', 'Kategori Barang')
+      ->setCellValue('F1', 'Jenis Barang')
+      ->setCellValue('G1', 'Sumber Dana');
+
+    foreach ($data as $k => $v) {
+      $i = $k + 2;
+      $sheet
+        ->setCellValue('A' . $i, $v['kode_barang'])
+        ->setCellValue('B' . $i, $v['nama_barang'])
+        ->setCellValue('B' . $i, $v['spesifikasi'])
+        ->setCellValue('C' . $i, $v['lokasi_barang'])
+        ->setCellValue('D' . $i, $v['kategori'])
+        ->setCellValue('E' . $i, $v['kondisi'])
+        ->setCellValue('F' . $i, $v['jenis_barang'])
+        ->setCellValue('G' . $i, $v['sumber_dana']);
+    }
+
+    $writer = new Xlsx($spreadsheet);
+
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="laporan.xlsx"');
+    header('Cache-Control: max-age=0');
+
+    $writer->save('php://output');
   }
 }

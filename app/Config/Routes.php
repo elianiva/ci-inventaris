@@ -87,6 +87,7 @@ $routes->post('/barang/tambah', $with_auth('Barang::save'));
 // this should be DELETE, but HTML form doesn't have that..
 $routes->post('/barang/hapus/(:any)', $with_auth('Barang::hapus/$1'));
 $routes->get('/barang/edit', $with_auth('Barang::edit'));
+$routes->get('/barang/export', $with_auth('Barang::export'));
 
 $routes->get('/barang-masuk', $with_auth('BarangMasuk::index'));
 $routes->get('/barang-masuk/tambah', $with_auth('BarangMasuk::tambah'));
