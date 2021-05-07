@@ -206,6 +206,14 @@ class Supplier extends BaseController
     $sheet->getColumnDimension('D')->setAutoSize(true);
     $sheet->getColumnDimension('E')->setAutoSize(true);
 
+    // set alignment to left
+    $spreadsheet
+      ->getDefaultStyle()
+      ->getAlignment()
+      ->setHorizontal(
+        \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT
+      );
+
     // set styling for header
     $gray_fill = [
       'font' => [
@@ -216,11 +224,7 @@ class Supplier extends BaseController
         'color' => ['argb' => 'FFEFEFEF'],
       ],
     ];
-    $sheet->getStyle('A1')->applyFromArray($gray_fill);
-    $sheet->getStyle('B1')->applyFromArray($gray_fill);
-    $sheet->getStyle('C1')->applyFromArray($gray_fill);
-    $sheet->getStyle('D1')->applyFromArray($gray_fill);
-    $sheet->getStyle('E1')->applyFromArray($gray_fill);
+    $sheet->getStyle('A1:E1')->applyFromArray($gray_fill);
 
     $sheet
       ->setCellValue('A1', 'Kode Supplier')
