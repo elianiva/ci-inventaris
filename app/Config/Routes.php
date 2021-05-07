@@ -78,6 +78,7 @@ $routes->get('/supplier/tambah', $with_auth('Supplier::form'));
 $routes->post('/supplier/tambah', $with_auth('Supplier::save'));
 $routes->post('/supplier/tambah/(:alphanum)', $with_auth('Supplier::save/$1'));
 $routes->delete('/supplier/hapus/(:alphanum)', $with_auth('Supplier::hapus'));
+$routes->get('/supplier/export', $with_auth('Supplier::export'));
 
 $routes->get('/barang', $with_auth('Barang::index'));
 $routes->get('/barang/tambah', $with_auth('Barang::tambah'));

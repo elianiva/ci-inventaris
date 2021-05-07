@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Supplier as SupplierModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Supplier extends BaseController
 {
@@ -105,8 +107,8 @@ class Supplier extends BaseController
       'message',
       sprintf(
         "Supplier bernama '$nama' telah berhasil %s!",
-        $id ? 'diperbarui' : 'ditambahkan',
-      ),
+        $id ? 'diperbarui' : 'ditambahkan'
+      )
     );
 
     return redirect()->to('/supplier');
@@ -120,7 +122,7 @@ class Supplier extends BaseController
 
     $this->session->setFlashData(
       'message',
-      "Supplier bernama '$nama' telah berhasil dihapus!",
+      "Supplier bernama '$nama' telah berhasil dihapus!"
     );
 
     return redirect()->to('/supplier');
@@ -183,8 +185,66 @@ class Supplier extends BaseController
       json_encode([
         'results' => $supplierData,
         'count' => $supplierTotal,
-      ]),
+      ])
     );
     $response->send();
+  }
+
+  // I really hate the copypasta for this function...
+  public function export()
+  {
+    $supplierModel = new SupplierModel();
+    $data = $supplierModel->findAll();
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // set width
+    $sheet->getColumnDimension('A')->setAutoSize(true);
+    $sheet->getColumnDimension('B')->setAutoSize(true);
+    $sheet->getColumnDimension('C')->setAutoSize(true);
+    $sheet->getColumnDimension('D')->setAutoSize(true);
+    $sheet->getColumnDimension('E')->setAutoSize(true);
+
+    // set styling for header
+    $gray_fill = [
+      'font' => [
+        'bold' => true,
+      ],
+      'fill' => [
+        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+        'color' => ['argb' => 'FFEFEFEF'],
+      ],
+    ];
+    $sheet->getStyle('A1')->applyFromArray($gray_fill);
+    $sheet->getStyle('B1')->applyFromArray($gray_fill);
+    $sheet->getStyle('C1')->applyFromArray($gray_fill);
+    $sheet->getStyle('D1')->applyFromArray($gray_fill);
+    $sheet->getStyle('E1')->applyFromArray($gray_fill);
+
+    $sheet
+      ->setCellValue('A1', 'Kode Supplier')
+      ->setCellValue('B1', 'Nama Supplier')
+      ->setCellValue('C1', 'Alamat Supplier')
+      ->setCellValue('D1', 'Telepon Supplier')
+      ->setCellValue('E1', 'Kota Supplier');
+
+    foreach ($data as $k => $v) {
+      $i = $k + 2;
+      $sheet
+        ->setCellValue('A' . $i, $v['kode_supplier'])
+        ->setCellValue('B' . $i, $v['nama_supplier'])
+        ->setCellValue('C' . $i, $v['alamat_supplier'])
+        ->setCellValue('D' . $i, $v['telp_supplier'])
+        ->setCellValue('E' . $i, $v['kota_supplier']);
+    }
+
+    $writer = new Xlsx($spreadsheet);
+
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="laporan.xlsx"');
+    header('Cache-Control: max-age=0');
+
+    $writer->save('php://output');
   }
 }
