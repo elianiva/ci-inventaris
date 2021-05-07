@@ -5,7 +5,6 @@ $session = session();
 $is_admin = $session->current_user['level'] == 1;
 ?>
 
-
 <?= $this->section('content') ?>
 <div class="container px-6 mx-auto min-w-full">
   <h2

@@ -1,6 +1,9 @@
 <?= $this->extend('layouts/skeleton') ?>
 
-<?php $session = session(); ?>
+<?php
+$session = session();
+$is_admin = $session->current_user['level'] == 1;
+?>
 
 <?= $this->section('content') ?>
 <div class="container px-6 mx-auto min-w-full">
@@ -8,6 +11,14 @@
     class="flex justify-between mt-6 mb-2 text-2xl font-semibold text-gray-700"
   >
     <?= $heading ?>
+    <?php if ($is_admin): ?>
+      <a
+        class="p-2 block rounded-md bg-blue-400 hover:bg-blue-500 text-white font-semibold text-sm"
+        href="<?= base_url('/barang/export') ?>"
+      >
+        Cetak Laporan
+      </a>
+    <?php endif; ?>
   </h2>
   <?php if ($session->getFlashData('message')): ?>
     <div

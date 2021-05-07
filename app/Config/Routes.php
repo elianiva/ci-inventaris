@@ -98,6 +98,7 @@ $routes->post('/barang-masuk/tambah', $with_auth('BarangMasuk::save'));
 /* prettier-ignore */
 $routes->post('/barang-masuk/hapus/(:any)', $with_auth('BarangMasuk::hapus/$1'));
 $routes->post('/barang-masuk/edit', $with_auth('BarangMasuk::edit'));
+$routes->get('/barang-masuk/export', $with_auth('BarangMasuk::export'));
 
 $routes->get('/barang-keluar', $with_auth('BarangKeluar::index'));
 $routes->get('/barang-keluar/tambah', $with_auth('BarangKeluar::tambah'));
@@ -108,8 +109,10 @@ $routes->post('/barang-keluar/tambah', $with_auth('BarangKeluar::save'));
 /* prettier-ignore */
 $routes->post('/barang-keluar/hapus/(:any)', $with_auth('BarangKeluar::hapus/$1'));
 $routes->post('/barang-keluar/edit', $with_auth('BarangKeluar::edit'));
+$routes->get('/barang-keluar/export', $with_auth('BarangKeluar::export'));
 
 $routes->get('/stok', $with_auth('Stok::index', true));
+$routes->get('/stok/report', $with_auth('Stok::report', true));
 
 $routes->get('/api/user', $only_admin($with_auth('User::get_all')));
 $routes->get('/api/supplier', $with_auth('Supplier::get_all', true));

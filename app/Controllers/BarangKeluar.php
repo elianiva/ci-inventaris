@@ -6,6 +6,8 @@ use App\Models\BarangKeluar as BarangKeluarModel;
 use App\Models\Barang as BarangModel;
 use App\Models\Stok as StokModel;
 use App\Models\Supplier as SupplierModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class BarangKeluar extends BaseController
 {
@@ -132,7 +134,7 @@ class BarangKeluar extends BaseController
 
     $this->session->setFlashData(
       'message',
-      "Barang bernama '$nama_barang' telah berhasil ditambahkan!",
+      "Barang bernama '$nama_barang' telah berhasil ditambahkan!"
     );
 
     return redirect()->to('/barang-keluar');
@@ -161,7 +163,7 @@ class BarangKeluar extends BaseController
 
     $this->session->setFlashData(
       'message',
-      "Log barang keluar bernama '$nama_barang' telah berhasil dihapus!",
+      "Log barang keluar bernama '$nama_barang' telah berhasil dihapus!"
     );
 
     return redirect()->to('/barang-keluar');
@@ -189,7 +191,7 @@ class BarangKeluar extends BaseController
       ->orLike('jumlah_keluar', $keyword)
       ->orLike('nama_supplier', $keyword)
       ->select(
-        'id_barang_keluar, nama_barang, nama_supplier, tanggal_keluar, jumlah_keluar',
+        'id_barang_keluar, nama_barang, nama_supplier, tanggal_keluar, jumlah_keluar'
       )
       ->get($limit, $offset)
       ->getResult();
@@ -207,8 +209,72 @@ class BarangKeluar extends BaseController
       json_encode([
         'results' => $barangData,
         'count' => $barangTotal,
-      ]),
+      ])
     );
     $response->send();
+  }
+
+  public function export()
+  {
+    $barangKeluarModel = new BarangKeluarModel();
+    $data = $barangKeluarModel->findAll();
+
+    $spreadsheet = new Spreadsheet();
+    $sheet = $spreadsheet->getActiveSheet();
+
+    // set width
+    $sheet->getColumnDimension('A')->setAutoSize(true);
+    $sheet->getColumnDimension('B')->setAutoSize(true);
+    $sheet->getColumnDimension('C')->setAutoSize(true);
+    $sheet->getColumnDimension('D')->setAutoSize(true);
+    $sheet->getColumnDimension('E')->setAutoSize(true);
+    $sheet->getColumnDimension('F')->setAutoSize(true);
+
+    // set alignment to left
+    $spreadsheet
+      ->getDefaultStyle()
+      ->getAlignment()
+      ->setHorizontal(
+        \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT
+      );
+
+    // set styling for header
+    $gray_fill = [
+      'font' => [
+        'bold' => true,
+      ],
+      'fill' => [
+        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+        'color' => ['argb' => 'FFEFEFEF'],
+      ],
+    ];
+    $sheet->getStyle('A1:F1')->applyFromArray($gray_fill);
+
+    $sheet
+      ->setCellValue('A1', 'ID Barang Keluar')
+      ->setCellValue('B1', 'Kode Barang')
+      ->setCellValue('C1', 'Nama Barang')
+      ->setCellValue('D1', 'Tanggal Keluar')
+      ->setCellValue('E1', 'Jumlah Supplier')
+      ->setCellValue('F1', 'Jumlah Supplier');
+
+    foreach ($data as $k => $v) {
+      $i = $k + 2;
+      $sheet
+        ->setCellValue('A' . $i, $v['id_barang_keluar'])
+        ->setCellValue('B' . $i, $v['kode_barang'])
+        ->setCellValue('C' . $i, $v['nama_barang'])
+        ->setCellValue('D' . $i, $v['tanggal_keluar'])
+        ->setCellValue('E' . $i, $v['jumlah_keluar'])
+        ->setCellValue('F' . $i, $v['kode_supplier']);
+    }
+
+    $writer = new Xlsx($spreadsheet);
+
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="laporan.xlsx"');
+    header('Cache-Control: max-age=0');
+
+    $writer->save('php://output');
   }
 }
