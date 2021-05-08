@@ -14,7 +14,7 @@ class Supplier extends Seeder
 
     for ($i = 0; $i < 20; $i++) {
       $data = [
-        'kode_supplier' => strtoupper($faker->lexify('????')),
+        'kode_supplier' => $faker->uuid(),
         'nama_supplier' => $faker->name(),
         'alamat_supplier' => $faker->address(),
         'telp_supplier' => $faker->phoneNumber(),

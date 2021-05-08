@@ -14,12 +14,12 @@ class Keluarbarang extends Migration
     $this->forge->addField([
       'id_barang_keluar' => [
         'type' => 'VARCHAR',
-        'constraint' => 8,
+        'constraint' => 36,
         'null' => false,
       ],
       'kode_barang' => [
         'type' => 'VARCHAR',
-        'constraint' => 8,
+        'constraint' => 36,
         'null' => false,
       ],
       'nama_barang' => [
@@ -38,7 +38,7 @@ class Keluarbarang extends Migration
       ],
       'kode_supplier' => [
         'type' => 'VARCHAR',
-        'constraint' => 5,
+        'constraint' => 36,
         'null' => false,
       ],
       'created_at' => [

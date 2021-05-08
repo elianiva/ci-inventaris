@@ -11,7 +11,7 @@ class Barang extends Migration
     $this->forge->addField([
       'kode_barang' => [
         'type' => 'VARCHAR',
-        'constraint' => 8,
+        'constraint' => 36,
         'null' => false,
       ],
       'nama_barang' => [

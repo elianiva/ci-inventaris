@@ -11,7 +11,7 @@ class Supplier extends Migration
     $this->forge->addField([
       'kode_supplier' => [
         'type' => 'VARCHAR',
-        'constraint' => 5,
+        'constraint' => 36,
         'null' => false,
       ],
       'nama_supplier' => [

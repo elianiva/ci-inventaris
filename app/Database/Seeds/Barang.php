@@ -14,7 +14,7 @@ class Barang extends Seeder
 
     for ($i = 0; $i < 50; $i++) {
       $data = [
-        'kode_barang' => $faker->ean8(),
+        'kode_barang' => $faker->uuid(),
         'nama_barang' => ucfirst($faker->word()),
         'spesifikasi' => $faker->sentence(4),
         'lokasi_barang' => $faker->streetAddress(),
