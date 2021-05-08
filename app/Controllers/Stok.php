@@ -46,7 +46,7 @@ class Stok extends BaseController
     $dataSize = sizeof($supplierData);
     $allResults = $builder->countAllResults();
 
-    // we need to do this do gridjs knows the actual count after we
+    // we need to do this to let gridjs knows the actual count after we
     // do something like `search`
     $supplierTotal =
       $dataSize == 0 ? 0 : ($keyword == null ? $allResults : $dataSize);
