@@ -125,7 +125,7 @@
       then: data => data.results.map(item => [
         item.nama,
         item.username,
-        item.level,
+        item.level == 1 ? "Admin" : "User",
         action(item.id_user),
       ]),
       total: data => data.count

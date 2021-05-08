@@ -40,19 +40,21 @@ class User extends BaseController
     $rules = [
       'name' => [
         'label' => 'Nama',
-        'rules' => 'trim|required|is_unique[user.nama]',
+        'rules' => 'trim|required|is_unique[user.nama,id_user,{id_user}]',
       ],
       'username' => [
         'label' => 'Username',
-        'rules' => 'trim|required|is_unique[user.username]',
+        'rules' => 'trim|required|is_unique[user.username,id_user,{id_user}]',
       ],
       'password' => [
         'label' => 'Password',
-        'rules' => 'trim|required|min_length[8]',
+        'rules' => $id ? 'trim' : 'trim|required|min_length[8]',
       ],
       'password-rep' => [
         'label' => 'Ulangi Password',
-        'rules' => 'trim|required|matches[password]',
+        'rules' => $id
+          ? 'trim|matches[password]'
+          : 'trim|required|matches[password]',
       ],
     ];
 
@@ -76,9 +78,10 @@ class User extends BaseController
     ];
 
     if (!$this->validate($rules, $errors)) {
+      dd($this->validator->getErrors());
       $this->session->setFlashData('errors', $this->validator->getErrors());
       return redirect()
-        ->to('/user/tambah')
+        ->to('/user' . $id ? '/edit/' . $id : '/tambah')
         ->withInput();
     }
 
@@ -88,6 +91,7 @@ class User extends BaseController
     $password = $request->getVar('password');
 
     $userModel->save([
+      'id_user' => $id,
       'nama' => $name,
       'username' => $username,
       'password' => password_hash($password, PASSWORD_BCRYPT),
@@ -98,8 +102,8 @@ class User extends BaseController
       'message',
       sprintf(
         "User bernama '$name' telah berhasil %s!",
-        $id ? 'diperbarui' : 'ditambahkan',
-      ),
+        $id ? 'diperbarui' : 'ditambahkan'
+      )
     );
 
     return redirect()->to('/user');
@@ -108,12 +112,12 @@ class User extends BaseController
   public function hapus(string $id)
   {
     $userModel = new UserModel();
-    $nama = $userModel->find($id)['nama_supplier'];
+    $nama = $userModel->find($id)['nama'];
     $userModel->delete($id);
 
     $this->session->setFlashData(
       'message',
-      "User bernama '$nama' telah berhasil dihapus!",
+      "User bernama '$nama' telah berhasil dihapus!"
     );
 
     return redirect()->to('/user');
@@ -122,7 +126,6 @@ class User extends BaseController
   public function edit(string $id)
   {
     $userModel = new UserModel();
-    $cities = array_unique($userModel->findColumn('kota_supplier'));
     $prev = $userModel->find($id);
 
     $data = [
@@ -130,7 +133,6 @@ class User extends BaseController
       'heading' => 'User',
       'page_name' => 'user',
       'title' => 'Edit',
-      'cities' => $cities,
       'validation' => $this->validator,
       'prev' => $prev,
     ];
@@ -174,7 +176,7 @@ class User extends BaseController
       json_encode([
         'results' => $userData,
         'count' => $userTotal,
-      ]),
+      ])
     );
     $response->send();
   }

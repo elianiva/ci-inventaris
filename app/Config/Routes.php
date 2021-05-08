@@ -76,6 +76,7 @@ $routes->post(
   '/user/tambah/(:any)',
   $only_admin($with_auth('User::save/$1'))
 );
+$routes->get('/user/edit/(:any)', $only_admin($with_auth('User::edit/$1')));
 
 $routes->get('/supplier', $with_auth('Supplier::index'));
 $routes->get('/supplier/tambah', $with_auth('Supplier::form'));

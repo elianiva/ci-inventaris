@@ -22,6 +22,11 @@
     method="POST"
     action="<?= base_url('/user/tambah/' . ($prev['id_user'] ?? '')) ?>"
   >
+    <input
+      type="hidden"
+      name="id_user"
+      value="<?= $prev['id_user'] ?? '' ?>"
+    />
     <?= csrf_field() ?>
     <label class="block text-sm">
       <span class="text-gray-700">Nama</span>
