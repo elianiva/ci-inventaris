@@ -72,17 +72,21 @@ $routes->get('/dashboard', $with_auth('Dashboard::index'));
 $routes->get('/user', $only_admin($with_auth('User::index')));
 $routes->get('/user/tambah', $only_admin($with_auth('User::form')));
 $routes->post('/user/tambah', $only_admin($with_auth('User::save')));
+$routes->post(
+  '/user/tambah/(:any)',
+  $only_admin($with_auth('User::save/$1'))
+);
 
 $routes->get('/supplier', $with_auth('Supplier::index'));
 $routes->get('/supplier/tambah', $with_auth('Supplier::form'));
 $routes->post('/supplier/tambah', $with_auth('Supplier::save'));
-$routes->post('/supplier/tambah/(:alphanum)', $with_auth('Supplier::save/$1'));
-$routes->delete('/supplier/hapus/(:alphanum)', $with_auth('Supplier::hapus'));
+$routes->post('/supplier/tambah/(:any)', $with_auth('Supplier::save/$1'));
+$routes->delete('/supplier/hapus/(:any)', $with_auth('Supplier::hapus'));
 $routes->get('/supplier/export', $with_auth('Supplier::export'));
 
 $routes->get('/barang', $with_auth('Barang::index'));
 $routes->get('/barang/tambah', $with_auth('Barang::tambah'));
-$routes->post('/barang/tambah/(:alphanum)', $with_auth('Barang::save/$1'));
+$routes->post('/barang/tambah/(:any)', $with_auth('Barang::save/$1'));
 $routes->post('/barang/tambah', $with_auth('Barang::save'));
 // this should be DELETE, but HTML form doesn't have that..
 $routes->post('/barang/hapus/(:any)', $with_auth('Barang::hapus/$1'));
@@ -91,23 +95,31 @@ $routes->get('/barang/export', $with_auth('Barang::export'));
 
 $routes->get('/barang-masuk', $with_auth('BarangMasuk::index'));
 $routes->get('/barang-masuk/tambah', $with_auth('BarangMasuk::tambah'));
-/* prettier-ignore */
-$routes->post('/barang-masuk/tambah/(:alphanum)', $with_auth('BarangMasuk::save/$1'));
+$routes->post(
+  '/barang-masuk/tambah/(:any)',
+  $with_auth('BarangMasuk::save/$1')
+);
 $routes->post('/barang-masuk/tambah', $with_auth('BarangMasuk::save'));
 // this should be DELETE, but HTML form doesn't have that..
-/* prettier-ignore */
-$routes->post('/barang-masuk/hapus/(:any)', $with_auth('BarangMasuk::hapus/$1'));
+$routes->post(
+  '/barang-masuk/hapus/(:any)',
+  $with_auth('BarangMasuk::hapus/$1')
+);
 $routes->post('/barang-masuk/edit', $with_auth('BarangMasuk::edit'));
 $routes->get('/barang-masuk/export', $with_auth('BarangMasuk::export'));
 
 $routes->get('/barang-keluar', $with_auth('BarangKeluar::index'));
 $routes->get('/barang-keluar/tambah', $with_auth('BarangKeluar::tambah'));
-/* prettier-ignore */
-$routes->post('/barang-keluar/tambah/(:alphanum)', $with_auth('BarangKeluar::save/$1'));
+$routes->post(
+  '/barang-keluar/tambah/(:any)',
+  $with_auth('BarangKeluar::save/$1')
+);
 $routes->post('/barang-keluar/tambah', $with_auth('BarangKeluar::save'));
 // this should be DELETE, but HTML form doesn't have that..
-/* prettier-ignore */
-$routes->post('/barang-keluar/hapus/(:any)', $with_auth('BarangKeluar::hapus/$1'));
+$routes->post(
+  '/barang-keluar/hapus/(:any)',
+  $with_auth('BarangKeluar::hapus/$1')
+);
 $routes->post('/barang-keluar/edit', $with_auth('BarangKeluar::edit'));
 $routes->get('/barang-keluar/export', $with_auth('BarangKeluar::export'));
 
