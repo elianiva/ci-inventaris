@@ -12,7 +12,7 @@
     <?= $title ?> Barang
     <a
       class="p-2 block rounded-md border-2 border-orange-500 text-orange-500 font-semibold text-sm"
-      href="<?= base_url('/barang/tambah') ?>"
+      href="<?= base_url('/barang') ?>"
     >
       Kembali
     </a>
@@ -23,6 +23,11 @@
     action="<?= base_url('/barang/tambah/' . ($prev['kode_barang'] ?? '')) ?>"
   >
     <?= csrf_field() ?>
+    <input
+      type="hidden"
+      name="kode_barang"
+      value="<?= $prev['kode_barang'] ?? '' ?>"
+    />
     <label class="block text-sm">
       <span class="text-gray-700">Nama Barang</span>
       <input

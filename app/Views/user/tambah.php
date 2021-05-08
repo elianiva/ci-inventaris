@@ -20,7 +20,7 @@
   <form
     class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md"
     method="POST"
-    action="<?= base_url('/user/tambah/' . ($prev['kode_user'] ?? '')) ?>"
+    action="<?= base_url('/user/tambah/' . ($prev['id_user'] ?? '')) ?>"
   >
     <?= csrf_field() ?>
     <label class="block text-sm">
@@ -32,7 +32,7 @@
         name="name"
         id="name-input"
         autocomplete="off"
-        value="<?= old('name') ?? ($prev['name'] ?? '') ?>"
+        value="<?= old('nama') ?? ($prev['nama'] ?? '') ?>"
         oninput="resetInput('name-err', 'name-input')"
       />
       <?php if ($err): ?>

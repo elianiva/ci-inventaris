@@ -50,7 +50,8 @@ class Barang extends BaseController
     $rules = [
       'name' => [
         'label' => 'Nama Barang',
-        'rules' => $id ? 'required' : 'required|is_unique[barang.nama_barang]',
+        'rules' =>
+          'required|is_unique[barang.nama_barang,kode_barang,{kode_barang}]',
       ],
       'spec' => [
         'label' => 'Spesifikasi',
@@ -62,10 +63,6 @@ class Barang extends BaseController
       ],
       'category' => [
         'label' => 'Kategori Barang',
-        'rules' => 'required',
-      ],
-      'total' => [
-        'label' => 'Jumlah Barang',
         'rules' => 'required',
       ],
       'kind' => [
@@ -92,9 +89,6 @@ class Barang extends BaseController
       'category' => [
         'required' => 'Kategori Barang tidak boleh kosong!',
       ],
-      'total' => [
-        'required' => 'Jumlah Barang tidak boleh kosong!',
-      ],
       'kind' => [
         'required' => 'Jenis Barang tidak boleh kosong!',
       ],
@@ -105,8 +99,9 @@ class Barang extends BaseController
 
     if (!$this->validate($rules, $errors)) {
       $this->session->setFlashData('errors', $this->validator->getErrors());
+      $kode_barang = $request->getVar('kode_barang');
       return redirect()
-        ->to('/barang/tambah')
+        ->to('/barang' . $kode_barang ? '/edit/' . $kode_barang : '/tambah')
         ->withInput();
     }
 
@@ -160,15 +155,15 @@ class Barang extends BaseController
     $prev = $barangModel->find($id);
 
     $data = [
-      'title' => 'Supplier',
-      'heading' => 'Supplier',
-      'page_name' => 'supplier',
+      'title' => 'Barang',
+      'heading' => 'Barang',
+      'page_name' => 'barang',
       'title' => 'Edit',
       'categories' => $categories,
       'kinds' => $kinds,
       'sources' => $sources,
-      'validation' => $this->validator,
       'prev' => $prev,
+      'validation' => $this->validator,
     ];
 
     return view('barang/tambah', $data);
@@ -205,7 +200,7 @@ class Barang extends BaseController
 
     // we need to do this to let gridjs knows the actual count after we
     // do something like `search`
-    $barangTotal =
+    $barangCount =
       $dataSize == 0 ? 0 : ($keyword == null ? $allResults : $dataSize);
 
     $response = service('response');
@@ -213,7 +208,7 @@ class Barang extends BaseController
     $response->setBody(
       json_encode([
         'results' => $barangData,
-        'count' => $barangTotal,
+        'count' => $barangCount,
       ])
     );
     $response->send();
