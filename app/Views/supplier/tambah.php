@@ -25,6 +25,11 @@
     ) ?>"
   >
     <?= csrf_field() ?>
+    <input
+      type="hidden"
+      name="kode_supplier"
+      value="<?= $prev['kode_supplier'] ?? '' ?>"
+    />
     <label class="block text-sm">
       <span class="text-gray-700">Nama Supplier</span>
       <input

@@ -83,6 +83,7 @@ $routes->get('/supplier/tambah', $with_auth('Supplier::form'));
 $routes->post('/supplier/tambah', $with_auth('Supplier::save'));
 $routes->post('/supplier/tambah/(:any)', $with_auth('Supplier::save/$1'));
 $routes->delete('/supplier/hapus/(:any)', $with_auth('Supplier::hapus'));
+$routes->get('/supplier/edit/(:any)', $with_auth('Supplier::edit/$1'));
 $routes->get('/supplier/export', $with_auth('Supplier::export'));
 
 $routes->get('/barang', $with_auth('Barang::index'));

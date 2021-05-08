@@ -46,21 +46,18 @@ class Supplier extends BaseController
     $rules = [
       'name' => [
         'label' => 'Nama Supplier',
-        'rules' => $id
-          ? 'required'
-          : 'required|is_unique[supplier.nama_supplier]',
+        'rules' =>
+          'required|is_unique[supplier.nama_supplier,kode_supplier,{kode_supplier}]',
       ],
       'address' => [
         'label' => 'Alamat Supplier',
-        'rules' => $id
-          ? 'required'
-          : 'required|is_unique[supplier.alamat_supplier]',
+        'rules' =>
+          'required|is_unique[supplier.alamat_supplier,kode_supplier,{kode_supplier}]',
       ],
       'telp' => [
         'label' => 'no. Telepon Supplier',
-        'rules' => $id
-          ? 'required'
-          : 'required|is_unique[supplier.telp_supplier]',
+        'rules' =>
+          'required|is_unique[supplier.telp_supplier,kode_supplier,{kode_supplier}]',
       ],
       'city' => [
         'label' => 'Kota Supplier',
@@ -89,7 +86,7 @@ class Supplier extends BaseController
     if (!$this->validate($rules, $errors)) {
       $this->session->setFlashData('errors', $this->validator->getErrors());
       return redirect()
-        ->to('/supplier/tambah')
+        ->to('/supplier' . $id ? '/edit/' . $id : '/tambah')
         ->withInput();
     }
 
