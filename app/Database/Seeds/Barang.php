@@ -14,32 +14,32 @@ class Barang extends Seeder
 
     for ($i = 0; $i < 50; $i++) {
       $data = [
-        'kode_barang' => $faker->uuid(),
-        'nama_barang' => ucfirst($faker->word()),
-        'spesifikasi' => $faker->sentence(4),
+        'kode_barang'   => $faker->uuid(),
+        'nama_barang'   => ucfirst($faker->word()),
+        'spesifikasi'   => $faker->sentence(4),
         'lokasi_barang' => $faker->streetAddress(),
-        'kategori' => $faker->randomElement([
+        'kategori'      => $faker->randomElement([
           'Pendidikan',
           'Teknologi',
           'Kesenian',
           'Lainnya',
         ]),
-        'kondisi' => $faker->randomElement([
+        'kondisi'       => $faker->randomElement([
           'Baik',
           'Kurang Baik',
           'Tidak Baik',
         ]),
-        'jenis_barang' => $faker->randomElement([
+        'jenis_barang'  => $faker->randomElement([
           'Alat Tulis Kantor',
           'Lainnya',
         ]),
-        'sumber_dana' => $faker->randomElement([
+        'sumber_dana'   => $faker->randomElement([
           'Dana Sekolah',
           'Dana Bansos',
           'Lainnya',
         ]),
-        'created_at' => Time::now(),
-        'updated_at' => Time::now(),
+        'created_at'    => Time::now(),
+        'updated_at'    => Time::now(),
       ];
 
       $this->db->table('barang')->insert($data);

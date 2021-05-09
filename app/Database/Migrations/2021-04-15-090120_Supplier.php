@@ -10,29 +10,29 @@ class Supplier extends Migration
   {
     $this->forge->addField([
       'kode_supplier' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 36,
-        'null' => false,
+        'null'       => false,
       ],
       'nama_supplier' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 35,
-        'null' => false,
+        'null'       => false,
       ],
       'alamat_supplier' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 50,
-        'null' => false,
+        'null'       => false,
       ],
       'telp_supplier' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 25,
-        'null' => false,
+        'null'       => false,
       ],
       'kota_supplier' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 20,
-        'null' => false,
+        'null'       => false,
       ],
       'created_at' => [
         'type' => 'DATETIME',

@@ -10,31 +10,31 @@ class User extends Migration
   {
     $this->forge->addField([
       'id_user' => [
-        'type' => 'INT',
-        'constraint' => 8,
+        'type'           => 'INT',
+        'constraint'     => 8,
         'auto_increment' => true,
-        'null' => false,
+        'null'           => false,
       ],
       'nama' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 35,
-        'null' => false,
+        'null'       => false,
       ],
       'username' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 15,
-        'null' => false,
+        'null'       => false,
       ],
       'password' => [
-        'type' => 'VARCHAR',
-        'constraint' => 64, // we'd use bcrypt; hence we need 64 limit
-        'null' => false,
+        'type'       => 'VARCHAR',
+        'constraint' => 64, // this is needed for bcrypt
+        'null'       => false,
       ],
       'level' => [
-        'type' => 'INT',
+        'type'       => 'INT',
         'constraint' => 1,
-        'unsigned' => true,
-        'null' => false,
+        'unsigned'   => true,
+        'null'       => false,
       ],
       'created_at' => [
         'type' => 'DATETIME',

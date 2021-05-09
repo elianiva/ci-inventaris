@@ -9,8 +9,8 @@ class User extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'User',
-      'heading' => 'User',
+      'title'     => 'User',
+      'heading'   => 'User',
       'page_name' => 'user',
     ];
 
@@ -23,12 +23,12 @@ class User extends BaseController
     $prev = $id ? $userModel->find($id) : null;
 
     $data = [
-      'title' => 'User',
-      'heading' => 'User',
-      'page_name' => 'user',
-      'title' => $id ? 'Edit' : 'Tambah',
+      'title'      => 'User',
+      'heading'    => 'User',
+      'page_name'  => 'user',
+      'title'      => $id ? 'Edit' : 'Tambah',
       'validation' => $this->validator,
-      'prev' => $prev
+      'prev'       => $prev
     ];
 
     return view('user/tambah', $data);
@@ -95,11 +95,11 @@ class User extends BaseController
     $password = $request->getVar('password');
 
     $userModel->save([
-      'id_user' => $id,
-      'nama' => $name,
+      'id_user'  => $id,
+      'nama'     => $name,
       'username' => $username,
       'password' => password_hash($password, PASSWORD_BCRYPT),
-      'level' => 1,
+      'level'    => 1,
     ]);
 
     $this->session->setFlashData(

@@ -55,13 +55,13 @@ class Stok extends Seeder
       );
 
       $data = [
-        'kode_barang' => $rand,
-        'nama_barang' => $nama_barang,
-        'jumlah_barang_masuk' => $jumlah_masuk,
+        'kode_barang'          => $rand,
+        'nama_barang'          => $nama_barang,
+        'jumlah_barang_masuk'  => $jumlah_masuk,
         'jumlah_barang_keluar' => $jumlah_keluar,
-        'total_barang' => $jumlah_masuk - $jumlah_keluar,
-        'created_at' => Time::now(),
-        'updated_at' => Time::now(),
+        'total_barang'         => $jumlah_masuk - $jumlah_keluar,
+        'created_at'           => Time::now(),
+        'updated_at'           => Time::now(),
       ];
       $this->db->table('stok')->insert($data);
     }

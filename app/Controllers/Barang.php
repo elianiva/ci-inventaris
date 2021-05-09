@@ -11,8 +11,8 @@ class Barang extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Master Barang',
-      'heading' => 'Barang',
+      'title'     => 'Master Barang',
+      'heading'   => 'Barang',
       'page_name' => 'barang',
     ];
 
@@ -28,15 +28,15 @@ class Barang extends BaseController
     $prev = $id ? $barangModel->find($id) : null;
 
     $data = [
-      'title' => 'Master Barang',
-      'heading' => 'Barang',
-      'page_name' => 'barang',
-      'title' => $id ? 'Edit' : 'Tambah',
+      'title'      => 'Master Barang',
+      'heading'    => 'Barang',
+      'page_name'  => 'barang',
+      'title'      => $id ? 'Edit' : 'Tambah',
       'categories' => $categories,
-      'kinds' => $kinds,
-      'sources' => $sources,
+      'kinds'      => $kinds,
+      'sources'    => $sources,
       'validation' => $this->validator,
-      'prev' => $prev,
+      'prev'       => $prev,
     ];
 
     return view('barang/tambah', $data);
@@ -112,14 +112,14 @@ class Barang extends BaseController
     // this method already handles `insert` and `update`
     // depending on the primary key
     $barangModel->save([
-      'kode_barang' => $id ?? \Faker\Factory::create()->ean8(),
-      'nama_barang' => $nama,
-      'spesifikasi' => $request->getVar('spec'),
+      'kode_barang'   => $id ?? \Faker\Factory::create()->ean8(),
+      'nama_barang'   => $nama,
+      'spesifikasi'   => $request->getVar('spec'),
       'lokasi_barang' => $request->getVar('address'),
-      'kategori' => $request->getVar('category'),
-      'kondisi' => $request->getVar('condition'),
-      'jenis_barang' => $request->getVar('kind'),
-      'sumber_dana' => $request->getVar('source'),
+      'kategori'      => $request->getVar('category'),
+      'kondisi'       => $request->getVar('condition'),
+      'jenis_barang'  => $request->getVar('kind'),
+      'sumber_dana'   => $request->getVar('source'),
     ]);
 
     $this->session->setFlashData(

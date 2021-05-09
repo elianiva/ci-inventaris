@@ -10,34 +10,34 @@ class Stok extends Migration
   {
     $this->forge->addField([
       'kode_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 36,
-        'null' => false,
+        'null'       => false,
       ],
       'nama_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 30,
-        'null' => false,
+        'null'       => false,
       ],
       'jumlah_barang_masuk' => [
-        'type' => 'INT',
+        'type'       => 'INT',
         'constraint' => 7,
-        'null' => false,
+        'null'       => false,
       ],
       'jumlah_barang_keluar' => [
-        'type' => 'INT',
+        'type'       => 'INT',
         'constraint' => 7,
-        'null' => false,
+        'null'       => false,
       ],
       'total_barang' => [
-        'type' => 'INT',
+        'type'       => 'INT',
         'constraint' => 8,
-        'null' => false,
+        'null'       => false,
       ],
       'keterangan' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 25,
-        'null' => true,
+        'null'       => true,
       ],
       'created_at' => [
         'type' => 'DATETIME',

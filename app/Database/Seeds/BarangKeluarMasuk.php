@@ -37,24 +37,24 @@ class BarangKeluarMasuk extends Seeder
 
       $masuk = [
         'id_barang_masuk' => $faker->uuid(),
-        'kode_barang' => $kode_barang,
-        'nama_barang' => $name,
-        'tanggal_masuk' => $date,
-        'jumlah_masuk' => $jumlah_masuk,
-        'kode_supplier' => $kode_supplier,
-        'created_at' => Time::now(),
-        'updated_at' => Time::now(),
+        'kode_barang'     => $kode_barang,
+        'nama_barang'     => $name,
+        'tanggal_masuk'   => $date,
+        'jumlah_masuk'    => $jumlah_masuk,
+        'kode_supplier'   => $kode_supplier,
+        'created_at'      => Time::now(),
+        'updated_at'      => Time::now(),
       ];
 
       $keluar = [
         'id_barang_keluar' => $faker->ean8(),
-        'kode_barang' => $kode_barang,
-        'nama_barang' => $name,
-        'tanggal_keluar' => $date,
-        'jumlah_keluar' => $faker->numberBetween(0, $jumlah_masuk),
-        'kode_supplier' => $kode_supplier,
-        'created_at' => Time::now(),
-        'updated_at' => Time::now(),
+        'kode_barang'      => $kode_barang,
+        'nama_barang'      => $name,
+        'tanggal_keluar'   => $date,
+        'jumlah_keluar'    => $faker->numberBetween(0, $jumlah_masuk),
+        'kode_supplier'    => $kode_supplier,
+        'created_at'       => Time::now(),
+        'updated_at'       => Time::now(),
       ];
 
       $this->db->table('barang_masuk')->insert($masuk);

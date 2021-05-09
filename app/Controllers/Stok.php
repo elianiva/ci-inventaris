@@ -11,8 +11,8 @@ class Stok extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Stok',
-      'heading' => 'Stok',
+      'title'     => 'Stok',
+      'heading'   => 'Stok',
       'page_name' => 'stok',
     ];
 

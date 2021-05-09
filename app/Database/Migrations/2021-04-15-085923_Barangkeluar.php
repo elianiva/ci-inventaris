@@ -13,33 +13,33 @@ class Keluarbarang extends Migration
 
     $this->forge->addField([
       'id_barang_keluar' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 36,
-        'null' => false,
+        'null'       => false,
       ],
       'kode_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 36,
-        'null' => false,
+        'null'       => false,
       ],
       'nama_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 30,
-        'null' => false,
+        'null'       => false,
       ],
       'tanggal_keluar' => [
         'type' => 'DATE',
         'null' => false,
       ],
       'jumlah_keluar' => [
-        'type' => 'INT',
+        'type'       => 'INT',
         'constraint' => 7,
-        'null' => false,
+        'null'       => false,
       ],
       'kode_supplier' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 36,
-        'null' => false,
+        'null'       => false,
       ],
       'created_at' => [
         'type' => 'DATETIME',

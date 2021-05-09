@@ -14,8 +14,8 @@ class BarangMasuk extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Barang Masuk',
-      'heading' => 'Barang Masuk',
+      'title'     => 'Barang Masuk',
+      'heading'   => 'Barang Masuk',
       'page_name' => 'barang',
     ];
 
@@ -30,12 +30,12 @@ class BarangMasuk extends BaseController
     $supplier = $supplier_model->findColumn('nama_supplier');
 
     $data = [
-      'title' => 'Barang Masuk',
-      'heading' => 'Barang Masuk',
+      'title'     => 'Barang Masuk',
+      'heading'   => 'Barang Masuk',
       'page_name' => 'barang',
-      'title' => 'Tambah',
-      'barang' => $barang,
-      'supplier' => $supplier,
+      'title'     => 'Tambah',
+      'barang'    => $barang,
+      'supplier'  => $supplier,
     ];
 
     return view('barang/keluar/tambah', $data);
@@ -123,11 +123,11 @@ class BarangMasuk extends BaseController
     // depending on the primary key
     $barang_keluar_model->save([
       'id_barang_keluar' => \Faker\Factory::create()->ean8(),
-      'kode_barang' => $kode_barang,
-      'nama_barang' => $nama_barang,
-      'tanggal_keluar' => $date,
-      'jumlah_keluar' => $total,
-      'kode_supplier' => $kode_supplier,
+      'kode_barang'      => $kode_barang,
+      'nama_barang'      => $nama_barang,
+      'tanggal_keluar'   => $date,
+      'jumlah_keluar'    => $total,
+      'kode_supplier'    => $kode_supplier,
     ]);
 
     $stok_model->save($stok);

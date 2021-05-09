@@ -11,8 +11,8 @@ class Supplier extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Supplier',
-      'heading' => 'Supplier',
+      'title'     => 'Supplier',
+      'heading'   => 'Supplier',
       'page_name' => 'supplier',
     ];
 
@@ -26,13 +26,13 @@ class Supplier extends BaseController
     $prev = $id ? $supplierModel->find($id) : null;
 
     $data = [
-      'title' => 'Supplier',
-      'heading' => 'Supplier',
-      'page_name' => 'supplier',
-      'title' => $id ? 'Edit' : 'Tambah',
-      'cities' => $cities,
+      'title'      => 'Supplier',
+      'heading'    => 'Supplier',
+      'page_name'  => 'supplier',
+      'title'      => $id ? 'Edit' : 'Tambah',
+      'cities'     => $cities,
       'validation' => $this->validator,
-      'prev' => $prev,
+      'prev'       => $prev,
     ];
 
     return view('supplier/tambah', $data);
@@ -95,11 +95,11 @@ class Supplier extends BaseController
     $supplierModel = new SupplierModel();
     $nama = $request->getVar('name');
     $supplierModel->save([
-      'kode_supplier' => $id ?? \Faker\Factory::create()->lexify('????'),
-      'nama_supplier' => $nama,
+      'kode_supplier'   => $id ?? \Faker\Factory::create()->lexify('????'),
+      'nama_supplier'   => $nama,
       'alamat_supplier' => $request->getVar('address'),
-      'telp_supplier' => $request->getVar('telp'),
-      'kota_supplier' => $request->getVar('city'),
+      'telp_supplier'   => $request->getVar('telp'),
+      'kota_supplier'   => $request->getVar('city'),
     ]);
 
     $this->session->setFlashData(

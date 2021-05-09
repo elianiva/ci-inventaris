@@ -10,44 +10,44 @@ class Barang extends Migration
   {
     $this->forge->addField([
       'kode_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 36,
-        'null' => false,
+        'null'       => false,
       ],
       'nama_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 30,
-        'null' => false,
+        'null'       => false,
       ],
       'spesifikasi' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 35,
-        'null' => false,
+        'null'       => false,
       ],
       'lokasi_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 40,
-        'null' => false,
+        'null'       => false,
       ],
       'kategori' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 25,
-        'null' => false,
+        'null'       => false,
       ],
       'kondisi' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 20,
-        'null' => false,
+        'null'       => false,
       ],
       'jenis_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 20,
-        'null' => false,
+        'null'       => false,
       ],
       'sumber_dana' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 25,
-        'null' => false,
+        'null'       => false,
       ],
       'created_at' => [
         'type' => 'DATETIME',

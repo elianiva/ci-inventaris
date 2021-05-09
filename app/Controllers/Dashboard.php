@@ -24,14 +24,14 @@ class Dashboard extends BaseController
       ->getResult()[0]->total_barang;
 
     $data = [
-      'title' => 'Dashboard',
-      'heading' => 'Dashboard',
-      'total_supplier' => $supplier_model->countAllResults(),
-      'total_barang' => $barang_model->countAllResults(),
-      'total_barang_masuk' => $barang_masuk_model->countAllResults(),
+      'title'               => 'Dashboard',
+      'heading'             => 'Dashboard',
+      'total_supplier'      => $supplier_model->countAllResults(),
+      'total_barang'        => $barang_model->countAllResults(),
+      'total_barang_masuk'  => $barang_masuk_model->countAllResults(),
       'total_barang_keluar' => $barang_keluar_model->countAllResults(),
-      'total_stok' => $total_stok,
-      'page_name' => 'dashboard',
+      'total_stok'          => $total_stok,
+      'page_name'           => 'dashboard',
     ];
 
     return view('dashboard/index', $data);

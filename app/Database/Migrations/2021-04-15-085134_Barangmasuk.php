@@ -13,33 +13,33 @@ class Masukbarang extends Migration
 
     $this->forge->addField([
       'id_barang_masuk' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 36,
-        'null' => false,
+        'null'       => false,
       ],
       'kode_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 36,
-        'null' => false,
+        'null'       => false,
       ],
       'nama_barang' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 30,
-        'null' => false,
+        'null'       => false,
       ],
       'tanggal_masuk' => [
         'type' => 'DATE',
         'null' => false,
       ],
       'jumlah_masuk' => [
-        'type' => 'INT',
+        'type'       => 'INT',
         'constraint' => 7,
-        'null' => false,
+        'null'       => false,
       ],
       'kode_supplier' => [
-        'type' => 'VARCHAR',
+        'type'       => 'VARCHAR',
         'constraint' => 36,
-        'null' => false,
+        'null'       => false,
       ],
       'created_at' => [
         'type' => 'DATETIME',
