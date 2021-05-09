@@ -17,14 +17,18 @@ class User extends BaseController
     return view('user/index', $data);
   }
 
-  public function form()
+  public function form(string $id = null)
   {
+    $userModel = new UserModel();
+    $prev = $id ? $userModel->find($id) : null;
+
     $data = [
       'title' => 'User',
       'heading' => 'User',
       'page_name' => 'user',
-      'title' => 'Tambah',
+      'title' => $id ? 'Edit' : 'Tambah',
       'validation' => $this->validator,
+      'prev' => $prev
     ];
 
     return view('user/tambah', $data);
@@ -121,23 +125,6 @@ class User extends BaseController
     );
 
     return redirect()->to('/user');
-  }
-
-  public function edit(string $id)
-  {
-    $userModel = new UserModel();
-    $prev = $userModel->find($id);
-
-    $data = [
-      'title' => 'User',
-      'heading' => 'User',
-      'page_name' => 'user',
-      'title' => 'Edit',
-      'validation' => $this->validator,
-      'prev' => $prev,
-    ];
-
-    return view('user/tambah', $data);
   }
 
   public function get_all()

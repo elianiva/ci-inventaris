@@ -19,22 +19,24 @@ class Barang extends BaseController
     return view('barang/index', $data);
   }
 
-  public function tambah()
+  public function form(string $id = null)
   {
     $barangModel = new BarangModel();
     $categories = array_unique($barangModel->findColumn('kategori'));
     $kinds = array_unique($barangModel->findColumn('jenis_barang'));
     $sources = array_unique($barangModel->findColumn('sumber_dana'));
+    $prev = $id ? $barangModel->find($id) : null;
 
     $data = [
       'title' => 'Master Barang',
       'heading' => 'Barang',
       'page_name' => 'barang',
-      'title' => 'Tambah',
+      'title' => $id ? 'Edit' : 'Tambah',
       'categories' => $categories,
       'kinds' => $kinds,
       'sources' => $sources,
       'validation' => $this->validator,
+      'prev' => $prev,
     ];
 
     return view('barang/tambah', $data);
@@ -143,29 +145,6 @@ class Barang extends BaseController
     );
 
     return redirect()->to('/barang');
-  }
-
-  public function edit(string $id)
-  {
-    $barangModel = new BarangModel();
-    $categories = array_unique($barangModel->findColumn('kategori'));
-    $kinds = array_unique($barangModel->findColumn('jenis_barang'));
-    $sources = array_unique($barangModel->findColumn('sumber_dana'));
-    $prev = $barangModel->find($id);
-
-    $data = [
-      'title' => 'Barang',
-      'heading' => 'Barang',
-      'page_name' => 'barang',
-      'title' => 'Edit',
-      'categories' => $categories,
-      'kinds' => $kinds,
-      'sources' => $sources,
-      'prev' => $prev,
-      'validation' => $this->validator,
-    ];
-
-    return view('barang/tambah', $data);
   }
 
   public function get_all()

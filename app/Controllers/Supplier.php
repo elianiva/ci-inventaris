@@ -19,18 +19,20 @@ class Supplier extends BaseController
     return view('supplier/index', $data);
   }
 
-  public function form()
+  public function form(string $id = null)
   {
     $supplierModel = new SupplierModel();
     $cities = array_unique($supplierModel->findColumn('kota_supplier'));
+    $prev = $id ? $supplierModel->find($id) : null;
 
     $data = [
       'title' => 'Supplier',
       'heading' => 'Supplier',
       'page_name' => 'supplier',
-      'title' => 'Tambah',
+      'title' => $id ? 'Edit' : 'Tambah',
       'cities' => $cities,
       'validation' => $this->validator,
+      'prev' => $prev,
     ];
 
     return view('supplier/tambah', $data);
@@ -123,25 +125,6 @@ class Supplier extends BaseController
     );
 
     return redirect()->to('/supplier');
-  }
-
-  public function edit(string $id)
-  {
-    $supplierModel = new SupplierModel();
-    $cities = array_unique($supplierModel->findColumn('kota_supplier'));
-    $prev = $supplierModel->find($id);
-
-    $data = [
-      'title' => 'Supplier',
-      'heading' => 'Supplier',
-      'page_name' => 'supplier',
-      'title' => 'Edit',
-      'cities' => $cities,
-      'validation' => $this->validator,
-      'prev' => $prev,
-    ];
-
-    return view('supplier/tambah', $data);
   }
 
   public function get_all()
