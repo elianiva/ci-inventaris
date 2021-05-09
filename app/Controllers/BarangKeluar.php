@@ -122,7 +122,7 @@ class BarangKeluar extends BaseController
     // this method already handles `insert` and `update`
     // depending on the primary key
     $barang_keluar_model->save([
-      'id_barang_keluar' => \Faker\Factory::create()->ean8(),
+      'id_barang_keluar' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
       'kode_barang'      => $kode_barang,
       'nama_barang'      => $nama_barang,
       'tanggal_keluar'   => $date,

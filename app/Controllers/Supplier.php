@@ -95,7 +95,7 @@ class Supplier extends BaseController
     $supplierModel = new SupplierModel();
     $nama = $request->getVar('name');
     $supplierModel->save([
-      'kode_supplier'   => $id ?? \Faker\Factory::create()->lexify('????'),
+      'kode_supplier'   => $id ?? \Ramsey\Uuid\Uuid::uuid4()->toString(),
       'nama_supplier'   => $nama,
       'alamat_supplier' => $request->getVar('address'),
       'telp_supplier'   => $request->getVar('telp'),

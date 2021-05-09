@@ -112,7 +112,7 @@ class Barang extends BaseController
     // this method already handles `insert` and `update`
     // depending on the primary key
     $barangModel->save([
-      'kode_barang'   => $id ?? \Faker\Factory::create()->ean8(),
+      'kode_barang'   => $id ?? \Ramsey\Uuid\Uuid::uuid4()->toString(),
       'nama_barang'   => $nama,
       'spesifikasi'   => $request->getVar('spec'),
       'lokasi_barang' => $request->getVar('address'),

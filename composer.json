@@ -8,7 +8,8 @@
 		"php": "^7.3||^8.0",
 		"codeigniter4/framework": "^4",
 		"fakerphp/faker": "^1.14",
-		"phpoffice/phpspreadsheet": "^1.17"
+		"phpoffice/phpspreadsheet": "^1.17",
+		"ramsey/uuid": "^4.1"
 	},
 	"require-dev": {
 		"mikey179/vfsstream": "^1.6",
