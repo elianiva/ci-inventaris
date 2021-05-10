@@ -1,35 +1,34 @@
 # Aplikasi Inventaris PHP
 
-> disclaimer: This is my first time creating a *proper* app using CodeIgniter 
-> so please don't expect anything :p
+> disclaimer:
+> Ini aplikasi bikinnya ngga pake niat sepenuhnya
+> soalnya aku ga suka PHP hehe
 
-> WIPPP
+## Teknologi yang digunakan
 
-## What I use to make this app
-
-- [PHP](https://www.php.net/) - The language itself
-- [CodeIgniter](https://codeigniter.com) - PHP framework, v4 is surprisingly good
-- [Faker](https://fakerphp.github.io/) - To generate dummy data
-- [TailwindCSS](https://tailwindcss.com) - The CSS library
-- [Windmill Template](https://windmillui.com) - The dashboard template
-- [Neovim](https://neovim.io/) - The text editor
-- [MariaDB/MySQL](https://mariadb.org/) - The database
-- [HeroIcons](https://heroicons.com/) - The beautiful icons used
+- [PHP](https://www.php.net/) - Bahasa yang digunakan
+- [CodeIgniter](https://codeigniter.com) - Framework PHP
+- [Faker](https://fakerphp.github.io/) - Untuk membuat data palsu
+- [TailwindCSS](https://tailwindcss.com) - Library CSS
+- [Windmill Template](https://windmillui.com) - Template dashboard
+- [Neovim](https://neovim.io/) - Text Editor
+- [MariaDB/MySQL](https://mariadb.org/) - Database SQL
+- [HeroIcons](https://heroicons.com/) - Kumpulan ikon yang digunakan
 
 
 ## Database
 
-The original design is a mess and wouldn't even work because the relationship
-does not have the same data type lol. So, here's how the database laid out. 
-(My own version compared to the original design)
+Jadi gini.. Database di soal-nya berantakan banget. Tipe data yg dipake ada
+yang ngawur. Relasinya ga bakal bisa nyambung -- karena ya itu tadi, tipe
+datanya ada yang ngawur.
 
-|           My version             |               Original              |
+Akhirnya dibedain, karena kalo sama kaya ga bakal bisa dipake.
+
+|       Setelah Desain Ulang       |              Yang Asli              |
 | -------------------------------- | ----------------------------------- |
 | ![redesign](./.pix/final.png) | ![original](./.pix/old.png) |
 
 ## Screenshots
-
-Some images yada yada yada
 
 ### Login
 
@@ -38,6 +37,10 @@ Some images yada yada yada
 ### Dashboard
 
 ![dashboard](./.pix/dashboard.png)
+
+![mobile-dashboard](./.pix/mobile-dashboard.png)
+
+![mobile-menu](./.pix/mobile-menu.png)
 
 ### Manajemen User
 
@@ -57,24 +60,18 @@ Some images yada yada yada
 
 ### Manajemen Barang Masuk
 
-![barang-masuk](./.pix/barang_masuk.png)
+![barang-masuk](./.pix/barang-masuk.png)
 
-## Manajemen Barang Keluar
+### Manajemen Barang Keluar
 
-![barang-keluar](./.pix/barang_keluar.png)
+![barang-keluar](./.pix/barang-keluar.png)
 
-## Form + Validation
+### Form + Validation
 
 ![form](./.pix/form.png)
 
-## Manual
+![validation](./.pix/validation.png)
 
-### Project Structure
+### Export .xlsx
 
-Here's a project structure that will (hopefully) guide you to understand this app.
-
-TBD
-
-### How it works (briefly).
-
-TBD
+![excel](./.pix/export-excel.png)
