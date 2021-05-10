@@ -90,7 +90,7 @@
         Kategori Barang
       </span>
       <input
-        class="<?= $err['telp'] ?? false
+        class="<?= $err['category'] ?? false
           ? 'border-red-500'
           : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         type="text"
@@ -131,14 +131,14 @@
         Jenis Barang
       </span>
       <input
-        class="<?= $err['kinds'] ?? false
+        class="<?= $err['kind'] ?? false
           ? 'border-red-500'
           : 'border-gray-200' ?> block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
         type="text"
         list="kinds"
         name="kind"
         id="kind-input"
-        value="<?= old('kinds') ?? ($prev['jenis_barang'] ?? '') ?>"
+        value="<?= old('kind') ?? ($prev['jenis_barang'] ?? '') ?>"
         oninput="resetInput('kind-err', 'kind-input')"
       />
       <?php if ($err): ?>

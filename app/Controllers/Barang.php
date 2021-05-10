@@ -86,7 +86,7 @@ class Barang extends BaseController
         'required' => 'Spesifikasi tidak boleh kosong!',
       ],
       'address' => [
-        'requied' => 'Lokasi Barang tidak boleh kosong!',
+        'required' => 'Lokasi Barang tidak boleh kosong!',
       ],
       'category' => [
         'required' => 'Kategori Barang tidak boleh kosong!',
