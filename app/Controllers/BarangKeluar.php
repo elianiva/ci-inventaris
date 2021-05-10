@@ -155,8 +155,7 @@ class BarangKeluar extends BaseController
     $stok['total_barang'] =
       (string) ((int) $stok['total_barang'] + (int) $barang['jumlah_keluar']);
     $stok['jumlah_barang_keluar'] =
-      (string) ((int) $stok['jumlah_barang_keluar'] -
-        (int) $barang['jumlah_keluar']);
+      (string) ((int) $stok['jumlah_barang_keluar'] - (int) $barang['jumlah_keluar']);
 
     $barang_keluar_model->delete($id);
     $stok_model->save($stok);

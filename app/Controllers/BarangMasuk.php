@@ -19,7 +19,7 @@ class BarangMasuk extends BaseController
       'page_name' => 'barang',
     ];
 
-    return view('barang/keluar/index', $data);
+    return view('barang/masuk/index', $data);
   }
 
   public function tambah()
@@ -38,7 +38,7 @@ class BarangMasuk extends BaseController
       'supplier'  => $supplier,
     ];
 
-    return view('barang/keluar/tambah', $data);
+    return view('barang/masuk/tambah', $data);
   }
 
   public function save()
@@ -54,7 +54,7 @@ class BarangMasuk extends BaseController
         'rules' => 'required',
       ],
       'date' => [
-        'label' => 'Tanggal keluar',
+        'label' => 'Tanggal Masuk',
         'rules' => 'required',
       ],
       'supplier' => [
@@ -72,7 +72,7 @@ class BarangMasuk extends BaseController
         'required' => 'Nama Barang tidak boleh kosong!',
       ],
       'date' => [
-        'required' => 'Tanggal keluar tidak boleh kosong!',
+        'required' => 'Tanggal Masuk tidak boleh kosong!',
       ],
       'supplier' => [
         'required' => 'Nama Supplier tidak boleh kosong!',
@@ -85,11 +85,11 @@ class BarangMasuk extends BaseController
     if (!$this->validate($rules, $errors)) {
       $this->session->setFlashData('errors', $this->validator->getErrors());
       return redirect()
-        ->to('/barang-keluar/tambah')
+        ->to('/barang-masuk/tambah')
         ->withInput();
     }
 
-    $barang_keluar_model = new BarangMasukModel();
+    $barang_masuk_model = new BarangMasukModel();
     $stok_model = new StokModel();
 
     $nama_barang = $request->getVar('name');
@@ -116,17 +116,17 @@ class BarangMasuk extends BaseController
       ->getResultArray()[0];
     $stok['total_barang'] =
       (string) ((int) $stok['total_barang'] + (int) $total);
-    $stok['jumlah_barang_keluar'] =
-      (string) ((int) $stok['jumlah_barang_keluar'] + (int) $total);
+    $stok['jumlah_barang_masuk'] =
+      (string) ((int) $stok['jumlah_barang_masuk'] + (int) $total);
 
     // this method already handles `insert` and `update`
     // depending on the primary key
-    $barang_keluar_model->save([
-      'id_barang_keluar' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
+    $barang_masuk_model->save([
+      'id_barang_masuk' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
       'kode_barang'      => $kode_barang,
       'nama_barang'      => $nama_barang,
-      'tanggal_keluar'   => $date,
-      'jumlah_keluar'    => $total,
+      'tanggal_masuk'   => $date,
+      'jumlah_masuk'    => $total,
       'kode_supplier'    => $kode_supplier,
     ]);
 
@@ -137,15 +137,15 @@ class BarangMasuk extends BaseController
       "Barang bernama '$nama_barang' telah berhasil ditambahkan!"
     );
 
-    return redirect()->to('/barang-keluar');
+    return redirect()->to('/barang-masuk');
   }
 
   public function hapus(string $id)
   {
-    $barang_keluar_model = new BarangMasukModel();
+    $barang_masuk_model = new BarangMasukModel();
     $stok_model = new StokModel();
 
-    $barang = $barang_keluar_model->find($id);
+    $barang = $barang_masuk_model->find($id);
     $nama_barang = $barang['nama_barang'];
     $builder = $this->db->table('stok');
     $stok = $builder
@@ -153,20 +153,19 @@ class BarangMasuk extends BaseController
       ->get(1)
       ->getResultArray()[0];
     $stok['total_barang'] =
-      (string) ((int) $stok['total_barang'] + (int) $barang['jumlah_keluar']);
-    $stok['jumlah_barang_keluar'] =
-      (string) ((int) $stok['jumlah_barang_keluar'] -
-        (int) $barang['jumlah_keluar']);
+      (string) ((int) $stok['total_barang'] + (int) $barang['jumlah_masuk']);
+    $stok['jumlah_barang_masuk'] =
+      (string) ((int) $stok['jumlah_barang_masuk'] - (int) $barang['jumlah_masuk']);
 
-    $barang_keluar_model->delete($id);
+    $barang_masuk_model->delete($id);
     $stok_model->save($stok);
 
     $this->session->setFlashData(
       'message',
-      "Log barang keluar bernama '$nama_barang' telah berhasil dihapus!"
+      "Log barang masuk bernama '$nama_barang' telah berhasil dihapus!"
     );
 
-    return redirect()->to('/barang-keluar');
+    return redirect()->to('/barang-masuk');
   }
 
   public function get_all()
@@ -183,15 +182,15 @@ class BarangMasuk extends BaseController
     $keyword = $request->getVar('search');
     $keyword = $keyword ? $keyword : '';
 
-    $builder = $this->db->table('barang_keluar');
+    $builder = $this->db->table('barang_masuk');
     $barangData = $builder
       ->orderBy($orderBy ? $orderBy : '', $dir ? $dir : '')
-      ->join('supplier', 'supplier.kode_supplier = barang_keluar.kode_supplier')
+      ->join('supplier', 'supplier.kode_supplier = barang_masuk.kode_supplier')
       ->like('nama_barang', $keyword)
-      ->orLike('jumlah_keluar', $keyword)
+      ->orLike('jumlah_masuk', $keyword)
       ->orLike('nama_supplier', $keyword)
       ->select(
-        'id_barang_keluar, nama_barang, nama_supplier, tanggal_keluar, jumlah_keluar'
+        'id_barang_masuk, nama_barang, nama_supplier, tanggal_masuk, jumlah_masuk'
       )
       ->get($limit, $offset)
       ->getResult();
