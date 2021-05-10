@@ -88,7 +88,7 @@ class Supplier extends BaseController
     if (!$this->validate($rules, $errors)) {
       $this->session->setFlashData('errors', $this->validator->getErrors());
       return redirect()
-        ->to('/supplier' . $id ? '/edit/' . $id : '/tambah')
+        ->to('/supplier' . ($id ? '/edit/' . $id : '/tambah'))
         ->withInput();
     }
 

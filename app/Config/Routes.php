@@ -107,7 +107,6 @@ $routes->post(
   '/barang-masuk/hapus/(:any)',
   $with_auth('BarangMasuk::hapus/$1')
 );
-$routes->post('/barang-masuk/edit', $with_auth('BarangMasuk::edit'));
 $routes->get('/barang-masuk/export', $with_auth('BarangMasuk::export'));
 
 $routes->get('/barang-keluar', $with_auth('BarangKeluar::index'));
@@ -122,7 +121,6 @@ $routes->post(
   '/barang-keluar/hapus/(:any)',
   $with_auth('BarangKeluar::hapus/$1')
 );
-$routes->post('/barang-keluar/edit', $with_auth('BarangKeluar::edit'));
 $routes->get('/barang-keluar/export', $with_auth('BarangKeluar::export'));
 
 $routes->get('/stok', $with_auth('Stok::index', true));

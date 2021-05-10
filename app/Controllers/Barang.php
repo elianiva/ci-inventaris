@@ -102,7 +102,7 @@ class Barang extends BaseController
     if (!$this->validate($rules, $errors)) {
       $this->session->setFlashData('errors', $this->validator->getErrors());
       return redirect()
-        ->to('/barang' . $id ? '/edit/' . $id : '/tambah')
+        ->to('/barang' . ($id ? '/edit/' . $id : '/tambah'))
         ->withInput();
     }
 

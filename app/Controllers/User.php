@@ -82,7 +82,6 @@ class User extends BaseController
     ];
 
     if (!$this->validate($rules, $errors)) {
-      dd($this->validator->getErrors());
       $this->session->setFlashData('errors', $this->validator->getErrors());
       return redirect()
         ->to('/user' . $id ? '/edit/' . $id : '/tambah')
