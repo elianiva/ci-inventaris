@@ -38,7 +38,7 @@ class BarangMasuk extends BaseController
       'supplier'  => $supplier,
     ];
 
-    return view('barang/masuk/tambah', $data);
+    return view('barang/masuk/form', $data);
   }
 
   public function save()

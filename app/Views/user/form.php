@@ -104,6 +104,18 @@
       <?php endif; ?>
     </label>
 
+    <label class="block mt-4 text-sm">
+      <span class="text-gray-700">Level User</span>
+      <select
+        class="block w-full mt-1 text-sm form-select focus:border-blue-400 focus:outline-none focus:shadow-outline-blue"
+        name="level"
+        value="<?= old('level') ?? ($prev['level'] ?? '') ?>"
+      >
+        <option value="1">Admin</option>
+        <option value="2">User</option>
+      </select>
+    </label>
+
     <div
       class="flex gap-4 pt-6 pb-2 justify-end"
     >

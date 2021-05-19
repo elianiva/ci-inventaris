@@ -35,7 +35,7 @@ class Supplier extends BaseController
       'prev'       => $prev,
     ];
 
-    return view('supplier/tambah', $data);
+    return view('supplier/form', $data);
   }
 
   public function save(string $id = null)

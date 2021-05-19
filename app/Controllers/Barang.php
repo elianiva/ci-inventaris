@@ -39,7 +39,7 @@ class Barang extends BaseController
       'prev'       => $prev,
     ];
 
-    return view('barang/tambah', $data);
+    return view('barang/form', $data);
   }
 
   public function save(string $id = null)

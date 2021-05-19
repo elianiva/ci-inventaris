@@ -38,7 +38,7 @@ class BarangKeluar extends BaseController
       'supplier'  => $supplier,
     ];
 
-    return view('barang/keluar/tambah', $data);
+    return view('barang/keluar/form', $data);
   }
 
   public function save()

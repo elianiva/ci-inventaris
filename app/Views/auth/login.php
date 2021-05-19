@@ -55,7 +55,7 @@ $msg = $session->getFlashData('message');
                 <span class="text-gray-700">Username</span>
                 <input
                   class="block w-full mt-1 text-sm focus:border-blue-400 focus:outline-none focus:shadow-outline-blue form-input"
-                  placeholder="Jane Doe"
+                  placeholder="Username..."
                   name="username"
                 />
               </label>

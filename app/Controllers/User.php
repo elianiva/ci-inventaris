@@ -31,7 +31,7 @@ class User extends BaseController
       'prev'       => $prev
     ];
 
-    return view('user/tambah', $data);
+    return view('user/form', $data);
   }
 
   public function save(string $id = null)
@@ -92,13 +92,15 @@ class User extends BaseController
     $name = $request->getVar('name');
     $username = $request->getVar('username');
     $password = $request->getVar('password');
+    $level = $request->getVar('level');
+    $old = $userModel->find($id);
 
     $userModel->save([
       'id_user'  => $id,
       'nama'     => $name,
       'username' => $username,
-      'password' => password_hash($password, PASSWORD_BCRYPT),
-      'level'    => 1,
+      'password' => $id ? $old['password'] : password_hash($password, PASSWORD_BCRYPT),
+      'level'    => $level,
     ]);
 
     $this->session->setFlashData(
