@@ -26,7 +26,7 @@
       <div class="flex-1"></div>
       <ul class="flex items-center flex-shrink-0 space-x-6">
         <span class="text-gray-600 font-semibold text-lg">
-          Halo, <?= session()->current_user['username'] ?>!
+          Halo, <?= session()->current_user['name'] ?>!
         </span>
         <!-- Profile menu -->
         <li class="relative">
