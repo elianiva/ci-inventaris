@@ -21,7 +21,7 @@ class Stok extends Seeder
     $barang_keluar_model = new BarangKeluarModel();
     $kode_barang = $barang_model->findColumn('kode_barang');
 
-    for ($i = 0; $i < 50; $i++) {
+    for ($i = 0; $i < sizeof($kode_barang); $i++) {
       $rand = $faker->randomElement($kode_barang);
 
       // remove used `kode_barang`

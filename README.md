@@ -14,6 +14,7 @@
 - [Neovim](https://neovim.io/) - Text Editor
 - [MariaDB/MySQL](https://mariadb.org/) - Database SQL
 - [HeroIcons](https://heroicons.com/) - Kumpulan ikon yang digunakan
+- [Docker](https://www.docker.com/) - Kontainerisasi agar aplikasi lebih mudah di-deploy dimana saja
 
 
 ## Database

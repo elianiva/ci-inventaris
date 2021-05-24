@@ -48,6 +48,8 @@ class Auth extends BaseController
 
     $builder = $this->db->table('user');
 
+    // dd($builder);
+
     $user = $builder
       ->select('nama, username, password, level')
       ->where('username', $username)

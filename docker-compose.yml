@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    image: inventaris:v1
+    container_name: inventaris_app
+    ports:
+      - 8080:80
+    volumes:
+      - ./inventaris_app:/var/www/html
+    networks:
+      - database
+
+  database:
+    image: mariadb:10.6.0
+    container_name: inventaris_database
+    ports:
+      - 3306:3306
+    volumes:
+      - ./local/mysql:/var/lib/mysql
+      - ./local/logs/mysql:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 2003
+      MYSQL_DATABASE: inventaris
+      MYSQL_USER: elianiva
+      MYSQL_PASSWORD: 2003
+    networks:
+      database:
+        aliases:
+          - "127.0.0.1"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.1.0
+    container_name: inventaris_phpmyadmin
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+    ports:
+      - 81:80
+    volumes:
+      - ./local/sessions:/sessions
+    networks:
+      - database
+
+networks:
+  database:
+    name: database
+    driver: bridge

@@ -22,7 +22,7 @@ class BarangKeluarMasuk extends Seeder
     $kode_barang_s = $barang_model->findColumn('kode_barang');
     $kode_supplier_s = $supplier_model->findColumn('kode_supplier');
 
-    for ($i = 0; $i < 50; $i++) {
+    for ($i = 0; $i < sizeof($kode_barang_s); $i++) {
       $kode_barang = $faker->randomElement($kode_barang_s);
       // remove used `kode_barang`
       if (($key = array_search($kode_barang, $kode_barang_s)) !== false) {

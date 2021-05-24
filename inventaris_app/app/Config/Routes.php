@@ -76,14 +76,14 @@ $routes->post(
   '/user/tambah/(:any)',
   $only_admin($with_auth('User::save/$1'))
 );
-$routes->get('/user/edit/(:any)', $only_admin($with_auth('User::form/$1')));
+$routes->post('/user/edit/(:any)', $only_admin($with_auth('User::form/$1')));
 
 $routes->get('/supplier', $with_auth('Supplier::index'));
 $routes->get('/supplier/tambah', $with_auth('Supplier::form'));
 $routes->post('/supplier/tambah', $with_auth('Supplier::save'));
 $routes->post('/supplier/tambah/(:any)', $with_auth('Supplier::save/$1'));
 $routes->delete('/supplier/hapus/(:any)', $with_auth('Supplier::hapus'));
-$routes->get('/supplier/edit/(:any)', $with_auth('Supplier::form/$1'));
+$routes->post('/supplier/edit/(:any)', $with_auth('Supplier::form/$1'));
 $routes->get('/supplier/export', $with_auth('Supplier::export'));
 
 $routes->get('/barang', $with_auth('Barang::index'));
@@ -92,7 +92,7 @@ $routes->post('/barang/tambah/(:any)', $with_auth('Barang::save/$1'));
 $routes->post('/barang/tambah', $with_auth('Barang::save'));
 // this should be DELETE, but HTML form doesn't have that..
 $routes->post('/barang/hapus/(:any)', $with_auth('Barang::hapus/$1'));
-$routes->get('/barang/edit/(:any)', $with_auth('Barang::form/$1'));
+$routes->post('/barang/edit/(:any)', $with_auth('Barang::form/$1'));
 $routes->get('/barang/export', $with_auth('Barang::export'));
 
 $routes->get('/barang-masuk', $with_auth('BarangMasuk::index'));
